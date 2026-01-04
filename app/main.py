@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from app.api.site import site_router
 
+
 from app.api import health, waitlist
 from app.core.database import Base, engine
 from app.api.quests import router as quests_router

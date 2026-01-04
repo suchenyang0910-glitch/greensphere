@@ -11,16 +11,18 @@ site_router = APIRouter()
 
 
 @site_router.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    accept_language = request.headers.get("Accept-Language")
-    lang = detect_lang(accept_language)
-    text = TEXTS.get(lang, TEXTS["en"])
 
-    return templates.TemplateResponse(
-        "home.html",
-        {
-            "request": request,
-            "t": text,        # 文案
-            "lang": lang,     # 当前语言
-        },
-    )
+async def home(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
+@site_router.get("/pioneer", response_class=HTMLResponse)
+async def pioneer(request: Request):
+    return templates.TemplateResponse("pioneer.html", {"request": request})
+
+@site_router.get("/for-companies", response_class=HTMLResponse)
+async def for_companies(request: Request):
+    return templates.TemplateResponse("for_companies.html", {"request": request})
+
+@site_router.get("/about", response_class=HTMLResponse)
+async def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
