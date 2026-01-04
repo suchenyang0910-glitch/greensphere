@@ -1,0 +1,161 @@
+:root {
+    --gs-green: #1BBF72;
+    --gs-green-dark: #138652;
+    --gs-bg: #F5F7F9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--gs-bg);
+    font-size: 16px;
+}
+
+.app-shell {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 12px 12px 24px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.logo-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #A8E6CF, var(--gs-green));
+    margin-right: 8px;
+}
+
+.app-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.app-subtitle {
+    font-size: 13px;
+    color: #666;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(15, 35, 52, 0.06);
+}
+
+
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.section-desc {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+#user {
+    font-size: 13px;
+    color: #444;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: #F0F3F6;
+}
+
+
+#stats p {
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+.all-done {
+    color: var(--gs-green-dark);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.badge {
+    color: var(--gs-green);
+    font-weight: 600;
+}
+
+.task-button:active {
+    background-color: #D5F6E6;
+    transform: translateY(1px);
+}
+
+.task-button {
+    display: block;
+    width: 100%;
+    padding: 12px 12px;
+    margin: 6px 0;
+    font-size: 15px;
+    text-align: left;
+    border-radius: 10px;
+    border: 1px solid var(--gs-green);
+    background-color: #E8FFF4;
+}
+
+.task-button span.title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.task-button span.meta {
+    font-size: 12px;
+    color: #555;
+}
+
+.task-button.completed {
+    background-color: #F2F2F2;
+    color: #666;
+    border-color: #DDD;
+}
+
+.badges-list {
+    font-size: 13px;
+}
+
+.badges-list span {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #E8FFF4;
+    border: 1px solid var(--gs-green);
+    margin-right: 6px;
+}
+
+/* 简单 toast */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    background: #111;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
