@@ -1,0 +1,58 @@
+{% extends "site_base.html" %}
+
+{% block content %}
+<div class="app-shell">
+
+    <section class="card hero-card">
+        <h1>{{ t.title }}</h1>
+        <p class="hero-subtitle">{{ t.subtitle }}</p>
+        <div class="hero-cta">
+            <a class="primary-btn" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
+                {{ t.cta_use_bot }}
+            </a>
+            <a class="secondary-btn" href="https://t.me/GreenSphere_Community" target="_blank">
+                {{ t.cta_pioneer }}
+            </a>
+        </div>
+        <p class="hero-note">
+            Telegram Bot: <code>@GreenSphereCommunity_Bot</code>
+        </p>
+    </section>
+
+    <section class="card">
+        <div class="section-title">{{ t.section_how_title }}</div>
+        <ol class="section-list">
+            {% for step in t.section_how_steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </section>
+
+    <section class="card">
+        <div class="section-title">{{ t.section_why_title }}</div>
+        <ul class="section-list">
+            {% for p in t.section_why_points %}
+            <li>{{ p }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="card">
+        <div class="section-title">{{ t.section_for_title }}</div>
+        <ul class="section-list">
+            {% for item in t.section_for_items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="card">
+        <div class="section-title">Start now</div>
+        <p>
+            👉 Telegram: <strong>@GreenSphereCommunity_Bot</strong><br>
+            👉 WebApp: <a href="https://app.greensphere.world/" target="_blank">https://app.greensphere.world/</a>
+        </p>
+    </section>
+
+</div>
+{% endblock %}
