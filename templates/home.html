@@ -1,145 +1,657 @@
-{% extends "site_base.html" %}
-
-{% block content %}
-<div class="landing-body">
-
-  <header class="landing-header">
-    <img src="/static/logo.svg" class="logo" alt="GreenSphere logo" />
-    <span class="brand">GreenSphere™</span>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>LeafPass - 每天 30 秒，记录一件绿色小事</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="lp-header">
+    <div class="lp-container lp-header-inner">
+      <a href="#hero" class="lp-logo" data-i18n="brand">LeafPass</a>
+      <nav class="lp-nav">
+        <a href="#what-how" data-i18n="nav.whatHow">是什么 & 怎么用</a>
+        <a href="#why-for-whom" data-i18n="nav.whyForWhom">为什么 & 适合谁</a>
+        <a href="#pioneer" data-i18n="nav.pioneer">Pioneer 7 天挑战</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <h1>
-      {{ t.title }}
-    </h1>
-    <p>
-      {{ t.subtitle }}
-    </p>
-
-    <div class="hero-cta">
-      <a class="btn" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
-        {{ t.cta_use_bot }}
-      </a>
-      <p class="hero-meta">
-        Telegram Bot: <code>@GreenSphereCommunity_Bot</code><br/>
-        WebApp: <a href="https://app.greensphere.world/app" target="_blank">app.greensphere.world/app</a>
-      </p>
+  <section id="hero" class="lp-section lp-hero">
+    <div class="lp-container lp-hero-grid">
+      <div class="lp-hero-text">
+        <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
+        <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
+          在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。
+        </p>
+        <div class="lp-hero-actions">
+          <a
+            class="lp-btn lp-btn-primary"
+            href="https://t.me/your_leafpass_bot"
+            target="_blank"
+            rel="noopener"
+            data-i18n="hero.ctaPrimary"
+          >
+            在 Telegram 里开始打卡
+          </a>
+          <a
+            class="lp-btn lp-btn-secondary"
+            href="#pioneer"
+            data-i18n="hero.ctaSecondary"
+          >
+            加入 7 天 Pioneer 挑战
+          </a>
+        </div>
+        <p class="lp-hero-caption" data-i18n="hero.caption">
+          每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。
+        </p>
+      </div>
+      <div class="lp-hero-image">
+        <div class="lp-screenshot-placeholder">
+          <span data-i18n="hero.screenshot">
+            产品截图<br />Telegram LeafPass Bot
+          </span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 核心特性 -->
-  <section class="features">
-    <div class="feature">
-      🌱 行为即积分
-      <span>步行 / 减碳 / 每日任务 → G-Points</span>
-    </div>
-    <div class="feature">
-      🎟 LeafPass 等级
-      <span>L1–L4 绿色行为身份成长</span>
-    </div>
-    <div class="feature">
-      🔗 Telegram 原生
-      <span>无需下载 App，一键打开 WebApp</span>
+  <!-- What & How -->
+  <section id="what-how" class="lp-section lp-section-alt">
+    <div class="lp-container">
+      <div class="lp-section-header">
+        <h2 data-i18n="what.title">
+          你每天只需点 2–3 个小任务，我们负责把它们变成看得见的数据
+        </h2>
+        <p class="lp-section-subtitle" data-i18n="what.subtitle">
+          用 3 步，让你的绿色行动被记录、被看见、被累计。
+        </p>
+      </div>
+
+      <div class="lp-two-column">
+        <div class="lp-card lp-card-steps">
+          <ol class="lp-step-list">
+            <li>
+              <h3 data-i18n="what.step1.title">1. 入口：在 Telegram 进入 LeafPass</h3>
+              <ul>
+                <li data-i18n="what.step1.li1">
+                  搜索并打开 LeafPass Bot，订阅你关心的绿色主题。
+                </li>
+                <li data-i18n="what.step1.li2">
+                  每天收到 2–3 个简单可做的小任务。
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3 data-i18n="what.step2.title">
+                2. 每日任务：点一点，就完成一次绿色打卡
+              </h3>
+              <ul>
+                <li data-i18n="what.step2.li1">
+                  任务形式尽量生活化，比如步行通勤、少点一次外卖、带自己的杯子。
+                </li>
+                <li data-i18n="what.step2.li2">
+                  选择完成的任务，必要时补充一张照片或一句话。
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3 data-i18n="what.step3.title">
+                3. LeafPass & 档案：把碎片行为变成一张清晰的记录
+              </h3>
+              <ul>
+                <li data-i18n="what.step3.li1">
+                  系统自动统计你的任务完成情况，生成个人 LeafPass 徽章。
+                </li>
+                <li data-i18n="what.step3.li2">
+                  你可以随时导出自己的行动记录，用在社区、简历或未来的 ESG 需求里。
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="lp-card lp-card-backend">
+          <h3 data-i18n="what.backend.title">我们在后台做的事情</h3>
+          <ul>
+            <li data-i18n="what.backend.li1">
+              为每类任务预设减碳 / 环保行为的行业基准，避免“摆拍式”环保。
+            </li>
+            <li data-i18n="what.backend.li2">
+              对可验证行为（如步数、通勤方式）逐步接入第三方数据源。
+            </li>
+            <li data-i18n="what.backend.li3">
+              用统一的数据结构记录你的行动，未来支持导出给公司 / 项目方使用。
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- LeafPass 等级说明 -->
-  <section class="leafpass" id="leafpass">
-    <h2>LeafPass™ · 绿色行为身份等级</h2>
-    <p class="section-sub">
-      LeafPass 不是投机 NFT，而是基于真实行为的长期绿色身份。
-    </p>
-
-    <div class="leafpass-grid">
-
-      <div class="leaf-card l1">
-        <h3>L1 · Seed</h3>
-        <p class="range">0 – 99 G-Points</p>
-        <ul>
-          <li>完成首次绿色任务</li>
-          <li>进入社区基础频道</li>
-          <li>参与早期测试</li>
-        </ul>
+  <!-- Why / For whom -->
+  <section id="why-for-whom" class="lp-section">
+    <div class="lp-container">
+      <div class="lp-section-header">
+        <h2 data-i18n="why.title">为什么先从「简单打卡」开始？</h2>
       </div>
 
-      <div class="leaf-card l2">
-        <h3>L2 · Sprout</h3>
-        <p class="range">100 – 499 G-Points</p>
-        <ul>
-          <li>解锁周期性任务</li>
-          <li>获得合作品牌奖励</li>
-          <li>参与社区投票</li>
-        </ul>
+      <div class="lp-three-column">
+        <div class="lp-card">
+          <h3 data-i18n="why.card1.title">足够简单，才有可能坚持</h3>
+          <ul>
+            <li data-i18n="why.card1.li1">
+              只需要 Telegram，不用再装一个新 App。
+            </li>
+            <li data-i18n="why.card1.li2">
+              任务是“顺手就能做”的小事，而不是复杂的减碳计划。
+            </li>
+          </ul>
+        </div>
+        <div class="lp-card">
+          <h3 data-i18n="why.card2.title">
+            没有理财逻辑，更不会推你去买什么
+          </h3>
+          <ul>
+            <li data-i18n="why.card2.li1">
+              LeafPass 不是理财产品，也不卖碳资产。
+            </li>
+            <li data-i18n="why.card2.li2">
+              你的行动本身就有价值，不需要被强行换算成收益曲线。
+            </li>
+          </ul>
+        </div>
+        <div class="lp-card">
+          <h3 data-i18n="why.card3.title">数据是你的，可以带走</h3>
+          <ul>
+            <li data-i18n="why.card3.li1">
+              你的行动记录可以导出，不锁在我们的系统里。
+            </li>
+            <li data-i18n="why.card3.li2">
+              未来你可以选择把这些数据分享给公司、学校或项目方。
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="leaf-card l3">
-        <h3>L3 · Grove</h3>
-        <p class="range">500 – 1999 G-Points</p>
-        <ul>
-          <li>高级任务与挑战</li>
-          <li>线下活动优先权</li>
-          <li>社区治理提案权</li>
-        </ul>
+      <div class="lp-section-subblock">
+        <h3 data-i18n="forWhom.title">谁适合现在就开始用 LeafPass？</h3>
+        <div class="lp-two-column">
+          <div class="lp-card">
+            <h4 data-i18n="forWhom.individual.title">
+              个人用户（当前重点）
+            </h4>
+            <ul>
+              <li data-i18n="forWhom.individual.li1">
+                想更有意识地生活，却不想被“环保焦虑”绑架。
+              </li>
+              <li data-i18n="forWhom.individual.li2">
+                喜欢用数据看到自己的改变，但不想研究复杂的碳算法。
+              </li>
+            </ul>
+          </div>
+          <div class="lp-card">
+            <h4 data-i18n="forWhom.org.title">未来的 B 端 / 组织</h4>
+            <ul>
+              <li data-i18n="forWhom.org.li1">
+                企业 / ESG 团队：员工或用户已经在 Telegram 里，希望把绿色行动沉淀成匿名、可汇总的数据。
+              </li>
+              <li data-i18n="forWhom.org.li2">
+                制造业 / 实体项目：希望把个人行为与节能改造、回收计划等实际项目挂钩，用真实参与度补足传统 ESG 指标。
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <div class="leaf-card l4">
-        <h3>L4 · Canopy</h3>
-        <p class="range">2000+ G-Points</p>
-        <ul>
-          <li>生态共建者身份</li>
-          <li>品牌与项目共创</li>
-          <li>长期权益与分润计划（未来）</li>
-        </ul>
-      </div>
-
     </div>
   </section>
 
-  <!-- Waitlist （保持结构，后端 API 以后再接） -->
-  <section class="waitlist">
-    <h2>加入 Pioneer Waitlist</h2>
+  <!-- Pioneer / Waitlist -->
+  <section id="pioneer" class="lp-section lp-section-alt">
+    <div class="lp-container lp-pioneer-grid">
+      <div class="lp-pioneer-left">
+        <h2 data-i18n="pioneer.title">
+          LeafPass Pioneer：用 7 天体验一整套绿色行动旅程
+        </h2>
+        <p class="lp-section-subtitle" data-i18n="pioneer.subtitle">
+          加入 7 天 Pioneer 挑战，你会在 Telegram 里体验到一整套「任务 → 打卡 → LeafPass 徽章 → 数据导出」的流程。
+        </p>
 
-    <form id="waitlistForm">
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="telegram_id" placeholder="Telegram ID（数字）" required />
-      <input type="text" name="invite_code" placeholder="邀请码（可选）" />
-      <button type="submit">Join Waitlist</button>
-    </form>
+        <h3 class="lp-pioneer-timeline-title" data-i18n="pioneer.timelineTitle">
+          7 天你会经历什么
+        </h3>
+        <ul class="lp-timeline">
+          <li>
+            <div class="lp-timeline-day" data-i18n="pioneer.d1.title">
+              第 1 天
+            </div>
+            <p data-i18n="pioneer.d1.text">
+              激活 LeafPass Bot，选定你关心的主题（出行 / 饮食 / 生活方式等）。
+            </p>
+          </li>
+          <li>
+            <div class="lp-timeline-day" data-i18n="pioneer.d2.title">
+              第 2–3 天
+            </div>
+            <p data-i18n="pioneer.d2.text">
+              每天完成 2–3 个小任务，第一次看到你的每日记录长什么样。
+            </p>
+          </li>
+          <li>
+            <div class="lp-timeline-day" data-i18n="pioneer.d3.title">
+              第 4–5 天
+            </div>
+            <p data-i18n="pioneer.d3.text">
+              解锁第一个 LeafPass 徽章，一眼看到你这一周的累计行动。
+            </p>
+          </li>
+          <li>
+            <div class="lp-timeline-day" data-i18n="pioneer.d4.title">
+              第 6 天
+            </div>
+            <p data-i18n="pioneer.d4.text">
+              尝试导出你的行动记录，看看它在简历 / 团队群里展示是什么效果。
+            </p>
+          </li>
+          <li>
+            <div class="lp-timeline-day" data-i18n="pioneer.d5.title">
+              第 7 天
+            </div>
+            <p data-i18n="pioneer.d5.text">
+              填写一个极短反馈，决定我们下一步优先做哪些功能。
+            </p>
+          </li>
+        </ul>
+      </div>
 
-    <p id="msg"></p>
+      <div class="lp-pioneer-right">
+        <div class="lp-card lp-form-card">
+          <h3 data-i18n="form.title">报名加入 7 天 Pioneer 挑战</h3>
+          <p class="lp-form-desc" data-i18n="form.desc">
+            我们会通过邮箱 / Telegram 把邀请链接发给你，不做群发营销。
+          </p>
+          <form class="lp-form" action="#" method="post">
+            <label>
+              <span data-i18n="form.name.label">姓名</span>
+              <input
+                type="text"
+                name="name"
+                placeholder="请填写你的姓名"
+                data-i18n-placeholder="form.name.placeholder"
+                required
+              />
+            </label>
+            <label>
+              <span data-i18n="form.email.label">邮箱</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="你常用的邮箱地址"
+                data-i18n-placeholder="form.email.placeholder"
+                required
+              />
+            </label>
+            <label>
+              <span data-i18n="form.telegram.label">Telegram 用户名（可选）</span>
+              <input
+                type="text"
+                name="telegram"
+                placeholder="@your_handle"
+                data-i18n-placeholder="form.telegram.placeholder"
+              />
+            </label>
+            <label>
+              <span data-i18n="form.topics.label">你最关心的绿色主题</span>
+              <input
+                type="text"
+                name="topics"
+                placeholder="例如：出行、饮食、生活方式…"
+                data-i18n-placeholder="form.topics.placeholder"
+              />
+            </label>
+            <label>
+              <span data-i18n="form.role.label">你是</span>
+              <select name="role">
+                <option value="individual" data-i18n="form.role.individual">
+                  个人
+                </option>
+                <option value="esg" data-i18n="form.role.esg">
+                  在公司负责 ESG / 可持续
+                </option>
+                <option value="other" data-i18n="form.role.other">
+                  其他
+                </option>
+              </select>
+            </label>
+            <button
+              type="submit"
+              class="lp-btn lp-btn-primary lp-btn-block"
+              data-i18n="form.submit"
+            >
+              提交申请
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="landing-footer">
-    © GreenSphere™ · East Asia Green Impact Network
+  <footer class="lp-footer">
+    <div class="lp-container lp-footer-inner">
+      <div class="lp-footer-left">
+        <span class="lp-logo" data-i18n="brand">LeafPass</span>
+        <p class="lp-footer-text" data-i18n="footer.text">
+          在 Telegram 里记录你的绿色行动，收集 LeafPass 徽章。
+        </p>
+      </div>
+      <div class="lp-footer-right">
+        <a href="#hero" data-i18n="footer.backToTop">返回顶部</a>
+      </div>
+    </div>
   </footer>
-</div>
 
-<script>
-document.getElementById("waitlistForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+    <script>
+    (function () {
+      var lang = (navigator.language || navigator.userLanguage || "en")
+        .toLowerCase()
+        .split("-")[0];
 
-  const form = e.target;
-  const data = {
-    email: form.email.value,
-    telegram_id: Number(form.telegram_id.value),
-    invite_code: form.invite_code.value || null
-  };
+      var map = { zh: "zh", th: "th", vi: "vi", km: "km" };
+      var current = map[lang] || "en";
 
-  // TODO: 你可以在 app/api 里暴露一个 /api/waitlist 接口后，再把这里的 URL 改为你的后端 API
-  const res = await fetch("/api/waitlist", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
-  });
+      var t = {
+        zh: {
+          brand: "LeafPass",
+          "nav.whatHow": "是什么 & 怎么用",
+          "nav.whyForWhom": "为什么 & 适合谁",
+          "nav.pioneer": "Pioneer 7 天挑战",
+          "hero.title": "每天 30 秒，记录一件绿色小事",
+          "hero.subtitle":
+            "在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。",
+          "hero.ctaPrimary": "在 Telegram 里开始打卡",
+          "hero.ctaSecondary": "加入 7 天 Pioneer 挑战",
+          "hero.caption":
+            "每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。",
+          "hero.screenshot": "产品截图<br />Telegram LeafPass Bot",
 
-  const json = await res.json();
+          "what.title":
+            "你每天只需点 2–3 个小任务，我们负责把它们变成看得见的数据",
+          "what.subtitle": "用 3 步，让你的绿色行动被记录、被看见、被累计。",
+          "what.step1.title": "1. 入口：在 Telegram 进入 LeafPass",
+          "what.step1.li1":
+            "搜索并打开 LeafPass Bot，订阅你关心的绿色主题。",
+          "what.step1.li2": "每天收到 2–3 个简单可做的小任务。",
+          "what.step2.title": "2. 每日任务：点一点，就完成一次绿色打卡",
+          "what.step2.li1":
+            "任务形式尽量生活化，比如步行通勤、少点一次外卖、带自己的杯子。",
+          "what.step2.li2":
+            "选择完成的任务，必要时补充一张照片或一句话。",
+          "what.step3.title":
+            "3. LeafPass & 档案：把碎片行为变成一张清晰的记录",
+          "what.step3.li1":
+            "系统自动统计你的任务完成情况，生成个人 LeafPass 徽章。",
+          "what.step3.li2":
+            "你可以随时导出自己的行动记录，用在社区、简历或未来的 ESG 需求里。",
+          "what.backend.title": "我们在后台做的事情",
+          "what.backend.li1":
+            "为每类任务预设减碳 / 环保行为的行业基准，避免“摆拍式”环保。",
+          "what.backend.li2":
+            "对可验证行为（如步数、通勤方式）逐步接入第三方数据源。",
+          "what.backend.li3":
+            "用统一的数据结构记录你的行动，未来支持导出给公司 / 项目方使用。",
 
-  if (json.success) {
-    document.getElementById("msg").innerText = "已加入 Waitlist，我们会通过 Telegram / Email 与你联系。";
-  } else {
-    document.getElementById("msg").innerText = json.message || "Error";
-  }
-});
-</script>
-{% endblock %}
+          "why.title": "为什么先从「简单打卡」开始？",
+          "why.card1.title": "足够简单，才有可能坚持",
+          "why.card1.li1": "只需要 Telegram，不用再装一个新 App。",
+          "why.card1.li2": "任务是“顺手就能做”的小事，而不是复杂的减碳计划。",
+          "why.card2.title": "没有理财逻辑，更不会推你去买什么",
+          "why.card2.li1": "LeafPass 不是理财产品，也不卖碳资产。",
+          "why.card2.li2":
+            "你的行动本身就有价值，不需要被强行换算成收益曲线。",
+          "why.card3.title": "数据是你的，可以带走",
+          "why.card3.li1": "你的行动记录可以导出，不锁在我们的系统里。",
+          "why.card3.li2":
+            "未来你可以选择把这些数据分享给公司、学校或项目方。",
+
+          "forWhom.title": "谁适合现在就开始用 LeafPass？",
+          "forWhom.individual.title": "个人用户（当前重点）",
+          "forWhom.individual.li1":
+            "想更有意识地生活，却不想被“环保焦虑”绑架。",
+          "forWhom.individual.li2":
+            "喜欢用数据看到自己的改变，但不想研究复杂的碳算法。",
+          "forWhom.org.title": "未来的 B 端 / 组织",
+          "forWhom.org.li1":
+            "企业 / ESG 团队：员工或用户已经在 Telegram 里，希望把绿色行动沉淀成匿名、可汇总的数据。",
+          "forWhom.org.li2":
+            "制造业 / 实体项目：希望把个人行为与节能改造、回收计划等实际项目挂钩，用真实参与度补足传统 ESG 指标。",
+
+          "pioneer.title":
+            "LeafPass Pioneer：用 7 天体验一整套绿色行动旅程",
+          "pioneer.subtitle":
+            "加入 7 天 Pioneer 挑战，你会在 Telegram 里体验到一整套「任务 → 打卡 → LeafPass 徽章 → 数据导出」的流程。",
+          "pioneer.timelineTitle": "7 天你会经历什么",
+          "pioneer.d1.title": "第 1 天",
+          "pioneer.d1.text":
+            "激活 LeafPass Bot，选定你关心的主题（出行 / 饮食 / 生活方式等）。",
+          "pioneer.d2.title": "第 2–3 天",
+          "pioneer.d2.text":
+            "每天完成 2–3 个小任务，第一次看到你的每日记录长什么样。",
+          "pioneer.d3.title": "第 4–5 天",
+          "pioneer.d3.text":
+            "解锁第一个 LeafPass 徽章，一眼看到你这一周的累计行动。",
+          "pioneer.d4.title": "第 6 天",
+          "pioneer.d4.text":
+            "尝试导出你的行动记录，看看它在简历 / 团队群里展示是什么效果。",
+          "pioneer.d5.title": "第 7 天",
+          "pioneer.d5.text":
+            "填写一个极短反馈，决定我们下一步优先做哪些功能。",
+
+          "form.title": "报名加入 7 天 Pioneer 挑战",
+          "form.desc":
+            "我们会通过邮箱 / Telegram 把邀请链接发给你，不做群发营销。",
+          "form.name.label": "姓名",
+          "form.name.placeholder": "请填写你的姓名",
+          "form.email.label": "邮箱",
+          "form.email.placeholder": "你常用的邮箱地址",
+          "form.telegram.label": "Telegram 用户名（可选）",
+          "form.telegram.placeholder": "@your_handle",
+          "form.topics.label": "你最关心的绿色主题",
+          "form.topics.placeholder": "例如：出行、饮食、生活方式…",
+          "form.role.label": "你是",
+          "form.role.individual": "个人",
+          "form.role.esg": "在公司负责 ESG / 可持续",
+          "form.role.other": "其他",
+          "form.submit": "提交申请",
+
+          "footer.text":
+            "在 Telegram 里记录你的绿色行动，收集 LeafPass 徽章。",
+          "footer.backToTop": "返回顶部"
+        },
+
+        en: {
+          brand: "LeafPass",
+          "nav.whatHow": "What & How",
+          "nav.whyForWhom": "Why & For whom",
+          "nav.pioneer": "Pioneer 7‑day challenge",
+          "hero.title": "Track one green action in 30 seconds a day",
+          "hero.subtitle":
+            "Log your climate-friendly actions inside Telegram and record your journey with LeafPass badges.",
+          "hero.ctaPrimary": "Start tracking in Telegram",
+          "hero.ctaSecondary": "Join the 7‑day Pioneer Challenge",
+          "hero.caption":
+            "Daily check-ins and badges that show how your small actions add up.",
+          "hero.screenshot": "Product screenshot<br />Telegram LeafPass Bot",
+
+          "what.title":
+            "You just tap 2–3 small tasks a day. We turn them into visible impact data.",
+          "what.subtitle":
+            "Three simple steps to make your green actions recorded, visible, and cumulative.",
+          "what.step1.title": "1. Entry: Access LeafPass in Telegram",
+          "what.step1.li1":
+            "Open the LeafPass bot and subscribe to the climate topics you care about.",
+          "what.step1.li2": "Receive 2–3 simple, doable tasks every day.",
+          "what.step2.title": "2. Daily tasks: one tap to log a green action",
+          "what.step2.li1":
+            "Tasks are everyday actions, like walking instead of driving or bringing your own cup.",
+          "what.step2.li2":
+            "Mark the tasks you completed and add a photo or note when needed.",
+          "what.step3.title":
+            "3. LeafPass & Profile: turn moments into a clear record",
+          "what.step3.li1":
+            "We summarize your completed tasks and award LeafPass badges.",
+          "what.step3.li2":
+            "You can export your action history anytime for communities, your CV, or future ESG needs.",
+          "what.backend.title": "What we do behind the scenes",
+          "what.backend.li1":
+            "Use baseline metrics for each type of action to avoid performative greenwashing.",
+          "what.backend.li2":
+            "Gradually connect to third‑party data sources for verifiable behaviours like mobility or steps.",
+          "what.backend.li3":
+            "Store your actions in a structured format so companies and projects can use them later.",
+
+          "why.title": "Why start with simple daily check‑ins?",
+          "why.card1.title": "Simplicity makes it sustainable",
+          "why.card1.li1": "You already use Telegram — no extra app to install.",
+          "why.card1.li2":
+            "Tasks are small, everyday actions, not complex carbon plans.",
+          "why.card2.title": "No investing, no hidden agenda",
+          "why.card2.li1":
+            "LeafPass is not a financial product and we don’t sell carbon credits.",
+          "why.card2.li2":
+            "Your actions matter on their own, without being forced into a yield chart.",
+          "why.card3.title": "Your data is portable",
+          "why.card3.li1":
+            "You can export your own action history at any time.",
+          "why.card3.li2":
+            "Later, you decide if you want to share it with your company, school, or a project.",
+
+          "forWhom.title": "Who is LeafPass for?",
+          "forWhom.individual.title": "Individuals (our focus today)",
+          "forWhom.individual.li1":
+            "People who want to live more consciously without climate anxiety.",
+          "forWhom.individual.li2":
+            "Those who like seeing their progress in data, without learning carbon math.",
+          "forWhom.org.title": "Future B2B / organizations",
+          "forWhom.org.li1":
+            "For companies and ESG teams: if your people are already on Telegram, we can help turn their green actions into anonymous, aggregated data.",
+          "forWhom.org.li2":
+            "For manufacturers and real‑world projects: we aim to link personal actions with initiatives like energy‑efficiency or recycling, adding human participation to traditional ESG metrics.",
+
+          "pioneer.title":
+            "LeafPass Pioneer: experience the full journey in 7 days",
+          "pioneer.subtitle":
+            "Join the 7‑day Pioneer Challenge to go through the whole flow: tasks → check‑ins → LeafPass badges → exportable data.",
+          "pioneer.timelineTitle": "What you’ll experience in 7 days",
+          "pioneer.d1.title": "Day 1",
+          "pioneer.d1.text":
+            "Activate the LeafPass bot and pick topics you care about (mobility, food, lifestyle, etc.).",
+          "pioneer.d2.title": "Days 2–3",
+          "pioneer.d2.text":
+            "Complete 2–3 small tasks each day and see your first daily logs.",
+          "pioneer.d3.title": "Days 4–5",
+          "pioneer.d3.text":
+            "Unlock your first LeafPass badge and view your weekly summary.",
+          "pioneer.d4.title": "Day 6",
+          "pioneer.d4.text":
+            "Try exporting your action history and see how it looks in your CV or team chat.",
+          "pioneer.d5.title": "Day 7",
+          "pioneer.d5.text":
+            "Share quick feedback to help us decide what to build next.",
+
+          "form.title": "Apply for the 7‑day Pioneer Challenge",
+          "form.desc":
+            "We’ll send your invite link via email or Telegram. No spam. No marketing blasts.",
+          "form.name.label": "Name",
+          "form.name.placeholder": "Enter your name",
+          "form.email.label": "Email",
+          "form.email.placeholder": "Your primary email address",
+          "form.telegram.label": "Telegram handle (optional)",
+          "form.telegram.placeholder": "@your_handle",
+          "form.topics.label": "Climate topics you care about",
+          "form.topics.placeholder": "e.g. mobility, food, lifestyle…",
+          "form.role.label": "You are",
+          "form.role.individual": "Individual",
+          "form.role.esg": "Work on ESG / sustainability",
+          "form.role.other": "Other",
+          "form.submit": "Submit",
+
+          "footer.text":
+            "Track your green actions in Telegram and collect LeafPass badges.",
+          "footer.backToTop": "Back to top"
+        },
+
+        th: {
+          brand: "LeafPass",
+          "nav.whatHow": "คืออะไร & ใช้อย่างไร",
+          "nav.whyForWhom": "ทำไม & เหมาะกับใคร",
+          "nav.pioneer": "Pioneer ท้าทาย 7 วัน",
+          "hero.title": "ใช้เวลา 30 วินาทีต่อวัน บันทึกการกระทำเพื่อโลกสีเขียว",
+          "hero.subtitle":
+            "เช็คอินพฤติกรรมรักษ์โลกได้ง่าย ๆ ใน Telegram และสะสมเหรียญ LeafPass.",
+          "hero.ctaPrimary": "เริ่มบันทึกผ่าน Telegram",
+          "hero.ctaSecondary": "เข้าร่วมภารกิจ Pioneer 7 วัน",
+          "hero.caption":
+            "เช็คอินทุกวัน + สะสมเหรียญ ดูได้ทันทีว่าคุณช่วยโลกไปแค่ไหนแล้ว."
+          // 其余 key 没写时会自动回退到英文
+        },
+
+        vi: {
+          brand: "LeafPass",
+          "nav.whatHow": "Là gì & Cách dùng",
+          "nav.whyForWhom": "Vì sao & Dành cho ai",
+          "nav.pioneer": "Thử thách Pioneer 7 ngày",
+          "hero.title":
+            "30 giây mỗi ngày để ghi lại một hành động xanh của bạn",
+          "hero.subtitle":
+            "Check‑in hành động thân thiện với môi trường ngay trong Telegram và sưu tầm huy hiệu LeafPass.",
+          "hero.ctaPrimary": "Bắt đầu theo dõi trên Telegram",
+          "hero.ctaSecondary": "Tham gia thử thách Pioneer 7 ngày",
+          "hero.caption":
+            "Check‑in hằng ngày và huy hiệu giúp bạn thấy những đóng góp nhỏ của mình."
+        },
+
+        km: {
+          brand: "LeafPass",
+          "nav.whatHow": "អ្វី & របៀបប្រើ",
+          "nav.whyForWhom": "ហេតុអ្វី & សមស្របសម្រាប់នរណា",
+          "nav.pioneer": "Pioneer បំរើបេសកកម្ម 7 ថ្ងៃ",
+          "hero.title":
+            "៣០ វិនាទីក្នុងមួយថ្ងៃ ដើម្បីកត់ត្រាសកម្មភាពបៃតងមួយរបស់អ្នក",
+          "hero.subtitle":
+            "ចុះឈ្មោះសកម្មភាពការពារបរិស្ថានរបស់អ្នកក្នុង Telegram ហើយប្រមូល徽章 LeafPass។",
+          "hero.ctaPrimary": "ចាប់ផ្តើមកត់ត្រាដោយ Telegram",
+          "hero.ctaSecondary": "រួមចំណែកក្នុងបេសកកម្ម Pioneer 7 ថ្ងៃ",
+          "hero.caption":
+            "ការចុះឈ្មោះរៀងរាល់ថ្ងៃ និង徽章 បង្ហាញពីអ្វីដែលអ្នកបានធ្វើសម្រាប់ផែនដី។"
+        }
+      };
+
+      function applyTranslations(locale) {
+        var dict = t[locale] || t.en;
+
+        // 普通文本 / HTML
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n");
+          var value = (dict && dict[key]) || t.en[key];
+          if (!value) return;
+          el.innerHTML = value;
+        });
+
+        // placeholder
+        document
+          .querySelectorAll("[data-i18n-placeholder]")
+          .forEach(function (el) {
+            var key = el.getAttribute("data-i18n-placeholder");
+            var value = (dict && dict[key]) || t.en[key];
+            if (!value) return;
+            el.setAttribute("placeholder", value);
+          });
+
+        document.documentElement.lang = locale === "zh" ? "zh-CN" : locale;
+      }
+
+      applyTranslations(current);
+    })();
+  </script>
