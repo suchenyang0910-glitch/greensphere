@@ -25,7 +25,7 @@ TEXTS: Dict[str, HomeText] = {}
 TEXTS["zh"] = HomeText(
     lang="zh",
     title="用日常小行动，积累真实的绿色影响力",
-    subtitle="GreenSphere 通过每日任务、积分和 LeafPass 徽章，帮你把绿色生活变成一种可以坚持的习惯。",
+    subtitle="GreenSphere 通过每日任务、积分和 GreenSphere 徽章，帮你把绿色生活变成一种可以坚持的习惯。",
     cta_use_bot="在 Telegram 中开始打卡",
     cta_pioneer="了解 7 天 Pioneer 挑战",
     section_how_title="怎么使用 GreenSphere？",
@@ -37,7 +37,7 @@ TEXTS["zh"] = HomeText(
     section_why_title="为什么是 GreenSphere？",
     section_why_points=[
         "足够简单：不用设备、不用上传证明，只需自我声明。",
-        "有反馈：G-Points 积分 + 连续天数 + LeafPass 徽章，看到自己的改变。",
+        "有反馈：G-Points 积分 + 连续天数 + GreenSphere 徽章，看到自己的改变。",
         "可长期坚持：任务设计轻量，不制造额外焦虑和负担。",
     ],
     section_for_title="谁适合使用？",
@@ -53,7 +53,7 @@ TEXTS["zh"] = HomeText(
 TEXTS["en"] = HomeText(
     lang="en",
     title="Turn small daily actions into real green impact",
-    subtitle="GreenSphere helps you build sustainable habits through simple daily quests, G-Points, and LeafPass badges.",
+    subtitle="GreenSphere helps you build sustainable habits through simple daily quests, G-Points, and GreenSphere badges.",
     cta_use_bot="Start in Telegram",
     cta_pioneer="Join the 7-day Pioneer challenge",
     section_how_title="How does it work?",
@@ -65,7 +65,7 @@ TEXTS["en"] = HomeText(
     section_why_title="Why GreenSphere?",
     section_why_points=[
         "Simple enough: no extra devices, no photo uploads, no complex carbon accounting.",
-        "Meaningful feedback: G-Points, streaks, and LeafPass badges show your real progress.",
+        "Meaningful feedback: G-Points, streaks, and GreenSphere badges show your real progress.",
         "Built for long-term use: light-weight tasks designed not to create extra anxiety.",
     ],
     section_for_title="Who is it for?",
@@ -81,7 +81,7 @@ TEXTS["en"] = HomeText(
 TEXTS["th"] = HomeText(
     lang="th",
     title="เปลี่ยนการกระทำเล็ก ๆ ทุกวัน ให้กลายเป็นพลังสีเขียวที่จับต้องได้",
-    subtitle="GreenSphere ช่วยสร้างนิสัยด้านสิ่งแวดล้อมผ่านภารกิจรายวัน คะแนน G-Points และเหรียญ LeafPass",
+    subtitle="GreenSphere ช่วยสร้างนิสัยด้านสิ่งแวดล้อมผ่านภารกิจรายวัน คะแนน G-Points และเหรียญ GreenSphere",
     cta_use_bot="เริ่มใช้งานผ่าน Telegram",
     cta_pioneer="เข้าร่วมภารกิจ Pioneer 7 วัน",
     section_how_title="GreenSphere ใช้อย่างไร?",
@@ -93,7 +93,7 @@ TEXTS["th"] = HomeText(
     section_why_title="ทำไมต้อง GreenSphere?",
     section_why_points=[
         "ใช้งานง่าย: ไม่ต้องใช้อุปกรณ์เพิ่ม ไม่ต้องอัปโหลดรูปหลักฐาน",
-        "เห็นผลลัพธ์ชัดเจน: คะแนน G-Points, สถิติการเข้าร่วม และเหรียญ LeafPass",
+        "เห็นผลลัพธ์ชัดเจน: คะแนน G-Points, สถิติการเข้าร่วม และเหรียญ GreenSphere",
         "ออกแบบเพื่อการใช้งานระยะยาว: ภารกิจเบา ๆ ไม่เพิ่มความเครียด",
     ],
     section_for_title="เหมาะกับใคร?",
@@ -109,7 +109,7 @@ TEXTS["th"] = HomeText(
 TEXTS["vi"] = HomeText(
     lang="vi",
     title="Biến những hành động nhỏ mỗi ngày thành tác động xanh thực sự",
-    subtitle="GreenSphere giúp bạn xây dựng thói quen bền vững qua nhiệm vụ hằng ngày, điểm G-Points và huy hiệu LeafPass.",
+    subtitle="GreenSphere giúp bạn xây dựng thói quen bền vững qua nhiệm vụ hằng ngày, điểm G-Points và huy hiệu GreenSphere.",
     cta_use_bot="Bắt đầu trên Telegram",
     cta_pioneer="Tham gia thử thách Pioneer 7 ngày",
     section_how_title="GreenSphere hoạt động như thế nào?",
@@ -121,7 +121,7 @@ TEXTS["vi"] = HomeText(
     section_why_title="Tại sao là GreenSphere?",
     section_why_points=[
         "Đơn giản: không cần thiết bị, không cần tải ảnh, không cần tính toán phức tạp.",
-        "Phản hồi rõ ràng: điểm G-Points, chuỗi ngày tham gia và huy hiệu LeafPass.",
+        "Phản hồi rõ ràng: điểm G-Points, chuỗi ngày tham gia và huy hiệu GreenSphere.",
         "Thiết kế cho việc sử dụng lâu dài: nhiệm vụ nhẹ nhàng, không gây áp lực.",
     ],
     section_for_title="Dành cho ai?",
@@ -137,7 +137,7 @@ TEXTS["vi"] = HomeText(
 TEXTS["km"] = HomeText(
     lang="km",
     title="សកម្មភាព​តូចៗ ជារៀងរាល់ថ្ងៃ → បង្កើតឥទ្ធិពលបៃតងពិតប្រាកដ",
-    subtitle="GreenSphere ជួយ​អ្នក​បង្កើត​ទម្លាប់ជីវិតបៃតង តាមរយៈភារកិច្ច​ប្រចាំថ្ងៃ ពិន្ទុ G-Points និង徽章 LeafPass។",
+    subtitle="GreenSphere ជួយ​អ្នក​បង្កើត​ទម្លាប់ជីវិតបៃតង តាមរយៈភារកិច្ច​ប្រចាំថ្ងៃ ពិន្ទុ G-Points និង徽章 GreenSphere",
     cta_use_bot="ចាប់ផ្តើមក្នុង Telegram (Start in Telegram)",
     cta_pioneer="ស្គាល់បន្ថែមពីបញ្ហ challenge 7 ថ្ងៃ (7-day Pioneer)",
     section_how_title="របៀបប្រើប្រាស់ GreenSphere",
@@ -149,7 +149,7 @@ TEXTS["km"] = HomeText(
     section_why_title="ហេតុអ្វីជ្រើសរើស GreenSphere?",
     section_why_points=[
         "ការប្រើប្រាស់សាមញ្ញ: មិនចាំបាច់មានឧបករណ៍បន្ថែម និងការផ្ទុករូបថត។",
-        "មានប្រតិកម្មច្បាស់លាស់: ពិន្ទុ G-Points, streak និង徽章 LeafPass។",
+        "មានប្រតិកម្មច្បាស់លាស់: ពិន្ទុ G-Points, streak និង徽章 GreenSphere",
         "រចនាឡើងសម្រាប់ការប្រើប្រាស់រយៈពេលវែង: ភារកិច្ចស្រាល មិនបង្កើតភាពតានតឹង។",
     ],
     section_for_title="សាកសមសម្រាប់អ្នកណា?",
