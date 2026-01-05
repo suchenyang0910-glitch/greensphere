@@ -115,21 +115,17 @@ h1, h2, h3, h4, p {
   overflow: hidden;
   background: #000;
 }
-.lp-hero-slides {
-  position: relative;
+
+/* 新写法：横向 track 滑动 */
+.lp-hero-track {
+  display: flex;
   width: 100%;
   height: 100%;
+  transition: transform 0.6s ease;
 }
-
-/* 核心：每一张绝对定位叠在一起，只显示 is-active */
 .lp-hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-.lp-hero-slide.is-active {
-  opacity: 1;
+  min-width: 100%;
+  height: 100%;
 }
 .lp-hero-slide img {
   width: 100%;
@@ -176,43 +172,7 @@ h1, h2, h3, h4, p {
   font-size: 13px;
 }
 
-/* Buttons */
-.lp-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 9px 18px;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.16s ease-out;
-  white-space: nowrap;
-}
-.lp-btn-primary {
-  background: var(--lp-primary);
-  color: #ffffff;
-  box-shadow: 0 12px 30px rgba(15, 118, 110, 0.26);
-}
-.lp-btn-primary:hover {
-  background: #115e59;
-  transform: translateY(-1px);
-  box-shadow: 0 16px 40px rgba(15, 118, 110, 0.3);
-}
-.lp-btn-secondary {
-  background: #ecfdf5;
-  color: #047857;
-  border-color: #a7f3d0;
-}
-.lp-btn-secondary:hover {
-  background: #d1fae5;
-}
-.lp-btn-block {
-  width: 100%;
-}
-
-/* 深色背景下次按钮微调 */
+/* 第二按钮在深色背景下 */
 .lp-hero-text-card .lp-btn-secondary {
   background: rgba(15, 23, 42, 0.9);
   color: #e5e7eb;
@@ -222,7 +182,7 @@ h1, h2, h3, h4, p {
   background: rgba(15, 23, 42, 1);
 }
 
-/* 轮播箭头 & dots */
+/* 箭头 & dots */
 .lp-hero-nav {
   position: absolute;
   top: 50%;
@@ -271,208 +231,8 @@ h1, h2, h3, h4, p {
   background: #10b981;
 }
 
-/* Cards / Columns */
-.lp-card {
-  background: #ffffff;
-  border-radius: var(--lp-radius-lg);
-  border: 1px solid var(--lp-border);
-  padding: 20px 20px 18px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
-}
-.lp-card h3,
-.lp-card h4 {
-  margin-bottom: 8px;
-  font-size: 17px;
-}
-.lp-card p,
-.lp-card li {
-  font-size: 14px;
-  color: var(--lp-muted);
-}
-.lp-card ul {
-  margin: 6px 0 0;
-  padding-left: 1.05rem;
-}
-
-.lp-two-column {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 20px;
-  align-items: flex-start;
-}
-.lp-three-column {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin-bottom: 32px;
-}
-.lp-card-steps {
-  padding: 22px 22px 20px;
-}
-.lp-card-backend {
-  background: #ecfdf5;
-  border-color: #a7f3d0;
-}
-.lp-card-backend h3 {
-  color: #047857;
-}
-
-/* Step list */
-.lp-step-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.lp-step-list > li + li {
-  margin-top: 14px;
-}
-.lp-step-list h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-.lp-step-list ul {
-  margin: 0;
-}
-
-/* Sub blocks */
-.lp-section-subblock {
-  margin-top: 32px;
-}
-.lp-section-subblock h3 {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-/* Pioneer */
-.lp-pioneer-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 28px;
-  align-items: flex-start;
-}
-.lp-pioneer-timeline-title {
-  margin-top: 24px;
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-.lp-timeline {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  border-left: 2px solid #e5e7eb;
-}
-.lp-timeline li {
-  position: relative;
-  padding-left: 14px;
-  margin-bottom: 14px;
-}
-.lp-timeline li::before {
-  content: "";
-  position: absolute;
-  left: -7px;
-  top: 4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: #10b981;
-  border: 2px solid #ecfdf5;
-}
-.lp-timeline-day {
-  font-weight: 600;
-  font-size: 13px;
-  margin-bottom: 2px;
-}
-.lp-timeline p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--lp-muted);
-}
-
-/* Form */
-.lp-form-card {
-  padding: 22px 22px 20px;
-}
-.lp-form-desc {
-  font-size: 13px;
-  color: var(--lp-muted);
-  margin-bottom: 16px;
-}
-.lp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.lp-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 13px;
-}
-.lp-form span {
-  color: #4b5563;
-}
-.lp-form input,
-.lp-form select {
-  border-radius: var(--lp-radius-sm);
-  border: 1px solid var(--lp-border);
-  padding: 8px 10px;
-  font-size: 14px;
-  outline: none;
-  background: #f9fafb;
-  transition: border 0.14s ease-out, box-shadow 0.14s ease-out,
-    background 0.14s ease-out;
-}
-.lp-form input:focus,
-.lp-form select:focus {
-  border-color: var(--lp-primary);
-  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.25);
-  background: #ffffff;
-}
-
-/* Footer（站点） */
-.site-footer {
-  border-top: 1px solid var(--lp-border);
-  background: #f9fafb;
-  padding: 18px 0 22px;
-  font-size: 13px;
-}
-.site-footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--lp-muted);
-}
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-}
-.footer-links a {
-  color: var(--lp-muted);
-}
-.footer-links a:hover {
-  color: var(--lp-text);
-}
-
-/* Responsive */
+/* 小屏适配 */
 @media (max-width: 900px) {
-  .lp-two-column,
-  .lp-three-column,
-  .lp-pioneer-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .lp-section {
-    padding: 60px 0;
-  }
-  .lp-header-inner {
-    padding-inline: 16px;
-  }
-  .lp-nav {
-    gap: 12px;
-    font-size: 13px;
-  }
-
   .lp-hero-carousel {
     max-height: 460px;
   }
@@ -483,29 +243,7 @@ h1, h2, h3, h4, p {
     font-size: 22px;
   }
 }
-
 @media (max-width: 640px) {
-  .lp-header-inner {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .lp-nav {
-    width: 100%;
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-  .lp-section-header h2 {
-    font-size: 22px;
-  }
-  .lp-card {
-    padding: 16px 14px 14px;
-  }
-
-  .site-footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .lp-hero-carousel {
     max-height: 380px;
   }
@@ -518,6 +256,6 @@ h1, h2, h3, h4, p {
     padding: 16px 14px 12px;
   }
   .lp-hero-nav {
-    display: none; /* 小屏只保留自动轮播 + dots */
+    display: none;
   }
 }

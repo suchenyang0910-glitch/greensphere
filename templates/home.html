@@ -40,11 +40,11 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="lp-section lp-hero">
-  <div class="lp-hero-carousel lp-hero-overlay">
-    <div class="lp-hero-slides">
+  <section id="hero" class="lp-hero">
+  <div class="lp-hero-carousel">
+    <div class="lp-hero-track">
       <!-- Slide 1 -->
-      <div class="lp-hero-slide is-active">
+      <div class="lp-hero-slide">
         <img
           src="/static/images/hero-hands-holding-earth-greensphere.jpg" 
           alt="双手捧住地球的插画，象征个人绿色行动守护地球 · Hands holding the Earth, symbolizing personal green actions protecting the planet"
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <!-- 文案叠在图片上 -->
+    <!-- 文案覆盖在轮播图上 -->
     <div class="lp-hero-overlay-content">
       <div class="lp-container">
         <div class="lp-hero-text-card">
@@ -112,6 +112,7 @@
     </div>
   </div>
 </section>
+
 
 
   <!-- What & How -->
@@ -717,22 +718,23 @@
       applyTranslations(current);
             applyTranslations(current);
 
-      // 简易轮播
+            // 简易轮播（track 水平滑动）
       function initHeroCarousel() {
+        var track = document.querySelector(".lp-hero-track");
         var slides = document.querySelectorAll(".lp-hero-slide");
         var dots = document.querySelectorAll(".lp-hero-dots button");
         var prev = document.querySelector(".lp-hero-prev");
         var next = document.querySelector(".lp-hero-next");
-        if (!slides.length) return;
+        if (!track || !slides.length) return;
 
         var index = 0;
+        var count = slides.length;
         var timer = null;
 
         function show(i) {
-          index = (i + slides.length) % slides.length;
-          slides.forEach(function (s, idx) {
-            s.classList.toggle("is-active", idx === index);
-          });
+          index = (i + count) % count;
+          var offset = -index * 100;
+          track.style.transform = "translateX(" + offset + "%)";
           dots.forEach(function (d, idx) {
             d.classList.toggle("is-active", idx === index);
           });
@@ -742,7 +744,7 @@
           stopAuto();
           timer = setInterval(function () {
             show(index + 1);
-          }, 5000);
+          }, 5000); // 5 秒
         }
         function stopAuto() {
           if (timer) clearInterval(timer);
