@@ -103,37 +103,51 @@ h1, h2, h3, h4, p {
   border-color: var(--lp-primary-soft);
 }
 
-/* Hero：三张图竖向 + 文案在底部 */
+/* Hero：单张大图 + 文案覆盖 */
 .lp-hero {
   padding: 0 0 60px;
-  background: #000; /* 让图片更突出，可按需改 */
 }
 
-.lp-hero-stack {
+.lp-hero-single {
+  position: relative;
   width: 100%;
+  max-height: 520px;
+  overflow: hidden;
+  background: #000;
 }
-.lp-hero-stack img {
+.lp-hero-single img {
   width: 100%;
-  display: block;
+  height: 100%;
+  max-height: 520px;
   object-fit: cover;
-}
-.lp-hero-stack img + img {
-  border-top: 2px solid #111827; /* 图片之间一条细线，可去掉 */
+  display: block;
 }
 
-/* 文案块在三张图下面 */
-.lp-hero-text-block {
-  padding-top: 24px;
+/* 文案覆盖在图片上 */
+.lp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
 }
-.lp-hero-text-block h1 {
+.lp-hero-text-card {
+  max-width: 520px;
+  background: rgba(15, 23, 42, 0.76);
+  color: #f9fafb;
+  border-radius: 18px;
+  padding: 20px 22px 18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+  pointer-events: auto;
+}
+.lp-hero-text-card h1 {
   font-size: 28px;
   line-height: 1.25;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .lp-hero-subtitle {
-  color: var(--lp-muted);
+  color: #e5e7eb;
   font-size: 15px;
-  max-width: 520px;
 }
 .lp-hero-actions {
   display: flex;
@@ -142,13 +156,42 @@ h1, h2, h3, h4, p {
   margin: 18px 0 8px;
 }
 .lp-hero-caption {
-  color: var(--lp-muted);
+  color: #d1d5db;
   font-size: 13px;
 }
 
-/* 小屏时标题稍微缩小 */
+/* 深色背景下次按钮微调 */
+.lp-hero-text-card .lp-btn-secondary {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+.lp-hero-text-card .lp-btn-secondary:hover {
+  background: rgba(15, 23, 42, 1);
+}
+
+/* 小屏适配 */
+@media (max-width: 900px) {
+  .lp-hero-single {
+    max-height: 460px;
+  }
+  .lp-hero-text-card {
+    max-width: 100%;
+  }
+  .lp-hero-text-card h1 {
+    font-size: 22px;
+  }
+}
 @media (max-width: 640px) {
-  .lp-hero-text-block h1 {
-    font-size: 24px;
+  .lp-hero-single {
+    max-height: 380px;
+  }
+  .lp-hero-overlay {
+    align-items: flex-end;
+    padding-bottom: 16px;
+  }
+  .lp-hero-text-card {
+    margin-inline: 16px;
+    padding: 16px 14px 12px;
   }
 }

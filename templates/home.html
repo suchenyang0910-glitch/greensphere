@@ -41,47 +41,43 @@
 
   <!-- Hero -->
   <section id="hero" class="lp-hero">
-  <div class="lp-hero-stack">
+  <div class="lp-hero-single">
     <img
-      src="/static/images/hero-hands-holding-earth-greensphere.jpg" 
+      src="/static/images/hero-hands-holding-earth-greensphere.jpg"
       alt="双手捧住地球的插画，象征个人绿色行动守护地球 · Hands holding the Earth, symbolizing personal green actions protecting the planet"
     />
-    <img
-      src="/static/images/hero-plastic-bottles-recycling-greensphere.jpg" 
-      alt="一堆塑料瓶子等待回收，代表减少塑料使用和垃圾分类 · A pile of plastic bottles waiting to be recycled, representing reduced plastic use and waste sorting"
-    />
-    <img
-      src="/static/images/hero-factory-smokestacks-carbon-emission-greensphere.jpg" 
-      alt="多座冒烟的工厂烟囱，展现碳排放与气候变化问题 · Multiple factory chimneys emitting smoke, highlighting carbon emissions and climate change"
-    />
-  </div>
 
-  <div class="lp-container lp-hero-text-block">
-    <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
-    <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
-      在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。
-    </p>
-    <div class="lp-hero-actions">
-      <a
-        class="lp-btn lp-btn-primary"
-        href="https://t.me/GreenSphere_Community"
-        target="_blank"
-        rel="noopener"
-        data-i18n="hero.ctaPrimary"
-      >
-        在 Telegram 里开始打卡
-      </a>
-      <a
-        class="lp-btn lp-btn-secondary"
-        href="#pioneer"
-        data-i18n="hero.ctaSecondary"
-      >
-        加入 7 天 Pioneer 挑战
-      </a>
+    <div class="lp-hero-overlay">
+      <div class="lp-container">
+        <div class="lp-hero-text-card">
+          <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
+          <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
+            在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。
+          </p>
+          <div class="lp-hero-actions">
+            <a
+              class="lp-btn lp-btn-primary"
+              href="https://t.me/GreenSphere_Community"
+              target="_blank"
+              rel="noopener"
+              data-i18n="hero.ctaPrimary"
+            >
+              在 Telegram 里开始打卡
+            </a>
+            <a
+              class="lp-btn lp-btn-secondary"
+              href="#pioneer"
+              data-i18n="hero.ctaSecondary"
+            >
+              加入 7 天 Pioneer 挑战
+            </a>
+          </div>
+          <p class="lp-hero-caption" data-i18n="hero.caption">
+            每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。
+          </p>
+        </div>
+      </div>
     </div>
-    <p class="lp-hero-caption" data-i18n="hero.caption">
-      每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。
-    </p>
   </div>
 </section>
 
@@ -689,66 +685,7 @@
       applyTranslations(current);
             applyTranslations(current);
 
-            // 简易轮播（track 水平滑动）
-      function initHeroCarousel() {
-        var track = document.querySelector(".lp-hero-track");
-        var slides = document.querySelectorAll(".lp-hero-slide");
-        var dots = document.querySelectorAll(".lp-hero-dots button");
-        var prev = document.querySelector(".lp-hero-prev");
-        var next = document.querySelector(".lp-hero-next");
-        if (!track || !slides.length) return;
-
-        var index = 0;
-        var count = slides.length;
-        var timer = null;
-
-        function show(i) {
-          index = (i + count) % count;
-          var offset = -index * 100;
-          track.style.transform = "translateX(" + offset + "%)";
-          dots.forEach(function (d, idx) {
-            d.classList.toggle("is-active", idx === index);
-          });
-        }
-
-        function startAuto() {
-          stopAuto();
-          timer = setInterval(function () {
-            show(index + 1);
-          }, 5000); // 5 秒
-        }
-        function stopAuto() {
-          if (timer) clearInterval(timer);
-        }
-
-        if (prev && next) {
-          prev.addEventListener("click", function () {
-            show(index - 1);
-            startAuto();
-          });
-          next.addEventListener("click", function () {
-            show(index + 1);
-            startAuto();
-          });
-        }
-
-        dots.forEach(function (dot) {
-          dot.addEventListener("click", function () {
-            var i = parseInt(dot.getAttribute("data-index"), 10) || 0;
-            show(i);
-            startAuto();
-          });
-        });
-
-        show(0);
-        startAuto();
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initHeroCarousel);
-      } else {
-        initHeroCarousel();
-      }
+      
 
     })();
   </script>
