@@ -103,11 +103,12 @@ h1, h2, h3, h4, p {
   border-color: var(--lp-primary-soft);
 }
 
-/* Hero：单张大图 + 文案覆盖 */
+/* === Hero：一张大图，文案覆盖在图上 === */
 .lp-hero {
   padding: 0 0 60px;
 }
 
+/* 关键：relative + overflow hidden，让 overlay 作为绝对定位参照 */
 .lp-hero-single {
   position: relative;
   width: 100%;
@@ -123,14 +124,15 @@ h1, h2, h3, h4, p {
   display: block;
 }
 
-/* 文案覆盖在图片上 */
+/* 关键：absolute + inset:0，把文案层叠在图片上 */
 .lp-hero-overlay {
   position: absolute;
-  inset: 0;
+  inset: 0;               /* 等价于 top:0; right:0; bottom:0; left:0; */
   display: flex;
-  align-items: center;
-  pointer-events: none;
+  align-items: center;    /* 文案垂直居中（小屏下面会调整） */
+  pointer-events: none;   /* 让外层不拦截点击事件 */
 }
+
 .lp-hero-text-card {
   max-width: 520px;
   background: rgba(15, 23, 42, 0.76);
@@ -138,7 +140,7 @@ h1, h2, h3, h4, p {
   border-radius: 18px;
   padding: 20px 22px 18px;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
-  pointer-events: auto;
+  pointer-events: auto;   /* 文案块内按钮可以点击 */
 }
 .lp-hero-text-card h1 {
   font-size: 28px;
@@ -148,6 +150,7 @@ h1, h2, h3, h4, p {
 .lp-hero-subtitle {
   color: #e5e7eb;
   font-size: 15px;
+  max-width: 520px;
 }
 .lp-hero-actions {
   display: flex;
@@ -160,7 +163,7 @@ h1, h2, h3, h4, p {
   font-size: 13px;
 }
 
-/* 深色背景下次按钮微调 */
+/* 深色背景下的次按钮 */
 .lp-hero-text-card .lp-btn-secondary {
   background: rgba(15, 23, 42, 0.9);
   color: #e5e7eb;
@@ -170,7 +173,7 @@ h1, h2, h3, h4, p {
   background: rgba(15, 23, 42, 1);
 }
 
-/* 小屏适配 */
+/* 小屏适配：让文案贴近图片底部 */
 @media (max-width: 900px) {
   .lp-hero-single {
     max-height: 460px;
