@@ -375,6 +375,43 @@ h1, h2, h3, h4, p {
 .lp-footer-right a:hover {
   color: var(--lp-text);
 }
+/* New site footer */
+.site-footer {
+  border-top: 1px solid var(--lp-border);
+  background: #f9fafb;
+  padding: 18px 0 22px;
+  font-size: 13px;
+}
+
+.site-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--lp-muted);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.footer-links a {
+  color: var(--lp-muted);
+}
+
+.footer-links a:hover {
+  color: var(--lp-text);
+}
+
+/* 小屏适配 */
+@media (max-width: 640px) {
+  .site-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -424,5 +461,124 @@ h1, h2, h3, h4, p {
   }
   .lp-card {
     padding: 16px 14px 14px;
+  }
+}
+/* Hero carousel */
+.lp-hero {
+  padding-top: 72px;
+  padding-bottom: 40px;
+}
+
+.lp-hero-carousel {
+  position: relative;
+  width: 100%;
+  max-height: 520px;
+  overflow: hidden;
+  background: #000;
+}
+
+.lp-hero-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lp-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.lp-hero-slide.is-active {
+  opacity: 1;
+}
+.lp-hero-slide img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+/* nav arrows */
+.lp-hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(15, 23, 42, 0.4);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-size: 18px;
+}
+.lp-hero-prev {
+  left: 16px;
+}
+.lp-hero-next {
+  right: 16px;
+}
+.lp-hero-nav:hover {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* dots */
+.lp-hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.lp-hero-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(209, 213, 219, 0.8);
+  padding: 0;
+  cursor: pointer;
+}
+.lp-hero-dots button.is-active {
+  width: 18px;
+  background: #10b981;
+}
+
+/* Hero text overlay area */
+.lp-hero-text-wrap {
+  margin-top: 28px;
+}
+.lp-hero-text {
+  max-width: 640px;
+}
+.lp-hero-text h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+/* 响应式调优 */
+@media (max-width: 900px) {
+  .lp-hero-carousel {
+    max-height: 360px;
+  }
+  .lp-hero-text h1 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lp-hero-carousel {
+    max-height: 260px;
+  }
+  .lp-hero-nav {
+    display: none; /* 小屏只保留自动轮播 + dots */
   }
 }
