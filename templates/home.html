@@ -1,99 +1,145 @@
 {% extends "site_base.html" %}
 
 {% block content %}
-<div class="home-container">
+<div class="landing-body">
 
-    <!-- Hero 区 -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1 class="hero-title">{{ t.title }}</h1>
-            <p class="hero-subtitle">{{ t.subtitle }}</p>
-            <div class="hero-cta">
-                <a class="btn btn-primary" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
-                    {{ t.cta_use_bot }}
-                </a>
-                <a class="btn btn-secondary" href="https://t.me/GreenSphere_Community" target="_blank">
-                    {{ t.cta_pioneer }}
-                </a>
-            </div>
-            <p class="hero-meta">
-                Telegram Bot: <code>@GreenSphereCommunity_Bot</code><br>
-                WebApp: <a href="https://app.greensphere.world/app" target="_blank">app.greensphere.world/app</a>
-            </p>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-card-mock">
-                <div class="hero-card-header">今日绿色任务</div>
-                <div class="hero-card-line hero-card-line--done"></div>
-                <div class="hero-card-line"></div>
-                <div class="hero-card-line"></div>
-                <div class="hero-card-footer">连续天数 · LeafPass</div>
-            </div>
-        </div>
-    </section>
+  <header class="landing-header">
+    <img src="/static/logo.svg" class="logo" alt="GreenSphere logo" />
+    <span class="brand">GreenSphere™</span>
+  </header>
 
-    <!-- 三列卖点区 -->
-    <section class="features">
-        <div class="feature-item">
-            <h3>01 · {{ t.section_how_title }}</h3>
-            <ol>
-                {% for step in t.section_how_steps %}
-                <li>{{ step }}</li>
-                {% endfor %}
-            </ol>
-        </div>
-        <div class="feature-item">
-            <h3>02 · {{ t.section_why_title }}</h3>
-            <ul>
-                {% for p in t.section_why_points %}
-                <li>{{ p }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="feature-item">
-            <h3>03 · {{ t.section_for_title }}</h3>
-            <ul>
-                {% for item in t.section_for_items %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>
+      {{ t.title }}
+    </h1>
+    <p>
+      {{ t.subtitle }}
+    </p>
 
-    <!-- 7 天挑战区块 -->
-    <section class="pioneer-section">
-        <div class="pioneer-card">
-            <h2>7 天 Pioneer 挑战 · 先试试看</h2>
-            <p>
-                第 1 天：完成 1 个简单任务，熟悉流程。<br>
-                第 2–3 天：每天完成 2–3 个任务，感受积分和 streak。<br>
-                第 4–7 天：保持每天至少 1 个任务，点亮你的第一枚 LeafPass 徽章。
-            </p>
-            <p class="pioneer-cta">
-                👉 现在就去发送 <code>/start</code> 给
-                <strong>@GreenSphereCommunity_Bot</strong>
-            </p>
-        </div>
-    </section>
+    <div class="hero-cta">
+      <a class="btn" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
+        {{ t.cta_use_bot }}
+      </a>
+      <p class="hero-meta">
+        Telegram Bot: <code>@GreenSphereCommunity_Bot</code><br/>
+        WebApp: <a href="https://app.greensphere.world/app" target="_blank">app.greensphere.world/app</a>
+      </p>
+    </div>
+  </section>
 
-    <!-- FAQ / 说明区 -->
-    <section class="faq-section">
-        <h2>常见问题（简版）</h2>
-        <div class="faq-grid">
-            <div class="faq-item">
-                <h4>需要上传证明 / 照片吗？</h4>
-                <p>不需要。当前版本全部基于自我声明，重点是帮你「建立习惯」，而不是审核每一次行为。</p>
-            </div>
-            <div class="faq-item">
-                <h4>会涉及理财、币价或碳交易吗？</h4>
-                <p>不会。GreenSphere 不提供理财或交易功能，积分也不是金融资产，只用于行为反馈和徽章解锁。</p>
-            </div>
-            <div class="faq-item">
-                <h4>将来会怎么用这些数据？</h4>
-                <p>主要用于：个人反馈、产品优化，以及匿名统计（例如活跃用户数、连续参与天数等）。任何对外合作都会在合规前提下进行。</p>
-            </div>
-        </div>
-    </section>
+  <!-- 核心特性 -->
+  <section class="features">
+    <div class="feature">
+      🌱 行为即积分
+      <span>步行 / 减碳 / 每日任务 → G-Points</span>
+    </div>
+    <div class="feature">
+      🎟 LeafPass 等级
+      <span>L1–L4 绿色行为身份成长</span>
+    </div>
+    <div class="feature">
+      🔗 Telegram 原生
+      <span>无需下载 App，一键打开 WebApp</span>
+    </div>
+  </section>
 
+  <!-- LeafPass 等级说明 -->
+  <section class="leafpass" id="leafpass">
+    <h2>LeafPass™ · 绿色行为身份等级</h2>
+    <p class="section-sub">
+      LeafPass 不是投机 NFT，而是基于真实行为的长期绿色身份。
+    </p>
+
+    <div class="leafpass-grid">
+
+      <div class="leaf-card l1">
+        <h3>L1 · Seed</h3>
+        <p class="range">0 – 99 G-Points</p>
+        <ul>
+          <li>完成首次绿色任务</li>
+          <li>进入社区基础频道</li>
+          <li>参与早期测试</li>
+        </ul>
+      </div>
+
+      <div class="leaf-card l2">
+        <h3>L2 · Sprout</h3>
+        <p class="range">100 – 499 G-Points</p>
+        <ul>
+          <li>解锁周期性任务</li>
+          <li>获得合作品牌奖励</li>
+          <li>参与社区投票</li>
+        </ul>
+      </div>
+
+      <div class="leaf-card l3">
+        <h3>L3 · Grove</h3>
+        <p class="range">500 – 1999 G-Points</p>
+        <ul>
+          <li>高级任务与挑战</li>
+          <li>线下活动优先权</li>
+          <li>社区治理提案权</li>
+        </ul>
+      </div>
+
+      <div class="leaf-card l4">
+        <h3>L4 · Canopy</h3>
+        <p class="range">2000+ G-Points</p>
+        <ul>
+          <li>生态共建者身份</li>
+          <li>品牌与项目共创</li>
+          <li>长期权益与分润计划（未来）</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Waitlist （保持结构，后端 API 以后再接） -->
+  <section class="waitlist">
+    <h2>加入 Pioneer Waitlist</h2>
+
+    <form id="waitlistForm">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="telegram_id" placeholder="Telegram ID（数字）" required />
+      <input type="text" name="invite_code" placeholder="邀请码（可选）" />
+      <button type="submit">Join Waitlist</button>
+    </form>
+
+    <p id="msg"></p>
+  </section>
+
+  <footer class="landing-footer">
+    © GreenSphere™ · East Asia Green Impact Network
+  </footer>
 </div>
+
+<script>
+document.getElementById("waitlistForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = {
+    email: form.email.value,
+    telegram_id: Number(form.telegram_id.value),
+    invite_code: form.invite_code.value || null
+  };
+
+  // TODO: 你可以在 app/api 里暴露一个 /api/waitlist 接口后，再把这里的 URL 改为你的后端 API
+  const res = await fetch("/api/waitlist", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+
+  const json = await res.json();
+
+  if (json.success) {
+    document.getElementById("msg").innerText = "已加入 Waitlist，我们会通过 Telegram / Email 与你联系。";
+  } else {
+    document.getElementById("msg").innerText = json.message || "Error";
+  }
+});
+</script>
 {% endblock %}

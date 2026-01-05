@@ -545,3 +545,192 @@ body {
         padding: 16px 12px 24px;
     }
 }
+
+/* Landing page 基础样式 */
+.landing-body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: #0e1f17;
+  color: #e8f5ec;
+  text-align: center;
+}
+
+/* 头部 */
+.landing-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-header .logo {
+  width: 32px;
+  margin-right: 8px;
+}
+
+.landing-header .brand {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Hero */
+.hero {
+  padding: 48px 20px 32px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #b5d3c4;
+  font-size: 14px;
+}
+
+.hero-cta {
+  margin-top: 16px;
+}
+
+.hero-cta .btn {
+  display: inline-block;
+  background: #2fd07d;
+  color: #00331a;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.hero-meta {
+  font-size: 13px;
+  color: #9bc4b0;
+}
+
+.hero-meta a {
+  color: #9bc4b0;
+  text-decoration: underline;
+}
+
+/* 特性区 */
+.features {
+  padding: 24px 20px;
+}
+
+.feature {
+  background: #142d22;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+.feature span {
+  display: block;
+  font-size: 13px;
+  color: #9bc4b0;
+}
+
+/* LeafPass 区块 */
+.leafpass {
+  padding: 48px 20px;
+  background: #0b1a14;
+}
+
+.leafpass h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.section-sub {
+  color: #9fcbb4;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.leafpass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.leaf-card {
+  background: #122a20;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid #1e4433;
+}
+
+.leaf-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.leaf-card .range {
+  font-size: 13px;
+  color: #7fbfa2;
+  margin-bottom: 12px;
+}
+
+.leaf-card ul {
+  padding-left: 18px;
+  font-size: 13px;
+  color: #cfe9dc;
+}
+
+.leaf-card li {
+  margin-bottom: 6px;
+}
+
+/* 等级色彩区分 */
+.l1 { border-color: #4f6f60; }
+.l2 { border-color: #3fa37a; }
+.l3 { border-color: #2fd07d; }
+.l4 { border-color: #8be6b5; }
+
+/* Waitlist */
+.waitlist {
+  padding: 32px 20px;
+}
+
+.waitlist h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.waitlist input {
+  width: 100%;
+  max-width: 360px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.waitlist button {
+  display: inline-block;
+  background: #2fd07d;
+  color: #00331a;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* 底部 */
+.landing-footer {
+  padding: 24px;
+  font-size: 12px;
+  color: #6ea58c;
+}
+
+/* 小屏幕适配 */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+}
