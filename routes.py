@@ -14,10 +14,11 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 
-# 首页：渲染打卡页面
-@router.get("/", response_class=HTMLResponse)
-def index(request: Request):
+# 打卡 WebApp 页面（挂在 /app）
+@router.get("/app", response_class=HTMLResponse)
+def app_index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
 
 
 # 用户初始化：用 Telegram 用户建立/获取内部 user_id
