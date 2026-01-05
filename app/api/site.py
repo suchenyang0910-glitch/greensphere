@@ -13,7 +13,18 @@ site_router = APIRouter()
 @site_router.get("/", response_class=HTMLResponse)
 
 async def home(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+    accept_language = request.headers.get("Accept-Language")
+    lang = detect_lang(accept_language)
+    text = TEXTS.get(lang, TEXTS["en"])
+
+    return templates.TemplateResponse(
+        "home.html",
+        {
+            "request": request,
+            "t": text,
+            "lang": lang,
+        },
+    )
 
 @site_router.get("/pioneer", response_class=HTMLResponse)
 async def pioneer(request: Request):

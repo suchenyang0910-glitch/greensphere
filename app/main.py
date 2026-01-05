@@ -18,7 +18,7 @@ from app.models import rate_limit as _rate_limit_model  # noqa: F401
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
-from app.api.site import site_router
+
 
 
 def create_app() -> FastAPI:
@@ -54,6 +54,7 @@ app.include_router(greensphere_router)
 @app.get("/favicon.ico", include_in_schema=False)
 def favicon():
     return Response(status_code=204)
+
 
 @app.get("/api/auth/debug")
 def auth_debug(x_telegram_init_data: str | None = Header(default=None)):
