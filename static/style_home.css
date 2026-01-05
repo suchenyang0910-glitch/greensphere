@@ -103,63 +103,37 @@ h1, h2, h3, h4, p {
   border-color: var(--lp-primary-soft);
 }
 
-/* Hero：轮播 + 文案覆盖 */
+/* Hero：三张图竖向 + 文案在底部 */
 .lp-hero {
-  padding: 0;
+  padding: 0 0 60px;
+  background: #000; /* 让图片更突出，可按需改 */
 }
 
-.lp-hero-carousel {
-  position: relative;
+.lp-hero-stack {
   width: 100%;
-  max-height: 520px;
-  overflow: hidden;
-  background: #000;
 }
-
-/* 新写法：横向 track 滑动 */
-.lp-hero-track {
-  display: flex;
+.lp-hero-stack img {
   width: 100%;
-  height: 100%;
-  transition: transform 0.6s ease;
-}
-.lp-hero-slide {
-  min-width: 100%;
-  height: 100%;
-}
-.lp-hero-slide img {
-  width: 100%;
-  height: 100%;
-  max-height: 520px;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+}
+.lp-hero-stack img + img {
+  border-top: 2px solid #111827; /* 图片之间一条细线，可去掉 */
 }
 
-/* 文案覆盖在图片上 */
-.lp-hero-overlay-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
+/* 文案块在三张图下面 */
+.lp-hero-text-block {
+  padding-top: 24px;
 }
-.lp-hero-text-card {
-  max-width: 520px;
-  background: rgba(15, 23, 42, 0.76);
-  color: #f9fafb;
-  border-radius: 18px;
-  padding: 20px 22px 18px;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
-  pointer-events: auto;
-}
-.lp-hero-text-card h1 {
+.lp-hero-text-block h1 {
   font-size: 28px;
   line-height: 1.25;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .lp-hero-subtitle {
-  color: #e5e7eb;
+  color: var(--lp-muted);
   font-size: 15px;
+  max-width: 520px;
 }
 .lp-hero-actions {
   display: flex;
@@ -168,94 +142,13 @@ h1, h2, h3, h4, p {
   margin: 18px 0 8px;
 }
 .lp-hero-caption {
-  color: #d1d5db;
+  color: var(--lp-muted);
   font-size: 13px;
 }
 
-/* 第二按钮在深色背景下 */
-.lp-hero-text-card .lp-btn-secondary {
-  background: rgba(15, 23, 42, 0.9);
-  color: #e5e7eb;
-  border-color: rgba(148, 163, 184, 0.7);
-}
-.lp-hero-text-card .lp-btn-secondary:hover {
-  background: rgba(15, 23, 42, 1);
-}
-
-/* 箭头 & dots */
-.lp-hero-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: rgba(15, 23, 42, 0.4);
-  color: #fff;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  font-size: 18px;
-}
-.lp-hero-prev {
-  left: 16px;
-}
-.lp-hero-next {
-  right: 16px;
-}
-.lp-hero-nav:hover {
-  background: rgba(15, 23, 42, 0.6);
-}
-.lp-hero-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-.lp-hero-dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(209, 213, 219, 0.8);
-  padding: 0;
-  cursor: pointer;
-}
-.lp-hero-dots button.is-active {
-  width: 18px;
-  background: #10b981;
-}
-
-/* 小屏适配 */
-@media (max-width: 900px) {
-  .lp-hero-carousel {
-    max-height: 460px;
-  }
-  .lp-hero-text-card {
-    max-width: 100%;
-  }
-  .lp-hero-text-card h1 {
-    font-size: 22px;
-  }
-}
+/* 小屏时标题稍微缩小 */
 @media (max-width: 640px) {
-  .lp-hero-carousel {
-    max-height: 380px;
-  }
-  .lp-hero-overlay-content {
-    align-items: flex-end;
-    padding-bottom: 16px;
-  }
-  .lp-hero-text-card {
-    margin-inline: 16px;
-    padding: 16px 14px 12px;
-  }
-  .lp-hero-nav {
-    display: none;
+  .lp-hero-text-block h1 {
+    font-size: 24px;
   }
 }
