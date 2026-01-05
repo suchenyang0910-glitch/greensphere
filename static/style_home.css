@@ -103,58 +103,79 @@ h1, h2, h3, h4, p {
   border-color: var(--lp-primary-soft);
 }
 
-/* Hero */
+/* Hero 整屏轮播 + 文案覆盖 */
 .lp-hero {
-  padding-top: 72px;
+  padding: 0;
 }
-.lp-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 40px;
+
+.lp-hero-carousel {
+  position: relative;
+  width: 100%;
+  max-height: 520px;
+  overflow: hidden;
+  background: #000;
+}
+.lp-hero-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.lp-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.lp-hero-slide.is-active {
+  opacity: 1;
+}
+.lp-hero-slide img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 文案覆盖在图片上 */
+.lp-hero-overlay-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
   align-items: center;
+  pointer-events: none; /* 让箭头、dots 等还能点到 */
 }
-.lp-hero-text h1 {
-  font-size: 36px;
-  line-height: 1.2;
-  margin-bottom: 14px;
+.lp-hero-text-card {
+  max-width: 520px;
+  background: rgba(15, 23, 42, 0.76);
+  color: #f9fafb;
+  border-radius: 18px;
+  padding: 20px 22px 18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+  pointer-events: auto; /* 卡片内按钮可点 */
+}
+.lp-hero-text-card h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  margin-bottom: 8px;
 }
 .lp-hero-subtitle {
-  color: var(--lp-muted);
-  font-size: 16px;
-  max-width: 420px;
+  color: #e5e7eb;
+  font-size: 15px;
+  max-width: none;
 }
 .lp-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 24px 0 10px;
+  gap: 10px;
+  margin: 18px 0 8px;
 }
 .lp-hero-caption {
-  color: var(--lp-muted);
+  color: #d1d5db;
   font-size: 13px;
 }
-.lp-hero-image {
-  display: flex;
-  justify-content: center;
-}
-.lp-screenshot-placeholder {
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 4 / 3;
-  border-radius: 22px;
-  background: linear-gradient(145deg, #ecfdf5, #ccfbf1);
-  box-shadow: var(--lp-shadow-soft);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #047857;
-  font-size: 14px;
-  text-align: center;
-  padding: 16px;
-}
 
-/* Buttons */
+/* 按钮 */
 .lp-btn {
   display: inline-flex;
   align-items: center;
@@ -188,6 +209,67 @@ h1, h2, h3, h4, p {
 }
 .lp-btn-block {
   width: 100%;
+}
+
+/* 深色背景下次按钮微调 */
+.lp-hero-text-card .lp-btn-secondary {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+.lp-hero-text-card .lp-btn-secondary:hover {
+  background: rgba(15, 23, 42, 1);
+}
+
+/* 轮播箭头 */
+.lp-hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(15, 23, 42, 0.4);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-size: 18px;
+}
+.lp-hero-prev {
+  left: 16px;
+}
+.lp-hero-next {
+  right: 16px;
+}
+.lp-hero-nav:hover {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* dots */
+.lp-hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.lp-hero-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(209, 213, 219, 0.8);
+  padding: 0;
+  cursor: pointer;
+}
+.lp-hero-dots button.is-active {
+  width: 18px;
+  background: #10b981;
 }
 
 /* Cards / Columns */
@@ -348,41 +430,13 @@ h1, h2, h3, h4, p {
   background: #ffffff;
 }
 
-/* Footer */
-.lp-footer {
-  border-top: 1px solid var(--lp-border);
-  background: #f9fafb;
-  padding: 18px 0 22px;
-  font-size: 13px;
-}
-.lp-footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.lp-footer-text {
-  margin-top: 4px;
-  color: var(--lp-muted);
-}
-.lp-footer-right {
-  display: flex;
-  gap: 16px;
-}
-.lp-footer-right a {
-  color: var(--lp-muted);
-}
-.lp-footer-right a:hover {
-  color: var(--lp-text);
-}
-/* New site footer */
+/* 新 footer */
 .site-footer {
   border-top: 1px solid var(--lp-border);
   background: #f9fafb;
   padding: 18px 0 22px;
   font-size: 13px;
 }
-
 .site-footer-inner {
   display: flex;
   align-items: center;
@@ -390,42 +444,24 @@ h1, h2, h3, h4, p {
   gap: 16px;
   color: var(--lp-muted);
 }
-
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 20px;
 }
-
 .footer-links a {
   color: var(--lp-muted);
 }
-
 .footer-links a:hover {
   color: var(--lp-text);
 }
 
-/* 小屏适配 */
-@media (max-width: 640px) {
-  .site-footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 /* Responsive */
 @media (max-width: 900px) {
-  .lp-hero-grid,
   .lp-two-column,
   .lp-three-column,
   .lp-pioneer-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .lp-hero {
-    padding-top: 56px;
-  }
-  .lp-hero-text h1 {
-    font-size: 30px;
   }
   .lp-section {
     padding: 60px 0;
@@ -436,6 +472,16 @@ h1, h2, h3, h4, p {
   .lp-nav {
     gap: 12px;
     font-size: 13px;
+  }
+
+  .lp-hero-carousel {
+    max-height: 460px;
+  }
+  .lp-hero-text-card {
+    max-width: 100%;
+  }
+  .lp-hero-text-card h1 {
+    font-size: 22px;
   }
 }
 
@@ -449,134 +495,28 @@ h1, h2, h3, h4, p {
     justify-content: flex-start;
     overflow-x: auto;
   }
-  .lp-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .lp-hero-text h1 {
-    font-size: 26px;
-  }
   .lp-section-header h2 {
     font-size: 22px;
   }
   .lp-card {
     padding: 16px 14px 14px;
   }
-}
-/* Hero carousel */
-.lp-hero {
-  padding-top: 72px;
-  padding-bottom: 40px;
-}
 
-.lp-hero-carousel {
-  position: relative;
-  width: 100%;
-  max-height: 520px;
-  overflow: hidden;
-  background: #000;
-}
-
-.lp-hero-slides {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.lp-hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-.lp-hero-slide.is-active {
-  opacity: 1;
-}
-.lp-hero-slide img {
-  width: 100%;
-  height: 100%;
-  max-height: 520px;
-  object-fit: cover;
-  display: block;
-}
-
-/* nav arrows */
-.lp-hero-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: rgba(15, 23, 42, 0.4);
-  color: #fff;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  font-size: 18px;
-}
-.lp-hero-prev {
-  left: 16px;
-}
-.lp-hero-next {
-  right: 16px;
-}
-.lp-hero-nav:hover {
-  background: rgba(15, 23, 42, 0.6);
-}
-
-/* dots */
-.lp-hero-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-.lp-hero-dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(209, 213, 219, 0.8);
-  padding: 0;
-  cursor: pointer;
-}
-.lp-hero-dots button.is-active {
-  width: 18px;
-  background: #10b981;
-}
-
-/* Hero text overlay area */
-.lp-hero-text-wrap {
-  margin-top: 28px;
-}
-.lp-hero-text {
-  max-width: 640px;
-}
-.lp-hero-text h1 {
-  font-size: 32px;
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-/* 响应式调优 */
-@media (max-width: 900px) {
-  .lp-hero-carousel {
-    max-height: 360px;
+  .site-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .lp-hero-text h1 {
-    font-size: 26px;
-  }
-}
 
-@media (max-width: 640px) {
   .lp-hero-carousel {
-    max-height: 260px;
+    max-height: 380px;
+  }
+  .lp-hero-overlay-content {
+    align-items: flex-end;
+    padding-bottom: 16px;
+  }
+  .lp-hero-text-card {
+    margin-inline: 16px;
+    padding: 16px 14px 12px;
   }
   .lp-hero-nav {
     display: none; /* 小屏只保留自动轮播 + dots */

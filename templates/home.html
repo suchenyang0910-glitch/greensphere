@@ -41,66 +41,78 @@
 
   <!-- Hero -->
   <section id="hero" class="lp-section lp-hero">
-    <div class="lp-hero-carousel">
-        <div class="lp-hero-slides">
-        <!-- Slide 1 -->
-        <div class="lp-hero-slide is-active">
-            <img src="/static/images/hero-hands-holding-earth-greensphere.jpg" 
-            alt="双手捧住地球的插画，象征个人绿色行动守护地球 · Hands holding the Earth, symbolizing personal green actions protecting the planet"
+  <div class="lp-hero-carousel lp-hero-overlay">
+    <div class="lp-hero-slides">
+      <!-- Slide 1 -->
+      <div class="lp-hero-slide is-active">
+        <img
+          src="/static/images/hero-hands-holding-earth-greensphere.jpg" 
+          alt="双手捧住地球的插画，象征个人绿色行动守护地球 · Hands holding the Earth, symbolizing personal green actions protecting the planet"
         />
-        </div>
-        <!-- Slide 2 -->
-        <div class="lp-hero-slide">
-            <img src="/static/images/hero-plastic-bottles-recycling-greensphere.jpg" 
-            alt="一堆塑料瓶子等待回收，代表减少塑料使用和垃圾分类 · A pile of plastic bottles waiting to be recycled, representing reduced plastic use and waste sorting" 
+      </div>
+      <!-- Slide 2 -->
+      <div class="lp-hero-slide">
+        <img
+          src="/static/images/hero-plastic-bottles-recycling-greensphere.jpg" 
+          alt="一堆塑料瓶子等待回收，代表减少塑料使用和垃圾分类 · A pile of plastic bottles waiting to be recycled, representing reduced plastic use and waste sorting"
         />
-        </div>
-        <!-- Slide 3 -->
-        <div class="lp-hero-slide">
-            <img src="/static/images/hero-factory-smokestacks-carbon-emission-greensphere.jpg" 
-            alt="多座冒烟的工厂烟囱，展现碳排放与气候变化问题 · Multiple factory chimneys emitting smoke, highlighting carbon emissions and climate change"
+      </div>
+      <!-- Slide 3 -->
+      <div class="lp-hero-slide">
+        <img
+          src="/static/images/hero-factory-smokestacks-carbon-emission-greensphere.jpg" 
+          alt="多座冒烟的工厂烟囱，展现碳排放与气候变化问题 · Multiple factory chimneys emitting smoke, highlighting carbon emissions and climate change"
         />
-        </div>
-        </div>
-        <button class="lp-hero-nav lp-hero-prev" aria-label="Previous slide">&#10094;</button>
-        <button class="lp-hero-nav lp-hero-next" aria-label="Next slide">&#10095;</button>
-        <div class="lp-hero-dots">
-        <button class="is-active" data-index="0"></button>
-        <button data-index="1"></button>
-        <button data-index="2"></button>
-        </div>
+      </div>
     </div>
 
-    <div class="lp-container lp-hero-text-wrap">
-        <div class="lp-hero-text">
-        <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
-        <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
+    <!-- 文案叠在图片上 -->
+    <div class="lp-hero-overlay-content">
+      <div class="lp-container">
+        <div class="lp-hero-text-card">
+          <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
+          <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
             在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。
-        </p>
-        <div class="lp-hero-actions">
+          </p>
+          <div class="lp-hero-actions">
             <a
-            class="lp-btn lp-btn-primary"
-            href="https://t.me/GreenSphere_Community"
-            target="_blank"
-            rel="noopener"
-            data-i18n="hero.ctaPrimary"
+              class="lp-btn lp-btn-primary"
+              href="https://t.me/GreenSphere_Community"
+              target="_blank"
+              rel="noopener"
+              data-i18n="hero.ctaPrimary"
             >
-            在 Telegram 里开始打卡
+              在 Telegram 里开始打卡
             </a>
             <a
-            class="lp-btn lp-btn-secondary"
-            href="#pioneer"
-            data-i18n="hero.ctaSecondary"
+              class="lp-btn lp-btn-secondary"
+              href="#pioneer"
+              data-i18n="hero.ctaSecondary"
             >
-            加入 7 天 Pioneer 挑战
+              加入 7 天 Pioneer 挑战
             </a>
-        </div>
-        <p class="lp-hero-caption" data-i18n="hero.caption">
+          </div>
+          <p class="lp-hero-caption" data-i18n="hero.caption">
             每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。
-        </p>
+          </p>
         </div>
+      </div>
     </div>
-    </section>
+
+    <button class="lp-hero-nav lp-hero-prev" aria-label="Previous slide">
+      &#10094;
+    </button>
+    <button class="lp-hero-nav lp-hero-next" aria-label="Next slide">
+      &#10095;
+    </button>
+    <div class="lp-hero-dots">
+      <button class="is-active" data-index="0"></button>
+      <button data-index="1"></button>
+      <button data-index="2"></button>
+    </div>
+  </div>
+</section>
+
 
   <!-- What & How -->
   <section id="what-how" class="lp-section lp-section-alt">
