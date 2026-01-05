@@ -18,6 +18,7 @@ from app.models import rate_limit as _rate_limit_model  # noqa: F401
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
+from app.api.site import site_router
 
 
 def create_app() -> FastAPI:
@@ -48,6 +49,7 @@ def create_app() -> FastAPI:
 
 app = create_app()
 app.include_router(site_router)
+app.include_router(greensphere_router) 
 
 @app.get("/favicon.ico", include_in_schema=False)
 def favicon():

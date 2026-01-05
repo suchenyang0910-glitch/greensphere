@@ -7,7 +7,8 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 load_dotenv()
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
-WEBAPP_URL = "https://app.greensphere.world/"
+WEBAPP_URL = "https://app.greensphere.world/app"
+
 
 if not BOT_TOKEN:
     raise RuntimeError("TELEGRAM_BOT_TOKEN not set in environment (.env)")
