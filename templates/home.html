@@ -1,57 +1,98 @@
 {% extends "site_base.html" %}
 
 {% block content %}
-<div class="app-shell">
+<div class="home-container">
 
-    <section class="card hero-card">
-        <h1>{{ t.title }}</h1>
-        <p class="hero-subtitle">{{ t.subtitle }}</p>
-        <div class="hero-cta">
-            <a class="primary-btn" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
-                {{ t.cta_use_bot }}
-            </a>
-            <a class="secondary-btn" href="https://t.me/GreenSphere_Community" target="_blank">
-                {{ t.cta_pioneer }}
-            </a>
+    <!-- Hero 区 -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hero-title">{{ t.title }}</h1>
+            <p class="hero-subtitle">{{ t.subtitle }}</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="https://t.me/GreenSphereCommunity_Bot" target="_blank">
+                    {{ t.cta_use_bot }}
+                </a>
+                <a class="btn btn-secondary" href="https://t.me/GreenSphere_Community" target="_blank">
+                    {{ t.cta_pioneer }}
+                </a>
+            </div>
+            <p class="hero-meta">
+                Telegram Bot: <code>@GreenSphereCommunity_Bot</code><br>
+                WebApp: <a href="https://app.greensphere.world/app" target="_blank">app.greensphere.world/app</a>
+            </p>
         </div>
-        <p class="hero-note">
-            Telegram Bot: <code>@GreenSphereCommunity_Bot</code>
-        </p>
+        <div class="hero-visual">
+            <div class="hero-card-mock">
+                <div class="hero-card-header">今日绿色任务</div>
+                <div class="hero-card-line hero-card-line--done"></div>
+                <div class="hero-card-line"></div>
+                <div class="hero-card-line"></div>
+                <div class="hero-card-footer">连续天数 · LeafPass</div>
+            </div>
+        </div>
     </section>
 
-    <section class="card">
-        <div class="section-title">{{ t.section_how_title }}</div>
-        <ol class="section-list">
-            {% for step in t.section_how_steps %}
-            <li>{{ step }}</li>
-            {% endfor %}
-        </ol>
+    <!-- 三列卖点区 -->
+    <section class="features">
+        <div class="feature-item">
+            <h3>01 · {{ t.section_how_title }}</h3>
+            <ol>
+                {% for step in t.section_how_steps %}
+                <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="feature-item">
+            <h3>02 · {{ t.section_why_title }}</h3>
+            <ul>
+                {% for p in t.section_why_points %}
+                <li>{{ p }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="feature-item">
+            <h3>03 · {{ t.section_for_title }}</h3>
+            <ul>
+                {% for item in t.section_for_items %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </section>
 
-    <section class="card">
-        <div class="section-title">{{ t.section_why_title }}</div>
-        <ul class="section-list">
-            {% for p in t.section_why_points %}
-            <li>{{ p }}</li>
-            {% endfor %}
-        </ul>
+    <!-- 7 天挑战区块 -->
+    <section class="pioneer-section">
+        <div class="pioneer-card">
+            <h2>7 天 Pioneer 挑战 · 先试试看</h2>
+            <p>
+                第 1 天：完成 1 个简单任务，熟悉流程。<br>
+                第 2–3 天：每天完成 2–3 个任务，感受积分和 streak。<br>
+                第 4–7 天：保持每天至少 1 个任务，点亮你的第一枚 LeafPass 徽章。
+            </p>
+            <p class="pioneer-cta">
+                👉 现在就去发送 <code>/start</code> 给
+                <strong>@GreenSphereCommunity_Bot</strong>
+            </p>
+        </div>
     </section>
 
-    <section class="card">
-        <div class="section-title">{{ t.section_for_title }}</div>
-        <ul class="section-list">
-            {% for item in t.section_for_items %}
-            <li>{{ item }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-
-    <section class="card">
-        <div class="section-title">Start now</div>
-        <p>
-            👉 Telegram: <strong>@GreenSphereCommunity_Bot</strong><br>
-            👉 WebApp: <a href="https://app.greensphere.world/" target="_blank">https://app.greensphere.world/</a>
-        </p>
+    <!-- FAQ / 说明区 -->
+    <section class="faq-section">
+        <h2>常见问题（简版）</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>需要上传证明 / 照片吗？</h4>
+                <p>不需要。当前版本全部基于自我声明，重点是帮你「建立习惯」，而不是审核每一次行为。</p>
+            </div>
+            <div class="faq-item">
+                <h4>会涉及理财、币价或碳交易吗？</h4>
+                <p>不会。GreenSphere 不提供理财或交易功能，积分也不是金融资产，只用于行为反馈和徽章解锁。</p>
+            </div>
+            <div class="faq-item">
+                <h4>将来会怎么用这些数据？</h4>
+                <p>主要用于：个人反馈、产品优化，以及匿名统计（例如活跃用户数、连续参与天数等）。任何对外合作都会在合规前提下进行。</p>
+            </div>
+        </div>
     </section>
 
 </div>
