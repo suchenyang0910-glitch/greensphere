@@ -177,6 +177,15 @@ async def robots(request: Request):
     return Response(content=body, media_type="text/plain; charset=utf-8", headers={"Cache-Control": "public, max-age=3600"})
 
 
+@site_router.head("/robots.txt", include_in_schema=False)
+async def robots_head(request: Request):
+    base_url = _external_base_url(request)
+    headers = {"Cache-Control": "public, max-age=3600"}
+    headers["Content-Type"] = "text/plain; charset=utf-8"
+    headers["X-Sitemap"] = f"{base_url}/sitemap.xml"
+    return Response(content=b"", headers=headers)
+
+
 @site_router.get("/sitemap.xml", include_in_schema=False)
 async def sitemap(request: Request):
     base_url = _external_base_url(request)
@@ -202,6 +211,13 @@ async def sitemap(request: Request):
     parts.append("</urlset>")
     body = "\n".join(parts) + "\n"
     return Response(content=body, media_type="application/xml; charset=utf-8", headers={"Cache-Control": "public, max-age=3600"})
+
+
+@site_router.head("/sitemap.xml", include_in_schema=False)
+async def sitemap_head(request: Request):
+    headers = {"Cache-Control": "public, max-age=3600"}
+    headers["Content-Type"] = "application/xml; charset=utf-8"
+    return Response(content=b"", headers=headers)
 
 
 @site_router.get("/api/news", include_in_schema=False)
