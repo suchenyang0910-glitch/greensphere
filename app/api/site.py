@@ -1,5 +1,6 @@
 # app/api/site.py
 import json
+import os
 
 from fastapi import APIRouter, Request, Query
 from fastapi.responses import HTMLResponse, Response, RedirectResponse
@@ -15,8 +16,13 @@ site_router = APIRouter()
 
 
 def _external_base_url(request: Request) -> str:
+    override = (os.getenv("GS_PUBLIC_BASE_URL") or "").strip().rstrip("/")
+    if override:
+        return override
     proto = (request.headers.get("x-forwarded-proto") or request.url.scheme or "https").split(",")[0].strip()
     host = (request.headers.get("host") or request.url.hostname or "").strip()
+    if proto == "http" and host and host not in {"127.0.0.1", "localhost"} and not host.startswith("127."):
+        proto = "https"
     return f"{proto}://{host}"
 
 

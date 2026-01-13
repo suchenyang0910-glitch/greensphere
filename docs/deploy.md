@@ -44,6 +44,7 @@
 - `TG_COMMUNITY_BOT_TOKEN`
 - `TG_MONITOR_BOT_TOKEN`、`TG_MONITOR_CHAT_ID`
 - `ADMIN_API_KEY`（生产环境必须配置）
+- `GS_PUBLIC_BASE_URL`（生产：`https://greensphere.world`，用于 canonical/sitemap）
 - `GS_WEBAPP_URL`（生产：`https://你的域名/app`）
 - `GS_REQUIRE_TG_INIT_DATA=1`（生产建议开启）
 
