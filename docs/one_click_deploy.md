@@ -34,3 +34,10 @@ docker compose up -d --build
 # docker-compose up -d --build
 ```
 
+## 常见坑：docker-compose (V1) 与新 Docker 不兼容
+如果你看到类似 `KeyError: 'ContainerConfig'`，通常是 docker-compose 1.29.x 与较新的 Docker Engine API 不兼容。
+推荐安装 Compose V2：
+- `apt update && apt install -y docker-compose-v2`
+然后使用：
+- `docker compose up -d --build`
+

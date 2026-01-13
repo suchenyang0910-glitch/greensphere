@@ -7,7 +7,9 @@ BRANCH="${BRANCH:-main}"
 apt update
 apt install -y git ca-certificates curl docker.io
 if ! apt install -y docker-compose-plugin; then
-  apt install -y docker-compose
+  if ! apt install -y docker-compose-v2; then
+    apt install -y docker-compose
+  fi
 fi
 systemctl enable --now docker
 
