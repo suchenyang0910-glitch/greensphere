@@ -30,5 +30,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/suchenyang0910-glitch/gr
 ```bash
 cd /opt/greensphere
 docker compose up -d --build
+# 如果你的系统没有 docker compose 子命令，则使用：
+# docker-compose up -d --build
 ```
 

@@ -24,8 +24,12 @@ fi
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "docker not found. Install on Ubuntu:" 1>&2
-  echo "  apt update && apt install -y docker.io docker-compose-plugin" 1>&2
+  echo "  apt update && apt install -y docker.io docker-compose-plugin   (or docker-compose)" 1>&2
   exit 3
 fi
 
-docker compose up -d --build
+if docker compose version >/dev/null 2>&1; then
+  docker compose up -d --build
+else
+  docker-compose up -d --build
+fi
