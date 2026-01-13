@@ -66,3 +66,6 @@
 - `GS_REQUIRE_TG_INIT_DATA=1` 强制校验 Telegram initData，避免伪造 user_id
 - 服务器层做基础防护：限制异常流量、开启 WAF/Cloudflare（如可用）
 
+## 服务器从 GitHub 更新
+参考：[server_update_from_github.md](file:///d:/VScode/GreenSphere/greensphere/docs/server_update_from_github.md)
+
