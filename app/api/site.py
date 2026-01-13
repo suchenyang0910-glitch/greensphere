@@ -228,6 +228,11 @@ async def home_submit(request: Request, db: Session = Depends(get_sa_db)):
     q = request.url.query
     base = "/" + (f"?{q}&submitted=1" if q else "?submitted=1")
     return RedirectResponse(url=base + "#pioneer", status_code=303)
+
+
+@site_router.head("/", include_in_schema=False)
+async def home_head():
+    return Response(content=b"", headers={"Content-Type": "text/html; charset=utf-8"})
 @site_router.get("/pioneer", include_in_schema=False)
 async def pioneer_redirect(lang: str | None = Query(default=None)):
     q = f"?lang={_normalize_lang(lang)}" if _normalize_lang(lang) else ""

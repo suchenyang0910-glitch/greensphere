@@ -8,7 +8,7 @@ from pathlib import Path
 from fastapi import APIRouter, Depends, BackgroundTasks, Request
 from fastapi import Header
 from fastapi import HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
 
 from gs_db import get_db
@@ -84,12 +84,36 @@ def app_index(request: Request):
     )
 
 
+@router.head("/app", include_in_schema=False)
+def app_index_head():
+    return Response(
+        content=b"",
+        headers={
+            "Content-Type": "text/html; charset=utf-8",
+            "X-Robots-Tag": "noindex, nofollow",
+            "Cache-Control": "no-store",
+        },
+    )
+
+
 @router.get("/admin", response_class=HTMLResponse)
 def admin_index(request: Request):
     return templates.TemplateResponse(
         "admin.html",
         {"request": request, "asset_version": _asset_version()},
         headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"},
+    )
+
+
+@router.head("/admin", include_in_schema=False)
+def admin_index_head():
+    return Response(
+        content=b"",
+        headers={
+            "Content-Type": "text/html; charset=utf-8",
+            "X-Robots-Tag": "noindex, nofollow",
+            "Cache-Control": "no-store",
+        },
     )
 
 
