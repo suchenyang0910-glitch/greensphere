@@ -23,6 +23,9 @@
 
 说明：
 - Telegram WebApp 只要求“对用户是 HTTPS”，Cloudflare 橙云可以提供边缘 HTTPS；但为了避免回源被劫持/降级，仍建议 Full (strict)。
+- 如果你的后端服务只监听 8000（例如 FastAPI/Uvicorn），Cloudflare 回源默认走 80/443，因此需要：
+  - 方式 A（推荐）：在服务器用 Caddy/Nginx 监听 80/443，反代到 8000
+  - 方式 B（快速可用）：把宿主机 80 端口映射到容器 8000，并把 Cloudflare SSL/TLS 改为 `Flexible`
 
 ### 3) 缓存与安全规则（避免把 API 缓存了）
 - 建议设置 Cache Rules / Page Rules：
