@@ -69,3 +69,6 @@
 ## 服务器从 GitHub 更新
 参考：[server_update_from_github.md](file:///d:/VScode/GreenSphere/greensphere/docs/server_update_from_github.md)
 
+## 菜鸟一键部署
+参考：[one_click_deploy.md](file:///d:/VScode/GreenSphere/greensphere/docs/one_click_deploy.md)
+

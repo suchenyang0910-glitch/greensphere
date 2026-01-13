@@ -8,7 +8,7 @@ load_dotenv()
 
 MONITOR_BOT_TOKEN = os.getenv("TG_MONITOR_BOT_TOKEN")
 ADMIN_CHAT_ID = os.getenv("TG_MONITOR_CHAT_ID")
-API_BASE_URL = os.getenv("GS_API_BASE_URL", "http://127.0.0.1:8000")  # 也可以改成 https://app.greensphere.world
+API_BASE_URL = os.getenv("GS_API_BASE_URL", "http://127.0.0.1:8000")  # 生产可填 https://greensphere.earth
 ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
 
 if not MONITOR_BOT_TOKEN:

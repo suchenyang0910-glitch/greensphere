@@ -109,7 +109,7 @@ async def home(request: Request, lang: str | None = Query(default=None)):
                     "@id": f"{base_url}/#organization",
                     "name": "GreenSphere",
                     "url": f"{base_url}/",
-                    "email": "hello@greensphere.world",
+                    "email": "hello@greensphere.earth",
                 },
                 {
                     "@type": "WebSite",

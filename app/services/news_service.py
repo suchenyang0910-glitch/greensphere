@@ -69,7 +69,7 @@ def fetch_top_news_items() -> list[NewsItem]:
     urls = default_rss_urls()
     all_items: list[NewsItem] = []
     for url in urls:
-        r = requests.get(url, timeout=15, headers={"User-Agent": "GreenSphereBot/1.0 (+https://greensphere.world)"})
+        r = requests.get(url, timeout=15, headers={"User-Agent": "GreenSphereBot/1.0 (+https://greensphere.earth)"})
         r.raise_for_status()
         all_items.extend(parse_rss(r.text, source_name="rss"))
 

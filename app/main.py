@@ -65,6 +65,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://greensphere.world",
+        "https://greensphere.earth",
     ],
     allow_credentials=True,
     allow_methods=["*"],

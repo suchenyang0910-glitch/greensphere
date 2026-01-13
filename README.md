@@ -5,6 +5,7 @@ GreenSphere 是一个围绕「日常绿色行为」的轻量打卡系统，通�
 
 - FastAPI 后端（行为打卡 + 统计 + Admin API）
 - Telegram WebApp 前端（`https://app.greensphere.world/`）
+- 官网（生产建议）：`https://greensphere.earth/`
 - Telegram Bots
   - 社区 Bot：`@GreenSphereCommunity_Bot`
   - 监控 Bot：读取每日行为数据

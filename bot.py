@@ -7,7 +7,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 load_dotenv()
 BOT_TOKEN = os.getenv("TG_COMMUNITY_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
 
-WEBAPP_URL = os.getenv("GS_WEBAPP_URL", "https://app.greensphere.world/app")
+WEBAPP_URL = os.getenv("GS_WEBAPP_URL", "https://greensphere.earth/app")
 OFFICIAL_CHANNEL_URL = os.getenv("GS_OFFICIAL_CHANNEL_URL", "https://t.me/GreenSphere_Official")
 COMMUNITY_GROUP_URL = os.getenv("GS_COMMUNITY_GROUP_URL", "https://t.me/GreenSphere_Community")
 

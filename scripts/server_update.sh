@@ -1,6 +1,8 @@
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-/opt/greensphere}"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+DEFAULT_APP_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+APP_DIR="${APP_DIR:-$DEFAULT_APP_DIR}"
 REPO_SSH="${REPO_SSH:-git@github.com:suchenyang0910-glitch/greensphere.git}"
 BRANCH="${BRANCH:-main}"
 
@@ -20,5 +22,10 @@ if [ ! -f ".env" ]; then
   exit 2
 fi
 
-docker compose up -d --build
+if ! command -v docker >/dev/null 2>&1; then
+  echo "docker not found. Install on Ubuntu:" 1>&2
+  echo "  apt update && apt install -y docker.io docker-compose-plugin" 1>&2
+  exit 3
+fi
 
+docker compose up -d --build
