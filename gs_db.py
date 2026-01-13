@@ -1,14 +1,27 @@
 # gs_db.py
 import sqlite3
+import os
 from datetime import datetime
 from typing import Iterator
 import json
 
-DB_PATH = "greensphere_behavior.db"
+DB_PATH_DEFAULT = "data/greensphere_behavior.db"
+
+
+def _behavior_db_path() -> str:
+    raw = (os.getenv("GS_BEHAVIOR_DB_PATH") or "").strip()
+    path = raw or DB_PATH_DEFAULT
+    if path.endswith("/") or path.endswith("\\") or os.path.isdir(path):
+        return os.path.join(path, "greensphere_behavior.db")
+    return path
 
 
 def get_db() -> Iterator[sqlite3.Connection]:
-    conn = sqlite3.connect(DB_PATH, timeout=5, check_same_thread=False)
+    db_path = _behavior_db_path()
+    parent = os.path.dirname(db_path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    conn = sqlite3.connect(db_path, timeout=5, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     try:
         conn.execute("PRAGMA journal_mode=WAL;")
@@ -25,7 +38,11 @@ def get_db() -> Iterator[sqlite3.Connection]:
 
 def init_gs_db() -> None:
     """初始化打卡用的 SQLite 数据库（行为层专用）"""
-    conn = sqlite3.connect(DB_PATH, timeout=5, check_same_thread=False)
+    db_path = _behavior_db_path()
+    parent = os.path.dirname(db_path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    conn = sqlite3.connect(db_path, timeout=5, check_same_thread=False)
     c = conn.cursor()
     try:
         conn.execute("PRAGMA journal_mode=WAL;")

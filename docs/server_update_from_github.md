@@ -48,6 +48,6 @@
 
 ## 注意事项
 - `.env` 不要提交到仓库；更新时脚本会保留你的 `.env`
-- SQLite DB（`greensphere_behavior.db`）建议持久化到磁盘，并在 compose 里做 volume 映射
+- SQLite DB 建议持久化到 `./data/greensphere_behavior.db`（默认已使用 `GS_BEHAVIOR_DB_PATH=data/greensphere_behavior.db`）
 - 生产建议开启：`GS_REQUIRE_TG_INIT_DATA=1`，避免接口被伪造请求刷数据
 
