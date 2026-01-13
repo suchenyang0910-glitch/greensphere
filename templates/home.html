@@ -44,57 +44,79 @@
 <body>
   <header class="lp-header">
     <div class="lp-container lp-header-inner">
-      <a href="#hero" class="lp-logo" data-i18n="brand">GreenSphere</a>
+      <a href="#hero" class="lp-logo">
+        <span class="lp-logo-mark" aria-hidden="true"></span>
+        <span class="lp-logo-text">
+          <span class="lp-logo-title" data-i18n="brand">GreenSphere</span>
+          <span class="lp-logo-subtitle">Small Actions. Real Impact.</span>
+        </span>
+      </a>
       <nav class="lp-nav">
-        <a href="#what-how" data-i18n="nav.whatHow">是什么 & 怎么用</a>
-        <a href="#why-for-whom" data-i18n="nav.whyForWhom">为什么 & 适合谁</a>
-        <a href="#pioneer" data-i18n="nav.pioneer">Pioneer 7 天挑战</a>
-        <a href="#news" data-i18n="nav.news">碳排放资讯</a>
+        <a href="#what-how" data-i18n="nav.what">What</a>
+        <a href="#pioneer" data-i18n="nav.pioneer">Pioneer</a>
+        <a href="#for-companies" data-i18n="nav.forCompanies">For Companies</a>
+        <a href="#news" data-i18n="nav.news">Carbon news</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
   <section id="hero" class="lp-hero">
-  <div class="lp-hero-single">
-    <img
-      src="/static/images/hero-hands-holding-earth-greensphere.jpg"
-      alt="双手捧住地球的插画，象征个人绿色行动守护地球 · Hands holding the Earth, symbolizing personal green actions protecting the planet"
-    />
+    <div class="lp-container gs-hero-shell">
+      <div class="gs-hero-surface">
+        <div class="gs-hero-grid">
+          <div class="gs-hero-left">
+            <h1 class="gs-hero-title" data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
+            <p class="gs-hero-kicker" data-i18n="hero.kicker">
+              任务打卡 · G-Points · Streak · 数字贡献徽章（LeafPass）
+            </p>
+            <div class="gs-hero-actions">
+              <a
+                class="lp-btn lp-btn-primary"
+                href="https://t.me/GreenSphere_Community"
+                target="_blank"
+                rel="noopener"
+                data-i18n="hero.ctaPrimary"
+              >
+                在 Telegram 开始
+              </a>
+              <a class="lp-btn lp-btn-secondary" href="#pioneer" data-i18n="hero.ctaSecondary">
+                7 天 Pioneer
+              </a>
+            </div>
 
-    <div class="lp-hero-overlay">
-      <div class="lp-container">
-        <div class="lp-hero-text-card">
-          <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
-          <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
-            在 Telegram 里轻松打卡，用 GreenSphere 记录你的每一次绿色行动。
-          </p>
-          <div class="lp-hero-actions">
-            <a
-              class="lp-btn lp-btn-primary"
-              href="https://t.me/GreenSphere_Community"
-              target="_blank"
-              rel="noopener"
-              data-i18n="hero.ctaPrimary"
-            >
-              在 Telegram 里开始打卡
-            </a>
-            <a
-              class="lp-btn lp-btn-secondary"
-              href="#pioneer"
-              data-i18n="hero.ctaSecondary"
-            >
-              加入 7 天 Pioneer 挑战
-            </a>
+            <div class="lp-card gs-hero-benefits">
+              <h3 class="gs-card-title" data-i18n="hero.benefits.title">你会得到什么</h3>
+              <ul class="gs-bullets">
+                <li data-i18n="hero.benefits.li1">低门槛：无需下载 App，聊天入口即可开始</li>
+                <li data-i18n="hero.benefits.li2">可量化：不靠口号，追踪每次选择</li>
+                <li data-i18n="hero.benefits.li3">可展示：徽章与档案沉淀，记录你的参与深度</li>
+                <li data-i18n="hero.benefits.li4">可扩展：未来对接企业 ESG 与合作方事件</li>
+              </ul>
+            </div>
           </div>
-          <p class="lp-hero-caption" data-i18n="hero.caption">
-            每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。
-          </p>
+
+          <div class="gs-hero-right">
+            <div class="lp-card gs-tasks-card">
+              <div class="gs-tasks-header" data-i18n="tasks.today.title">今日任务</div>
+              <div class="gs-task">
+                <div class="gs-task-title" data-i18n="tasks.item1.title">步行 5,000 步</div>
+                <div class="gs-task-meta" data-i18n="tasks.item1.meta">+10 G-Points</div>
+              </div>
+              <div class="gs-task">
+                <div class="gs-task-title" data-i18n="tasks.item2.title">不用一次性塑料袋</div>
+                <div class="gs-task-meta" data-i18n="tasks.item2.meta">+10 G-Points</div>
+              </div>
+              <div class="gs-task">
+                <div class="gs-task-title" data-i18n="tasks.item3.title">关灯节能 30 分钟</div>
+                <div class="gs-task-meta" data-i18n="tasks.item3.meta">+10 G-Points</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- What & How -->
@@ -215,7 +237,7 @@
         </div>
       </div>
 
-      <div class="lp-section-subblock">
+      <div class="lp-section-subblock" id="for-companies">
         <h3 data-i18n="forWhom.title">谁适合现在就开始用 LeafPass？</h3>
         <div class="lp-two-column">
           <div class="lp-card">
@@ -442,11 +464,19 @@
       var t = {
         zh: {
           brand: "LeafPass",
+          "nav.what": "What",
           "nav.whatHow": "是什么 & 怎么用",
           "nav.whyForWhom": "为什么 & 适合谁",
           "nav.pioneer": "Pioneer 7 天挑战",
+          "nav.forCompanies": "For Companies",
           "nav.news": "碳排放资讯",
           "hero.title": "每天 30 秒，记录一件绿色小事",
+          "hero.kicker": "任务打卡 · G-Points · Streak · 数字贡献徽章（LeafPass）",
+          "hero.benefits.title": "你会得到什么",
+          "hero.benefits.li1": "低门槛：无需下载 App，聊天入口即可开始",
+          "hero.benefits.li2": "可量化：不靠口号，追踪每次选择",
+          "hero.benefits.li3": "可展示：徽章与档案沉淀，记录你的参与深度",
+          "hero.benefits.li4": "可扩展：未来对接企业 ESG 与合作方事件",
           "hero.subtitle":
             "在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。",
           "hero.ctaPrimary": "在 Telegram 里开始打卡",
@@ -454,6 +484,13 @@
           "hero.caption":
             "每日打卡 + 徽章收集，一眼看到自己为地球做了多少小事。",
           "hero.screenshot": "产品截图<br />Telegram LeafPass Bot",
+          "tasks.today.title": "今日任务",
+          "tasks.item1.title": "步行 5,000 步",
+          "tasks.item1.meta": "+10 G-Points",
+          "tasks.item2.title": "不用一次性塑料袋",
+          "tasks.item2.meta": "+10 G-Points",
+          "tasks.item3.title": "关灯节能 30 分钟",
+          "tasks.item3.meta": "+10 G-Points",
 
           "what.title":
             "你每天只需点 2–3 个小任务，我们负责把它们变成看得见的数据",
@@ -554,11 +591,19 @@
 
         en: {
           brand: "LeafPass",
+          "nav.what": "What",
           "nav.whatHow": "What & How",
           "nav.whyForWhom": "Why & For whom",
           "nav.pioneer": "Pioneer 7‑day challenge",
+          "nav.forCompanies": "For Companies",
           "nav.news": "Carbon news",
           "hero.title": "Track one green action in 30 seconds a day",
+          "hero.kicker": "Quests · G-Points · Streak · LeafPass badges",
+          "hero.benefits.title": "What you get",
+          "hero.benefits.li1": "Low friction: start in Telegram, no new app",
+          "hero.benefits.li2": "Measurable: track actions without jargon",
+          "hero.benefits.li3": "Showable: badges & profile that prove consistency",
+          "hero.benefits.li4": "Expandable: future company ESG & partner programs",
           "hero.subtitle":
             "Log your climate-friendly actions inside Telegram and record your journey with LeafPass badges.",
           "hero.ctaPrimary": "Start tracking in Telegram",
@@ -566,6 +611,13 @@
           "hero.caption":
             "Daily check-ins and badges that show how your small actions add up.",
           "hero.screenshot": "Product screenshot<br />Telegram LeafPass Bot",
+          "tasks.today.title": "Today's tasks",
+          "tasks.item1.title": "Walk 5,000+ steps",
+          "tasks.item1.meta": "+10 G-Points",
+          "tasks.item2.title": "Skip single-use plastic bags",
+          "tasks.item2.meta": "+10 G-Points",
+          "tasks.item3.title": "Save energy: lights off 30+ min",
+          "tasks.item3.meta": "+10 G-Points",
           "news.title": "Carbon emissions news · Top 10",
           "news.subtitle": "Daily auto-collected updates related to carbon emissions.",
           "news.empty": "No news yet. Please refresh later."
@@ -685,16 +737,31 @@
 
         th: {
           brand: "LeafPass",
+          "nav.what": "What",
           "nav.whatHow": "คืออะไร & ใช้อย่างไร",
           "nav.whyForWhom": "ทำไม & เหมาะกับใคร",
-          "nav.pioneer": "ความท้าทาย Pioneer 7 วัน",
+          "nav.pioneer": "Pioneer ท้าทาย 7 วัน",
+          "nav.forCompanies": "For Companies",
           "nav.news": "ข่าวคาร์บอน",
           "hero.title": "30 วินาทีต่อวัน เพื่อบันทึกการกระทำสีเขียวของคุณ",
+          "hero.kicker": "ภารกิจ · G-Points · Streak · เหรียญ LeafPass",
+          "hero.benefits.title": "คุณจะได้อะไร",
+          "hero.benefits.li1": "เริ่มง่าย: ใช้ Telegram ไม่ต้องลงแอปเพิ่ม",
+          "hero.benefits.li2": "วัดผลได้: ติดตามการกระทำแบบเข้าใจง่าย",
+          "hero.benefits.li3": "นำเสนอได้: เหรียญและโปรไฟล์แสดงความต่อเนื่อง",
+          "hero.benefits.li4": "ขยายได้: รองรับ ESG และพาร์ทเนอร์ในอนาคต",
           "hero.subtitle":
             "เช็คอินการกระทำที่เป็นมิตรต่อสิ่งแวดล้อมใน Telegram และสะสมเหรียญ LeafPass",
           "hero.ctaPrimary": "เริ่มต้นบน Telegram",
           "hero.ctaSecondary": "เข้าร่วมความท้าทาย Pioneer 7 วัน",
           "hero.caption": "เช็คอินรายวันและเหรียญที่ช่วยให้เห็นผลรวมของการกระทำเล็ก ๆ",
+          "tasks.today.title": "ภารกิจวันนี้",
+          "tasks.item1.title": "เดิน 5,000 ก้าว",
+          "tasks.item1.meta": "+10 G-Points",
+          "tasks.item2.title": "งดใช้ถุงพลาสติกใช้ครั้งเดียว",
+          "tasks.item2.meta": "+10 G-Points",
+          "tasks.item3.title": "ประหยัดพลังงาน: ปิดไฟ 30 นาที",
+          "tasks.item3.meta": "+10 G-Points",
           "news.title": "ข่าวการปล่อยคาร์บอน · Top 10",
           "news.subtitle": "รวบรวมข่าวที่เกี่ยวข้องกับการปล่อยคาร์บอนแบบอัตโนมัติทุกวัน",
           "news.empty": "ยังไม่มีข่าว โปรดลองใหม่ภายหลัง"
@@ -702,6 +769,7 @@
 
         vi: {
           brand: "LeafPass",
+          "nav.what": "What",
           "nav.whatHow": "Là gì & Cách dùng",
           "nav.whyForWhom": "Vì sao & Dành cho ai",
           "nav.pioneer": "Thử thách Pioneer 7 ngày",
@@ -712,9 +780,22 @@
           "hero.ctaPrimary": "Bắt đầu theo dõi trên Telegram",
           "hero.ctaSecondary": "Tham gia thử thách Pioneer 7 ngày",
           "hero.caption":
-            "Check‑in hằng ngày và huy hiệu giúp bạn thấy những đóng góp nhỏ của mình."
-          ,
+            "Check‑in hằng ngày và huy hiệu giúp bạn thấy những đóng góp nhỏ của mình.",
           "nav.news": "Tin carbon",
+          "nav.forCompanies": "For Companies",
+          "hero.kicker": "Nhiệm vụ · G-Points · Streak · Huy hiệu LeafPass",
+          "hero.benefits.title": "Bạn nhận được gì",
+          "hero.benefits.li1": "Dễ bắt đầu: dùng Telegram, không cần cài app mới",
+          "hero.benefits.li2": "Đo lường được: theo dõi hành động đơn giản",
+          "hero.benefits.li3": "Dễ trình bày: huy hiệu & hồ sơ thể hiện sự kiên trì",
+          "hero.benefits.li4": "Mở rộng: hỗ trợ ESG & đối tác trong tương lai",
+          "tasks.today.title": "Nhiệm vụ hôm nay",
+          "tasks.item1.title": "Đi bộ 5.000 bước",
+          "tasks.item1.meta": "+10 G-Points",
+          "tasks.item2.title": "Không dùng túi nhựa dùng một lần",
+          "tasks.item2.meta": "+10 G-Points",
+          "tasks.item3.title": "Tiết kiệm điện: tắt đèn 30 phút",
+          "tasks.item3.meta": "+10 G-Points",
           "news.title": "Tin phát thải carbon · Top 10",
           "news.subtitle": "Tự động tổng hợp tin liên quan đến phát thải carbon mỗi ngày.",
           "news.empty": "Chưa có tin. Vui lòng thử lại sau."
@@ -722,9 +803,11 @@
 
         km: {
           brand: "LeafPass",
+          "nav.what": "What",
           "nav.whatHow": "អ្វី & របៀបប្រើ",
           "nav.whyForWhom": "ហេតុអ្វី & សមស្របសម្រាប់នរណា",
           "nav.pioneer": "Pioneer បំរើបេសកកម្ម 7 ថ្ងៃ",
+          "nav.forCompanies": "For Companies",
           "nav.news": "ព័ត៌មានកាបូន",
           "hero.title":
             "៣០ វិនាទីក្នុងមួយថ្ងៃ ដើម្បីកត់ត្រាសកម្មភាពបៃតងមួយរបស់អ្នក",
@@ -734,6 +817,19 @@
           "hero.ctaSecondary": "រួមចំណែកក្នុងបេសកកម្ម Pioneer 7 ថ្ងៃ",
           "hero.caption":
             "ការចុះឈ្មោះរៀងរាល់ថ្ងៃ និង徽章 បង្ហាញពីអ្វីដែលអ្នកបានធ្វើសម្រាប់ផែនដី។",
+          "hero.kicker": "ភារកិច្ច · G-Points · Streak ·徽章 LeafPass",
+          "hero.benefits.title": "អ្នកនឹងទទួលបានអ្វី",
+          "hero.benefits.li1": "ចាប់ផ្តើមងាយ: ប្រើ Telegram មិនចាំបាច់ដំឡើង App ថ្មី",
+          "hero.benefits.li2": "វាស់បាន: តាមដានសកម្មភាពដោយសាមញ្ញ",
+          "hero.benefits.li3": "បង្ហាញបាន:徽章 និងប្រវត្តិបង្ហាញភាពបន្ត",
+          "hero.benefits.li4": "ពង្រីកបាន: ESG និងដៃគូក្នុងអនាគត",
+          "tasks.today.title": "ភារកិច្ចថ្ងៃនេះ",
+          "tasks.item1.title": "ដើរ 5,000 ជំហាន",
+          "tasks.item1.meta": "+10 G-Points",
+          "tasks.item2.title": "មិនប្រើថង់ប្លាស្ទិកប្រើតែម្តង",
+          "tasks.item2.meta": "+10 G-Points",
+          "tasks.item3.title": "សន្សំថាមពល: បិទភ្លើង 30 នាទី",
+          "tasks.item3.meta": "+10 G-Points",
           "news.title": "ព័ត៌មានការបញ្ចេញកាបូន · TOP 10",
           "news.subtitle": "ទាញយកព័ត៌មានពាក់ព័ន្ធនឹងការបញ្ចេញកាបូនជារៀងរាល់ថ្ងៃ។",
           "news.empty": "មិនទាន់មានព័ត៌មានទេ សូមព្យាយាមម្តងទៀត។"

@@ -122,7 +122,7 @@ def init_user(
         )
         background_tasks.add_task(
             send_monitor_message,
-            f"🆕 新用户注册\n- telegram_id: {body.telegram_id}\n- name: {body.username or 'Telegram User'}",
+            f"🆕 新用户注册\ntelegram_id: {body.telegram_id}\nname: {body.username or 'Telegram User'}\n来源：/api/init_user",
         )
     else:
         user_id = row["id"]
@@ -264,7 +264,7 @@ def complete_task(
         )
         background_tasks.add_task(
             send_monitor_message,
-            f"🏅 徽章解锁\n- user: {body.user_id}\n- badges: {', '.join([x['code'] for x in newly_unlocked])}",
+            f"🏅 徽章解锁\nuser: {body.user_id}\nbadges: {', '.join([x['code'] for x in newly_unlocked])}\n来源：/api/complete",
         )
         log_system_event(
             db,

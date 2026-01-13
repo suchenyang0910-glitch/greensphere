@@ -25,7 +25,7 @@ async def fetch_stats() -> dict:
 
 def format_stats(data: dict) -> str:
     return (
-        f"📊 GreenSphere 今日数据（{data.get('date')}）\n"
+        f"📊 今日数据（/stats · {data.get('date')}）\n"
         f"- 新用户：{data.get('new_today')}\n"
         f"- 活跃用户：{data.get('active_today')}\n"
         f"- 完成任务次数：{data.get('completions_today')}\n"

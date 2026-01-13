@@ -269,20 +269,17 @@
 
         const statsDiv = document.getElementById('stats');
         let html = '';
-        html += '<p>' + tr('stats.today', {done: stats.today_completed, total: stats.total_tasks}) + '</p>';
-        html += '<p>' + tr('stats.total', {points: stats.total_points, streak: stats.streak}) + '</p>';
-
-
+        html += '<div class="progress-kpi">' + tr('stats.total', {points: stats.total_points, streak: stats.streak}) + '</div>';
+        html += '<div class="progress-sub">' + tr('stats.today', {done: stats.today_completed, total: stats.total_tasks}) + '</div>';
         if (stats.total_tasks > 0 && stats.today_completed === stats.total_tasks) {
-            html += '<p class="all-done">' + tr('stats.allDone') + '</p>';
+            html += '<div class="all-done">' + tr('stats.allDone') + '</div>';
         }
-
         statsDiv.innerHTML = html;
 
         const badgesDiv = document.getElementById('badges');
         const badges = data.badges || [];
         if (badges.length === 0) {
-            badgesDiv.innerHTML = '<p style="font-size:13px;color:#777;">' + tr('badges.empty') + '</p>';
+            badgesDiv.innerHTML = '<div class="empty-muted">' + tr('badges.empty') + '</div>';
         } else {
             const items = badges
                 .slice(0, 12)
