@@ -3,14 +3,19 @@ import json
 import os
 from functools import lru_cache
 from pathlib import Path
+from urllib.parse import parse_qs
 
-from fastapi import APIRouter, Request, Query
+from fastapi import APIRouter, Request, Query, Depends
 from fastapi.responses import HTMLResponse, Response, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from sqlalchemy.orm import Session
 
 from site_i18n import TEXTS, detect_lang
-from gs_db import get_db
+from gs_db import get_db as get_behavior_db
 from app.services.news_service import list_latest_news
+from app.core.database import get_db as get_sa_db
+from app.models.waitlist import WaitlistSubscriber
+from app.services.monitor_service import notify_monitor
 
 templates = Jinja2Templates(directory="templates")
 
@@ -143,9 +148,10 @@ async def home(request: Request, lang: str | None = Query(default=None)):
     )
 
     gen = get_db()
-    db = next(gen)
-    news_items = list_latest_news(db, limit=10)
-    gen.close()
+    behavior_gen = get_behavior_db()
+    behavior_db = next(behavior_gen)
+    news_items = list_latest_news(behavior_db, limit=10)
+    behavior_gen.close()
 
     return templates.TemplateResponse(
         "home.html",
@@ -160,6 +166,68 @@ async def home(request: Request, lang: str | None = Query(default=None)):
         },
     )
 
+
+@site_router.post("/", include_in_schema=False)
+async def home_submit(request: Request, db: Session = Depends(get_sa_db)):
+    content_type = (request.headers.get("content-type") or "").lower()
+    payload: dict[str, str] = {}
+    if "application/json" in content_type:
+        data = await request.json()
+        if isinstance(data, dict):
+            payload = {str(k): "" if v is None else str(v) for k, v in data.items()}
+    else:
+        raw = (await request.body()).decode("utf-8", errors="ignore")
+        parsed = parse_qs(raw, keep_blank_values=True)
+        payload = {k: (v[0] if v else "") for k, v in parsed.items()}
+
+    email = (payload.get("email") or "").strip()
+    if not email:
+        return Response(content='{"detail":"Missing email"}', media_type="application/json", status_code=400)
+
+    name = (payload.get("name") or "").strip()
+    telegram = (payload.get("telegram") or "").strip()
+    topics = (payload.get("topics") or "").strip()
+    role = (payload.get("role") or "").strip() or "individual"
+    region = (payload.get("region") or "").strip() or "SEA"
+
+    note_parts = []
+    if name:
+        note_parts.append(f"name={name}")
+    if topics:
+        note_parts.append(f"topics={topics}")
+    note = "; ".join(note_parts)[:255] if note_parts else None
+
+    existing = db.query(WaitlistSubscriber).filter_by(email=email).first()
+    if not existing:
+        db.add(
+            WaitlistSubscriber(
+                email=email,
+                region=region[:8],
+                role=role[:32],
+                telegram=telegram[:50] if telegram else None,
+                note=note,
+                source="home_form",
+            )
+        )
+        db.commit()
+        client_ip = request.client.host if request.client else "unknown"
+        notify_monitor(
+            "🟢 <b>New Waitlist Signup</b>\n\n"
+            f"📧 Email: {email}\n"
+            f"🌍 Region: {region}\n"
+            f"👤 Role: {role}\n"
+            f"📱 Telegram: {telegram or '-'}\n"
+            f"📝 Note: {note or '-'}\n"
+            f"🕒 IP: {client_ip}"
+        )
+
+    accept = (request.headers.get("accept") or "").lower()
+    if "application/json" in accept or "application/json" in content_type:
+        return {"success": True}
+
+    q = request.url.query
+    base = "/" + (f"?{q}&submitted=1" if q else "?submitted=1")
+    return RedirectResponse(url=base + "#pioneer", status_code=303)
 @site_router.get("/pioneer", include_in_schema=False)
 async def pioneer_redirect(lang: str | None = Query(default=None)):
     q = f"?lang={_normalize_lang(lang)}" if _normalize_lang(lang) else ""
