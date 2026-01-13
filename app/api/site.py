@@ -1,6 +1,8 @@
 # app/api/site.py
 import json
 import os
+from functools import lru_cache
+from pathlib import Path
 
 from fastapi import APIRouter, Request, Query
 from fastapi.responses import HTMLResponse, Response, RedirectResponse
@@ -13,6 +15,16 @@ from app.services.news_service import list_latest_news
 templates = Jinja2Templates(directory="templates")
 
 site_router = APIRouter()
+
+@lru_cache(maxsize=1)
+def _asset_version() -> str:
+    override = (os.getenv("GS_ASSET_VERSION") or "").strip()
+    if override:
+        return override
+    try:
+        return str(int(Path("static/style_home.css").stat().st_mtime))
+    except Exception:
+        return "1"
 
 
 def _external_base_url(request: Request) -> str:
@@ -144,6 +156,7 @@ async def home(request: Request, lang: str | None = Query(default=None)):
             "seo": seo,
             "alternates": alternates,
             "news_items": news_items,
+            "asset_version": _asset_version(),
         },
     )
 

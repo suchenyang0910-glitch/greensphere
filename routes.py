@@ -2,6 +2,8 @@ import sqlite3
 from datetime import datetime
 import os
 import json
+from functools import lru_cache
+from pathlib import Path
 
 from fastapi import APIRouter, Depends, BackgroundTasks, Request
 from fastapi import Header
@@ -28,6 +30,16 @@ from gs_rate_limiter import increment_and_get_count
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
+
+@lru_cache(maxsize=1)
+def _asset_version() -> str:
+    v = (os.getenv("GS_ASSET_VERSION") or "").strip()
+    if v:
+        return v
+    try:
+        return str(int(max(Path("static/style.css").stat().st_mtime, Path("static/admin.css").stat().st_mtime)))
+    except Exception:
+        return "1"
 
 REQUIRE_TG_INIT_DATA = (os.getenv("GS_REQUIRE_TG_INIT_DATA") or "").strip().lower() in {
     "1",
@@ -67,7 +79,7 @@ def _rate_limit_or_429(db: sqlite3.Connection, *, ip: str, key: str, limit: int,
 def app_index(request: Request):
     return templates.TemplateResponse(
         "index.html",
-        {"request": request},
+        {"request": request, "asset_version": _asset_version()},
         headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"},
     )
 
@@ -76,7 +88,7 @@ def app_index(request: Request):
 def admin_index(request: Request):
     return templates.TemplateResponse(
         "admin.html",
-        {"request": request},
+        {"request": request, "asset_version": _asset_version()},
         headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"},
     )
 
