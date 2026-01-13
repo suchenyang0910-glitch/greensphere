@@ -1,17 +1,18 @@
 # models.py
 import sqlite3
 from datetime import date, timedelta
+from datetime import datetime
 from pydantic import BaseModel
 from app.db import get_db 
 
 
 class CompleteTaskRequest(BaseModel):
-    user_id: int
+    user_id: int | None = None
     task_id: int
 
 
 class UserInitRequest(BaseModel):
-    telegram_id: int
+    telegram_id: int | None = None
     username: str | None = None
 
 
@@ -55,6 +56,28 @@ def calculate_stats(conn: sqlite3.Connection, user_id: int) -> dict:
     row = c.fetchone()
     total_tasks = row["cnt"] if row["cnt"] is not None else 0
 
+    c.execute(
+        """
+        SELECT COUNT(*) AS cnt
+        FROM user_task_logs
+        WHERE user_id = ?;
+        """,
+        (user_id,),
+    )
+    row = c.fetchone()
+    total_completions = row["cnt"] if row["cnt"] is not None else 0
+
+    c.execute(
+        """
+        SELECT COUNT(DISTINCT date) AS cnt
+        FROM user_task_logs
+        WHERE user_id = ?;
+        """,
+        (user_id,),
+    )
+    row = c.fetchone()
+    participation_days = row["cnt"] if row["cnt"] is not None else 0
+
     # 连续天数 streak
     streak = 0
     today = date.today()
@@ -81,4 +104,106 @@ def calculate_stats(conn: sqlite3.Connection, user_id: int) -> dict:
         "streak": streak,
         "today_completed": today_completed,
         "total_tasks": total_tasks,
+        "total_completions": total_completions,
+        "participation_days": participation_days,
     }
+
+
+def _load_badges(conn: sqlite3.Connection) -> list[dict]:
+    c = conn.cursor()
+    c.execute("SELECT code, title, description, rule_type, threshold FROM badges ORDER BY id ASC;")
+    return [dict(r) for r in c.fetchall()]
+
+
+def _load_user_badge_codes(conn: sqlite3.Connection, user_id: int) -> set[str]:
+    c = conn.cursor()
+    c.execute("SELECT badge_code FROM user_badges WHERE user_id = ?;", (user_id,))
+    return {r["badge_code"] for r in c.fetchall()}
+
+
+def unlock_eligible_badges(conn: sqlite3.Connection, user_id: int) -> list[dict]:
+    stats = calculate_stats(conn, user_id)
+    badges = _load_badges(conn)
+    owned = _load_user_badge_codes(conn, user_id)
+
+    eligible: list[dict] = []
+    for b in badges:
+        if b["code"] in owned:
+            continue
+        rule = b["rule_type"]
+        threshold = int(b["threshold"])
+        ok = False
+        if rule == "streak":
+            ok = int(stats["streak"]) >= threshold
+        elif rule == "total_points":
+            ok = int(stats["total_points"]) >= threshold
+        elif rule == "total_completions":
+            ok = int(stats["total_completions"]) >= threshold
+        elif rule == "participation_days":
+            ok = int(stats["participation_days"]) >= threshold
+        if ok:
+            eligible.append(b)
+
+    if not eligible:
+        return []
+
+    c = conn.cursor()
+    now = datetime.utcnow().isoformat()
+    for b in eligible:
+        c.execute(
+            """
+            INSERT OR IGNORE INTO user_badges (user_id, badge_code, unlocked_at)
+            VALUES (?, ?, ?);
+            """,
+            (user_id, b["code"], now),
+        )
+    conn.commit()
+    return eligible
+
+
+def list_user_badges(conn: sqlite3.Connection, user_id: int) -> list[dict]:
+    c = conn.cursor()
+    c.execute(
+        """
+        SELECT b.code, b.title, b.description, b.rule_type, b.threshold, ub.unlocked_at
+        FROM user_badges ub
+        JOIN badges b ON b.code = ub.badge_code
+        WHERE ub.user_id = ?
+        ORDER BY ub.unlocked_at DESC;
+        """,
+        (user_id,),
+    )
+    return [dict(r) for r in c.fetchall()]
+
+
+def log_system_event(
+    conn: sqlite3.Connection,
+    *,
+    level: str,
+    event: str,
+    message: str | None = None,
+    meta_json: str | None = None,
+) -> None:
+    c = conn.cursor()
+    c.execute(
+        """
+        INSERT INTO system_logs (level, event, message, meta_json, created_at)
+        VALUES (?, ?, ?, ?, ?);
+        """,
+        (level, event, message, meta_json, datetime.utcnow().isoformat()),
+    )
+    conn.commit()
+
+
+def list_system_logs(conn: sqlite3.Connection, limit: int = 100) -> list[dict]:
+    c = conn.cursor()
+    c.execute(
+        """
+        SELECT id, level, event, message, meta_json, created_at
+        FROM system_logs
+        ORDER BY id DESC
+        LIMIT ?;
+        """,
+        (int(limit),),
+    )
+    return [dict(r) for r in c.fetchall()]

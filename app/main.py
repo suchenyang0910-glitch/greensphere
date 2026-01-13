@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi import Header, Response, Request
+from fastapi import Header, Response
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -18,6 +18,7 @@ from app.models import rate_limit as _rate_limit_model  # noqa: F401
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
+from app.jobs.news_fetcher import start_news_fetcher
 
 
 
@@ -26,30 +27,27 @@ def create_app() -> FastAPI:
 
     # 静态文件 & 模板
     app.mount("/static", StaticFiles(directory="static"), name="static")
-    templates = Jinja2Templates(directory="templates")
+    Jinja2Templates(directory="templates")
 
     # Routers
     app.include_router(health.router, prefix="/api")
     app.include_router(waitlist.router, prefix="/api")
-    app.include_router(greensphere_router) 
+    app.include_router(site_router)
+    app.include_router(greensphere_router)
+    app.include_router(quests_router)
+    app.include_router(me_router)
+
     # DB init
     @app.on_event("startup")
     def _startup_create_tables() -> None:
         Base.metadata.create_all(bind=engine)
         init_gs_db()
-
-
- #   @app.get("/", response_class=HTMLResponse)
- #   async def index(request: Request):
- #      return templates.TemplateResponse("index.html", {"request": request})
+        start_news_fetcher()
 
     return app
 
 
-
 app = create_app()
-app.include_router(site_router)
-app.include_router(greensphere_router) 
 
 @app.get("/favicon.ico", include_in_schema=False)
 def favicon():
@@ -62,9 +60,6 @@ def auth_debug(x_telegram_init_data: str | None = Header(default=None)):
         return {"ok": False, "reason": "Missing X-Telegram-Init-Data"}
     u = parse_telegram_user_from_init_data(x_telegram_init_data)
     return {"ok": True, "user": u}
-
-app.include_router(quests_router)
-app.include_router(me_router)
 
 app.add_middleware(
     CORSMiddleware,

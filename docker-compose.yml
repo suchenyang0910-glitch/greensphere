@@ -1,0 +1,33 @@
+services:
+  api:
+    build: .
+    container_name: greensphere_api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./greensphere_behavior.db:/app/greensphere_behavior.db
+    restart: unless-stopped
+
+  community_bot:
+    build: .
+    container_name: greensphere_community_bot
+    env_file:
+      - .env
+    command: ["python", "bot.py"]
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  monitor_bot:
+    build: .
+    container_name: greensphere_monitor_bot
+    env_file:
+      - .env
+    command: ["python", "monitor_bot.py"]
+    restart: unless-stopped
+    depends_on:
+      - api
+

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>GreenSphere Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+  <header class="gs-admin-header">
+    <div class="gs-admin-header-inner">
+      <div class="gs-brand">
+        <div class="gs-logo"></div>
+        <div class="gs-brand-text">
+          <div class="gs-brand-title">GreenSphere</div>
+          <div class="gs-brand-subtitle">Admin Console</div>
+        </div>
+      </div>
+      <div class="gs-admin-auth">
+        <input id="adminKey" class="gs-input" type="password" placeholder="X-Admin-Key" autocomplete="off">
+        <button id="saveKey" class="gs-btn">保存</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="gs-admin-main">
+    <nav class="gs-tabs" id="tabs">
+      <button class="gs-tab is-active" data-tab="dashboard">Dashboard</button>
+      <button class="gs-tab" data-tab="users">Users</button>
+      <button class="gs-tab" data-tab="tasks">Tasks</button>
+      <button class="gs-tab" data-tab="badges">Badges</button>
+      <button class="gs-tab" data-tab="logs">Logs</button>
+    </nav>
+
+    <section class="gs-panel" id="panel">
+      <div class="gs-grid">
+        <div class="gs-card">
+          <div class="gs-card-title">今日</div>
+          <div id="kpiToday" class="gs-kpi">-</div>
+          <div id="kpiTodaySub" class="gs-kpi-sub">-</div>
+        </div>
+        <div class="gs-card">
+          <div class="gs-card-title">总用户</div>
+          <div id="kpiUsers" class="gs-kpi">-</div>
+          <div class="gs-kpi-sub">累计注册</div>
+        </div>
+        <div class="gs-card">
+          <div class="gs-card-title">今日完成</div>
+          <div id="kpiCompletions" class="gs-kpi">-</div>
+          <div class="gs-kpi-sub">任务完成次数</div>
+        </div>
+        <div class="gs-card">
+          <div class="gs-card-title">今日活跃</div>
+          <div id="kpiActive" class="gs-kpi">-</div>
+          <div class="gs-kpi-sub">完成过任务的用户</div>
+        </div>
+      </div>
+
+      <div class="gs-split">
+        <div class="gs-card">
+          <div class="gs-card-title">快速操作</div>
+          <div class="gs-actions">
+            <button class="gs-btn gs-btn-primary" id="refreshBtn">刷新</button>
+            <button class="gs-btn" id="copyCurlBtn">复制 cURL</button>
+          </div>
+          <div class="gs-muted">提示：若未设置 ADMIN_API_KEY，本地环境默认不校验。</div>
+        </div>
+        <div class="gs-card">
+          <div class="gs-card-title">预览</div>
+          <div class="gs-muted">WebApp：/app ｜ 官网：/ ｜ 控制台：/admin</div>
+          <div class="gs-muted">监控API：/api/admin/*</div>
+        </div>
+      </div>
+
+      <div class="gs-card">
+        <div class="gs-card-title" id="tableTitle">最近日志</div>
+        <div id="tableWrap" class="gs-table-wrap"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="gs-toast"></div>
+
+  <script>
+    const storageKey = 'greensphere_admin_key';
+
+    function getAdminKey() {
+      return localStorage.getItem(storageKey) || '';
+    }
+
+    function setAdminKey(v) {
+      localStorage.setItem(storageKey, v || '');
+    }
+
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('is-show');
+      setTimeout(() => t.classList.remove('is-show'), 1600);
+    }
+
+    function headers() {
+      const key = getAdminKey();
+      const h = {'Content-Type': 'application/json'};
+      if (key) h['X-Admin-Key'] = key;
+      return h;
+    }
+
+    async function apiGet(url) {
+      const r = await fetch(url, {headers: headers()});
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    }
+
+    async function apiSend(url, method, body) {
+      const r = await fetch(url, {method, headers: headers(), body: JSON.stringify(body || {})});
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    }
+
+    function renderTable(cols, rows) {
+      const thead = '<thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead>';
+      const tbody = '<tbody>' + rows.map(row => {
+        return '<tr>' + cols.map(c => `<td>${row[c] ?? ''}</td>`).join('') + '</tr>';
+      }).join('') + '</tbody>';
+      return `<table class="gs-table">${thead}${tbody}</table>`;
+    }
+
+    async function loadDashboard() {
+      const s = await apiGet('/api/admin/daily-stats');
+      document.getElementById('kpiToday').textContent = s.date;
+      document.getElementById('kpiTodaySub').textContent = '新用户 ' + s.new_today;
+      document.getElementById('kpiUsers').textContent = s.total_users;
+      document.getElementById('kpiCompletions').textContent = s.completions_today;
+      document.getElementById('kpiActive').textContent = s.active_today;
+
+      const logs = await apiGet('/api/admin/logs?limit=30');
+      document.getElementById('tableTitle').textContent = '最近日志';
+      document.getElementById('tableWrap').innerHTML = renderTable(
+        ['id','level','event','message','created_at'],
+        (logs.logs || []).map(x => ({
+          id: x.id,
+          level: x.level,
+          event: x.event,
+          message: x.message,
+          created_at: x.created_at
+        }))
+      );
+    }
+
+    async function loadUsers() {
+      const data = await apiGet('/api/admin/users?limit=200');
+      document.getElementById('tableTitle').textContent = 'Users';
+      document.getElementById('tableWrap').innerHTML = renderTable(
+        ['id','name','created_at','total_points','total_completions'],
+        data.users || []
+      );
+    }
+
+    async function loadTasks() {
+      const data = await apiGet('/api/admin/tasks');
+      document.getElementById('tableTitle').textContent = 'Tasks';
+      const rows = (data.tasks || []).map(t => ({
+        id: t.id,
+        title: t.title,
+        points: t.points
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="newTaskTitle" class="gs-input" placeholder="新任务标题">
+          <input id="newTaskPoints" class="gs-input" placeholder="积分" style="max-width:120px;">
+          <button id="addTaskBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        ${renderTable(['id','title','points'], rows)}
+        <div class="gs-muted">编辑/删除：点击行后在浏览器控制台执行（下一版可做成可视化编辑）。</div>
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addTaskBtn').onclick = async () => {
+        const title = (document.getElementById('newTaskTitle').value || '').trim();
+        const points = parseInt(document.getElementById('newTaskPoints').value || '0', 10);
+        if (!title) return toast('请输入标题');
+        await apiSend('/api/admin/tasks', 'POST', {title, points});
+        toast('已新增任务');
+        await loadTasks();
+      };
+    }
+
+    async function loadBadges() {
+      const data = await apiGet('/api/admin/badges');
+      document.getElementById('tableTitle').textContent = 'Badges';
+      document.getElementById('tableWrap').innerHTML = renderTable(
+        ['code','title','description','rule_type','threshold','unlocked_count'],
+        data.badges || []
+      );
+    }
+
+    async function loadLogs() {
+      const logs = await apiGet('/api/admin/logs?limit=200');
+      document.getElementById('tableTitle').textContent = 'Logs';
+      document.getElementById('tableWrap').innerHTML = renderTable(
+        ['id','level','event','message','created_at'],
+        (logs.logs || []).map(x => ({
+          id: x.id,
+          level: x.level,
+          event: x.event,
+          message: x.message,
+          created_at: x.created_at
+        }))
+      );
+    }
+
+    async function switchTab(tab) {
+      const buttons = Array.from(document.querySelectorAll('.gs-tab'));
+      buttons.forEach(b => b.classList.toggle('is-active', b.dataset.tab === tab));
+      try {
+        if (tab === 'dashboard') await loadDashboard();
+        if (tab === 'users') await loadUsers();
+        if (tab === 'tasks') await loadTasks();
+        if (tab === 'badges') await loadBadges();
+        if (tab === 'logs') await loadLogs();
+      } catch (e) {
+        toast('请求失败：' + e.message);
+      }
+    }
+
+    document.getElementById('adminKey').value = getAdminKey();
+    document.getElementById('saveKey').onclick = () => {
+      setAdminKey(document.getElementById('adminKey').value || '');
+      toast('已保存');
+      switchTab('dashboard');
+    };
+    document.getElementById('refreshBtn').onclick = () => switchTab(document.querySelector('.gs-tab.is-active').dataset.tab);
+    document.getElementById('copyCurlBtn').onclick = () => {
+      const key = getAdminKey();
+      const cmd = key
+        ? `curl -H "X-Admin-Key: ${key}" http://127.0.0.1:8000/api/admin/daily-stats`
+        : 'curl http://127.0.0.1:8000/api/admin/daily-stats';
+      navigator.clipboard.writeText(cmd);
+      toast('已复制');
+    };
+
+    document.getElementById('tabs').addEventListener('click', (e) => {
+      const btn = e.target.closest('.gs-tab');
+      if (!btn) return;
+      switchTab(btn.dataset.tab);
+    });
+
+    switchTab('dashboard');
+  </script>
+</body>
+</html>
+

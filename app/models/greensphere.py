@@ -1,8 +1,5 @@
 from sqlalchemy import Column, Integer, BigInteger, String, Text, DateTime, Date, Boolean, func
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Computed
-
-Base = declarative_base()
+from app.core.database import Base
 
 class TelegramUser(Base):
     __tablename__ = "telegram_users"
@@ -30,7 +27,7 @@ class QuestSubmission(Base):
     telegram_id = Column(BigInteger, nullable=False, index=True)
     quest_code = Column(String(50), nullable=False)
     submitted_at = Column(DateTime, server_default=func.current_timestamp())
-    submit_date = Column(Date, Computed("cast(submitted_at as date)", persisted=True))  # MySQL generated column, just read it
+    submit_date = Column(Date, nullable=True, index=True)
 
 class PointTransaction(Base):
     __tablename__ = "point_transactions"

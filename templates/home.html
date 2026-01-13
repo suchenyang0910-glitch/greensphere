@@ -1,40 +1,55 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="{{ lang or 'en' }}">
 <head>
     <meta charset="utf-8">
-    <title>GreenSphere · 每日绿色行动打卡｜LeafPass & G-Points</title>
-    <meta name="description" content="GreenSphere 是一个通过每日小任务、积分和数字徽章，帮助你养成可持续生活习惯的平台。不炒币、不理财，只记录和奖励真实的绿色行动。">
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
     <meta name="keywords" content="GreenSphere, 绿色打卡, 低碳生活, ESG, 可持续, 环保, LeafPass, G-Points, 绿色积分, 碳减排, 东南亚, Green Impact">
     <meta name="author" content="GreenSphere">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <!-- 移动端 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Open Graph / Social 分享 -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="GreenSphere · 每日绿色行动打卡">
-    <meta property="og:description" content="用几分钟的小行动，积累真实的绿色影响力。LeafPass 徽章 & G-Points 积分，记录你的每一次环保选择。">
-    <meta property="og:url" content="https://greensphere.world">
-    <meta property="og:site_name" content="GreenSphere">
-    <meta property="og:image" content="https://greensphere.worldstatic/og-greensphere.png">
+    <meta property="og:locale" content="{{ seo.og_locale }}">
+    {% for loc in seo.og_locale_alternates %}
+    <meta property="og:locale:alternate" content="{{ loc }}">
+    {% endfor %}
+    <meta property="og:title" content="{{ seo.og_title }}">
+    <meta property="og:description" content="{{ seo.og_description }}">
+    <meta property="og:url" content="{{ seo.canonical }}">
+    <meta property="og:site_name" content="{{ seo.site_name }}">
+    <meta property="og:image" content="{{ seo.og_image }}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GreenSphere · 每日绿色行动打卡">
-    <meta name="twitter:description" content="帮助你养成低负担、可持续的绿色生活习惯。">
-    <meta name="twitter:image" content="https://greensphere.worldstatic/og-greensphere.png">
+    <meta name="twitter:title" content="{{ seo.og_title }}">
+    <meta name="twitter:description" content="{{ seo.description }}">
+    <meta name="twitter:image" content="{{ seo.og_image }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="{{ seo.canonical }}">
+    <link rel="alternate" hreflang="x-default" href="{{ alternates['x-default'] }}">
+    <link rel="alternate" hreflang="en" href="{{ alternates['en'] }}">
+    <link rel="alternate" hreflang="zh" href="{{ alternates['zh'] }}">
+    <link rel="alternate" hreflang="th" href="{{ alternates['th'] }}">
+    <link rel="alternate" hreflang="vi" href="{{ alternates['vi'] }}">
+    <link rel="alternate" hreflang="km" href="{{ alternates['km'] }}">
+
+    <script type="application/ld+json">{{ seo.structured_data | safe }}</script>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="/static/style_home.css">
 </head>
 <body>
   <header class="lp-header">
     <div class="lp-container lp-header-inner">
-      <a href="#hero" class="lp-logo" data-i18n="brand">LeafPass</a>
+      <a href="#hero" class="lp-logo" data-i18n="brand">GreenSphere</a>
       <nav class="lp-nav">
         <a href="#what-how" data-i18n="nav.whatHow">是什么 & 怎么用</a>
         <a href="#why-for-whom" data-i18n="nav.whyForWhom">为什么 & 适合谁</a>
         <a href="#pioneer" data-i18n="nav.pioneer">Pioneer 7 天挑战</a>
+        <a href="#news" data-i18n="nav.news">碳排放资讯</a>
       </nav>
     </div>
   </header>
@@ -52,7 +67,7 @@
         <div class="lp-hero-text-card">
           <h1 data-i18n="hero.title">每天 30 秒，记录一件绿色小事</h1>
           <p class="lp-hero-subtitle" data-i18n="hero.subtitle">
-            在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。
+            在 Telegram 里轻松打卡，用 GreenSphere 记录你的每一次绿色行动。
           </p>
           <div class="lp-hero-actions">
             <a
@@ -362,6 +377,35 @@
     </div>
   </section>
 
+  <section id="news" class="lp-section">
+    <div class="lp-container">
+      <h2 data-i18n="news.title">碳排放资讯 · 今日 TOP 10</h2>
+      <p class="lp-section-subtitle" data-i18n="news.subtitle">
+        每天自动抓取与碳排放相关的最新资讯，帮助你快速了解行业动态。
+      </p>
+      <div class="lp-card">
+        {% if news_items and news_items|length > 0 %}
+        <ol class="lp-list">
+          {% for item in news_items %}
+          <li>
+            <a href="{{ item.url }}" target="_blank" rel="noopener">
+              {{ item.title }}
+            </a>
+            <div style="font-size:12px;color:#6b7280;margin-top:6px;">
+              {{ item.published_at or item.fetched_at }}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+        {% else %}
+        <div style="font-size:14px;color:#6b7280;" data-i18n="news.empty">
+          暂无资讯，请稍后刷新。
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="lp-container site-footer-inner">
       <div data-i18n="footer.slogan">
@@ -384,11 +428,15 @@
 
     <script>
     (function () {
-      var lang = (navigator.language || navigator.userLanguage || "en")
+      var forced = null;
+      try {
+        forced = new URLSearchParams(window.location.search).get("lang");
+      } catch (e) {}
+      var lang = (forced || navigator.language || navigator.userLanguage || "en")
         .toLowerCase()
         .split("-")[0];
 
-      var map = { zh: "zh", th: "th", vi: "vi", km: "km" };
+      var map = { zh: "zh", th: "th", vi: "vi", km: "km", kh: "km" };
       var current = map[lang] || "en";
 
       var t = {
@@ -397,6 +445,7 @@
           "nav.whatHow": "是什么 & 怎么用",
           "nav.whyForWhom": "为什么 & 适合谁",
           "nav.pioneer": "Pioneer 7 天挑战",
+          "nav.news": "碳排放资讯",
           "hero.title": "每天 30 秒，记录一件绿色小事",
           "hero.subtitle":
             "在 Telegram 里轻松打卡，用 LeafPass 记录你的每一次绿色行动。",
@@ -497,7 +546,10 @@
 
           "footer.text":
             "在 Telegram 里记录你的绿色行动，收集 LeafPass 徽章。",
-          "footer.backToTop": "返回顶部"
+          "footer.backToTop": "返回顶部",
+          "news.title": "碳排放资讯 · 今日 TOP 10",
+          "news.subtitle": "每天自动抓取与碳排放相关的最新资讯，帮助你快速了解行业动态。",
+          "news.empty": "暂无资讯，请稍后刷新。"
         },
 
         en: {
@@ -505,6 +557,7 @@
           "nav.whatHow": "What & How",
           "nav.whyForWhom": "Why & For whom",
           "nav.pioneer": "Pioneer 7‑day challenge",
+          "nav.news": "Carbon news",
           "hero.title": "Track one green action in 30 seconds a day",
           "hero.subtitle":
             "Log your climate-friendly actions inside Telegram and record your journey with LeafPass badges.",
@@ -513,6 +566,9 @@
           "hero.caption":
             "Daily check-ins and badges that show how your small actions add up.",
           "hero.screenshot": "Product screenshot<br />Telegram LeafPass Bot",
+          "news.title": "Carbon emissions news · Top 10",
+          "news.subtitle": "Daily auto-collected updates related to carbon emissions.",
+          "news.empty": "No news yet. Please refresh later."
 
           "what.title":
             "You just tap 2–3 small tasks a day. We turn them into visible impact data.",
@@ -627,6 +683,23 @@
           // 其余 key 没写时会自动回退到英文
         },
 
+        th: {
+          brand: "LeafPass",
+          "nav.whatHow": "คืออะไร & ใช้อย่างไร",
+          "nav.whyForWhom": "ทำไม & เหมาะกับใคร",
+          "nav.pioneer": "ความท้าทาย Pioneer 7 วัน",
+          "nav.news": "ข่าวคาร์บอน",
+          "hero.title": "30 วินาทีต่อวัน เพื่อบันทึกการกระทำสีเขียวของคุณ",
+          "hero.subtitle":
+            "เช็คอินการกระทำที่เป็นมิตรต่อสิ่งแวดล้อมใน Telegram และสะสมเหรียญ LeafPass",
+          "hero.ctaPrimary": "เริ่มต้นบน Telegram",
+          "hero.ctaSecondary": "เข้าร่วมความท้าทาย Pioneer 7 วัน",
+          "hero.caption": "เช็คอินรายวันและเหรียญที่ช่วยให้เห็นผลรวมของการกระทำเล็ก ๆ",
+          "news.title": "ข่าวการปล่อยคาร์บอน · Top 10",
+          "news.subtitle": "รวบรวมข่าวที่เกี่ยวข้องกับการปล่อยคาร์บอนแบบอัตโนมัติทุกวัน",
+          "news.empty": "ยังไม่มีข่าว โปรดลองใหม่ภายหลัง"
+        },
+
         vi: {
           brand: "LeafPass",
           "nav.whatHow": "Là gì & Cách dùng",
@@ -640,6 +713,11 @@
           "hero.ctaSecondary": "Tham gia thử thách Pioneer 7 ngày",
           "hero.caption":
             "Check‑in hằng ngày và huy hiệu giúp bạn thấy những đóng góp nhỏ của mình."
+          ,
+          "nav.news": "Tin carbon",
+          "news.title": "Tin phát thải carbon · Top 10",
+          "news.subtitle": "Tự động tổng hợp tin liên quan đến phát thải carbon mỗi ngày.",
+          "news.empty": "Chưa có tin. Vui lòng thử lại sau."
         },
 
         km: {
@@ -647,6 +725,7 @@
           "nav.whatHow": "អ្វី & របៀបប្រើ",
           "nav.whyForWhom": "ហេតុអ្វី & សមស្របសម្រាប់នរណា",
           "nav.pioneer": "Pioneer បំរើបេសកកម្ម 7 ថ្ងៃ",
+          "nav.news": "ព័ត៌មានកាបូន",
           "hero.title":
             "៣០ វិនាទីក្នុងមួយថ្ងៃ ដើម្បីកត់ត្រាសកម្មភាពបៃតងមួយរបស់អ្នក",
           "hero.subtitle":
@@ -654,7 +733,10 @@
           "hero.ctaPrimary": "ចាប់ផ្តើមកត់ត្រាដោយ Telegram",
           "hero.ctaSecondary": "រួមចំណែកក្នុងបេសកកម្ម Pioneer 7 ថ្ងៃ",
           "hero.caption":
-            "ការចុះឈ្មោះរៀងរាល់ថ្ងៃ និង徽章 បង្ហាញពីអ្វីដែលអ្នកបានធ្វើសម្រាប់ផែនដី។"
+            "ការចុះឈ្មោះរៀងរាល់ថ្ងៃ និង徽章 បង្ហាញពីអ្វីដែលអ្នកបានធ្វើសម្រាប់ផែនដី។",
+          "news.title": "ព័ត៌មានការបញ្ចេញកាបូន · TOP 10",
+          "news.subtitle": "ទាញយកព័ត៌មានពាក់ព័ន្ធនឹងការបញ្ចេញកាបូនជារៀងរាល់ថ្ងៃ។",
+          "news.empty": "មិនទាន់មានព័ត៌មានទេ សូមព្យាយាមម្តងទៀត។"
         }
       };
 
@@ -683,7 +765,6 @@
       }
 
       applyTranslations(current);
-            applyTranslations(current);
 
       
 

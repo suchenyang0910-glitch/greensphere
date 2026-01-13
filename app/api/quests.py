@@ -85,10 +85,12 @@ def complete_quest(
 
     # 写 submission（依赖 uniq_user_quest_day 防重复）
     from datetime import datetime
+    from datetime import date as _date
     sub = QuestSubmission(
         telegram_id=telegram_id,
         quest_code=quest.code,
         submitted_at=datetime.utcnow(),  # 或 datetime.now()
+        submit_date=_date.today(),
     )
 
     db.add(sub)
