@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>GreenSphere Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/admin.css?v={{ asset_version }}">
+</head>
+<body>
+  <header class="gs-admin-header">
+    <div class="gs-admin-header-inner">
+      <div class="gs-brand">
+        <div class="gs-logo"></div>
+        <div class="gs-brand-text">
+          <div class="gs-brand-title">GreenSphere</div>
+          <div class="gs-brand-subtitle">Admin Login</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="gs-admin-main">
+    <section class="gs-panel">
+      <div class="gs-card">
+        <div class="gs-card-title">请输入管理密钥</div>
+        <div class="gs-actions" style="margin-top: 10px;">
+          <input id="key" class="gs-input" type="password" placeholder="ADMIN_API_KEY" autocomplete="off">
+          <button id="loginBtn" class="gs-btn gs-btn-primary">登录</button>
+          <a class="gs-btn" href="/">返回首页</a>
+        </div>
+        <div class="gs-muted" style="margin-top: 10px;">提示：生产环境必须设置 ADMIN_API_KEY。</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="gs-toast"></div>
+
+  <script>
+    const nextUrl = {{ (next or "/admin")|tojson }};
+
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('is-show');
+      setTimeout(() => t.classList.remove('is-show'), 1600);
+    }
+
+    async function login() {
+      const key = (document.getElementById('key').value || '').trim();
+      if (!key) return toast('请输入密钥');
+      try {
+        const r = await fetch('/admin/session', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'same-origin',
+          body: JSON.stringify({key})
+        });
+        if (!r.ok) {
+          if (r.status === 401) return toast('密钥错误');
+          return toast('登录失败：HTTP ' + r.status);
+        }
+        location.href = nextUrl || '/admin';
+      } catch (e) {
+        toast('登录失败：' + (e.message || e));
+      }
+    }
+
+    document.getElementById('loginBtn').onclick = login;
+    document.getElementById('key').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+</html>
+

@@ -1,5 +1,8 @@
 import sqlite3
 from datetime import datetime
+import base64
+import hashlib
+import hmac
 import os
 import json
 import secrets
@@ -7,12 +10,14 @@ import csv
 from io import StringIO
 from functools import lru_cache
 from pathlib import Path
+import time
 
 from fastapi import APIRouter, Depends, BackgroundTasks, Request
 from fastapi import Header
 from fastapi import HTTPException
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse, Response, RedirectResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+from dotenv import load_dotenv
 
 from gs_db import get_db
 
@@ -45,6 +50,11 @@ from gs_rate_limiter import increment_and_get_count
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
+
+load_dotenv()
+
+templates.env.globals["GS_OFFICIAL_CHANNEL_URL"] = (os.getenv("GS_OFFICIAL_CHANNEL_URL") or "https://t.me/GreenSphere_Official").strip()
+templates.env.globals["GS_COMMUNITY_GROUP_URL"] = (os.getenv("GS_COMMUNITY_GROUP_URL") or "https://t.me/GreenSphere_Community").strip()
 
 @lru_cache(maxsize=1)
 def _asset_version() -> str:
@@ -113,6 +123,12 @@ def app_index_head():
 
 @router.get("/admin", response_class=HTMLResponse)
 def admin_index(request: Request):
+    secret = (os.getenv("ADMIN_API_KEY") or "").strip()
+    if not secret:
+        raise HTTPException(status_code=503, detail="ADMIN_API_KEY not set")
+    session = request.cookies.get("gs_admin_session") or ""
+    if not _verify_admin_session(session, secret):
+        return RedirectResponse(url="/admin/login?next=/admin", status_code=302)
     return templates.TemplateResponse(
         "admin.html",
         {"request": request, "asset_version": _asset_version()},
@@ -121,7 +137,21 @@ def admin_index(request: Request):
 
 
 @router.head("/admin", include_in_schema=False)
-def admin_index_head():
+def admin_index_head(request: Request):
+    secret = (os.getenv("ADMIN_API_KEY") or "").strip()
+    if secret:
+        session = request.cookies.get("gs_admin_session") or ""
+        if not _verify_admin_session(session, secret):
+            return Response(
+                content=b"",
+                status_code=302,
+                headers={
+                    "Location": "/admin/login?next=/admin",
+                    "Content-Type": "text/html; charset=utf-8",
+                    "X-Robots-Tag": "noindex, nofollow",
+                    "Cache-Control": "no-store",
+                },
+            )
     return Response(
         content=b"",
         headers={
@@ -130,6 +160,96 @@ def admin_index_head():
             "Cache-Control": "no-store",
         },
     )
+
+
+def _b64url_encode(raw: bytes) -> str:
+    return base64.urlsafe_b64encode(raw).rstrip(b"=").decode("ascii")
+
+
+def _b64url_decode(s: str) -> bytes:
+    pad = "=" * (-len(s) % 4)
+    return base64.urlsafe_b64decode((s + pad).encode("ascii"))
+
+
+def _make_admin_session(secret: str, ttl_seconds: int = 86400) -> str:
+    now = int(time.time())
+    payload = {"iat": now, "exp": now + int(ttl_seconds)}
+    payload_b64 = _b64url_encode(json.dumps(payload, separators=(",", ":")).encode("utf-8"))
+    sig = hmac.new(secret.encode("utf-8"), payload_b64.encode("ascii"), hashlib.sha256).digest()
+    sig_b64 = _b64url_encode(sig)
+    return f"{payload_b64}.{sig_b64}"
+
+
+def _verify_admin_session(token: str, secret: str) -> bool:
+    try:
+        payload_b64, sig_b64 = token.split(".", 1)
+    except ValueError:
+        return False
+    expected = hmac.new(secret.encode("utf-8"), payload_b64.encode("ascii"), hashlib.sha256).digest()
+    if not hmac.compare_digest(_b64url_encode(expected), sig_b64):
+        return False
+    try:
+        payload = json.loads(_b64url_decode(payload_b64).decode("utf-8"))
+    except Exception:
+        return False
+    exp = int(payload.get("exp") or 0)
+    if exp <= int(time.time()):
+        return False
+    return True
+
+
+def _is_https(request: Request) -> bool:
+    proto = (request.headers.get("x-forwarded-proto") or request.url.scheme or "").split(",")[0].strip().lower()
+    return proto == "https"
+
+
+@router.get("/admin/login", response_class=HTMLResponse)
+def admin_login_page(request: Request, next: str = "/admin"):
+    secret = (os.getenv("ADMIN_API_KEY") or "").strip()
+    if not secret:
+        raise HTTPException(status_code=503, detail="ADMIN_API_KEY not set")
+    session = request.cookies.get("gs_admin_session") or ""
+    if _verify_admin_session(session, secret):
+        return RedirectResponse(url=next or "/admin", status_code=302)
+    return templates.TemplateResponse(
+        "admin_login.html",
+        {"request": request, "asset_version": _asset_version(), "next": next or "/admin"},
+        headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"},
+    )
+
+
+@router.post("/admin/session")
+async def admin_create_session(
+    request: Request,
+    db: sqlite3.Connection = Depends(get_db),
+):
+    _rate_limit_or_429(db, ip=_client_ip(request), key="admin:session", limit=30)
+    secret = (os.getenv("ADMIN_API_KEY") or "").strip()
+    if not secret:
+        raise HTTPException(status_code=503, detail="ADMIN_API_KEY not set")
+    body = await request.json()
+    key = (body.get("key") or "").strip()
+    if not key or key != secret:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    token = _make_admin_session(secret)
+    resp = JSONResponse({"ok": True})
+    resp.set_cookie(
+        key="gs_admin_session",
+        value=token,
+        max_age=86400,
+        httponly=True,
+        samesite="lax",
+        secure=_is_https(request),
+        path="/",
+    )
+    return resp
+
+
+@router.get("/admin/logout", include_in_schema=False)
+def admin_logout():
+    resp = RedirectResponse(url="/admin/login", status_code=302)
+    resp.delete_cookie(key="gs_admin_session", path="/")
+    return resp
 
 
 def _external_base_url(request: Request) -> str:

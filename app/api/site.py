@@ -9,6 +9,7 @@ from fastapi import APIRouter, Request, Query, Depends
 from fastapi.responses import HTMLResponse, Response, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from dotenv import load_dotenv
 
 from site_i18n import TEXTS, detect_lang
 from gs_db import get_db as get_behavior_db
@@ -18,6 +19,9 @@ from app.models.waitlist import WaitlistSubscriber
 from app.services.monitor_service import notify_monitor
 
 templates = Jinja2Templates(directory="templates")
+load_dotenv()
+templates.env.globals["GS_OFFICIAL_CHANNEL_URL"] = (os.getenv("GS_OFFICIAL_CHANNEL_URL") or "https://t.me/GreenSphere_Official").strip()
+templates.env.globals["GS_COMMUNITY_GROUP_URL"] = (os.getenv("GS_COMMUNITY_GROUP_URL") or "https://t.me/GreenSphere_Community").strip()
 
 site_router = APIRouter()
 
