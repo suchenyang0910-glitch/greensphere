@@ -41,6 +41,14 @@
     <link rel="stylesheet" href="/static/style_home.css?v={{ asset_version }}">
 </head>
 <body>
+  {% macro img_src(u) -%}
+    {%- set v = (u or '') -%}
+    {%- if v.startswith('http://') or v.startswith('https://') -%}
+      /img?u={{ v | urlencode }}
+    {%- else -%}
+      {{ v }}
+    {%- endif -%}
+  {%- endmacro %}
   <header class="lp-header">
     <div class="lp-container lp-header-inner">
       <a href="#hero" class="lp-logo">
@@ -84,21 +92,17 @@
               </a>
             </div>
 
-            <div class="lp-card gs-hero-benefits">
-              <h3 class="gs-card-title" data-i18n="hero.benefits.title">你会得到什么</h3>
-              <ul class="gs-bullets">
-                <li data-i18n="hero.benefits.li1">低门槛：无需下载 App，聊天入口即可开始</li>
-                <li data-i18n="hero.benefits.li2">可量化：不靠口号，追踪每次选择</li>
-                <li data-i18n="hero.benefits.li3">可展示：徽章与档案沉淀，记录你的参与深度</li>
-                <li data-i18n="hero.benefits.li4">可扩展：未来对接企业 ESG 与合作方事件</li>
-              </ul>
+            <div class="lp-card gs-ui-card">
+              <div class="gs-ui-card-img">
+                <img src="{{ img_src(GS_HOME_HERO_UI_IMAGE_URL) }}" alt="LeafPass UI preview" loading="eager" decoding="async">
+              </div>
             </div>
           </div>
 
           <div class="gs-hero-right">
             <div class="lp-card gs-hero-media">
               <div class="gs-hero-media-img">
-                <img src="/img?u={{ GS_HOME_HERO_IMAGE_URL | urlencode }}" alt="GreenSphere preview" loading="eager" decoding="async">
+                <img src="{{ img_src(GS_HOME_HERO_IMAGE_URL) }}" alt="GreenSphere preview" loading="eager" decoding="async">
               </div>
               <div class="gs-hero-media-meta">
                 <div class="gs-hero-media-title">LeafPass Preview</div>
@@ -140,65 +144,18 @@
         </p>
       </div>
 
-      <div class="lp-two-column">
-        <div class="lp-card lp-card-steps">
-          <ol class="lp-step-list">
-            <li>
-              <h3 data-i18n="what.step1.title">1. 入口：在 Telegram 进入 LeafPass</h3>
-              <ul>
-                <li data-i18n="what.step1.li1">
-                  搜索并打开 LeafPass Bot，订阅你关心的绿色主题。
-                </li>
-                <li data-i18n="what.step1.li2">
-                  每天收到 2–3 个简单可做的小任务。
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h3 data-i18n="what.step2.title">
-                2. 每日任务：点一点，就完成一次绿色打卡
-              </h3>
-              <ul>
-                <li data-i18n="what.step2.li1">
-                  任务形式尽量生活化，比如步行通勤、少点一次外卖、带自己的杯子。
-                </li>
-                <li data-i18n="what.step2.li2">
-                  选择完成的任务，必要时补充一张照片或一句话。
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h3 data-i18n="what.step3.title">
-                3. LeafPass & 档案：把碎片行为变成一张清晰的记录
-              </h3>
-              <ul>
-                <li data-i18n="what.step3.li1">
-                  系统自动统计你的任务完成情况，生成个人 LeafPass 徽章。
-                </li>
-                <li data-i18n="what.step3.li2">
-                  你可以随时导出自己的行动记录，用在社区、简历或未来的 ESG 需求里。
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </div>
-
-        <div class="lp-card lp-card-backend">
-          <div class="gs-section-media">
-            <img src="/img?u={{ GS_HOME_SECTION_IMAGE_URL | urlencode }}" alt="Green lifestyle" loading="lazy" decoding="async">
+      <div class="gs-ui-grid gs-ui-grid-2">
+        <div class="lp-card gs-ui-card">
+          <div class="gs-ui-card-title">How it works</div>
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_STEPS_UI_IMAGE_URL) }}" alt="LeafPass steps UI" loading="lazy" decoding="async">
           </div>
-          <h3 data-i18n="what.backend.title">我们在后台做的事情</h3>
-          <ul>
-            <li data-i18n="what.backend.li1">
-              为每类任务预设减碳 / 环保行为的行业基准，避免“摆拍式”环保。
-            </li>
-            <li data-i18n="what.backend.li2">
-              对可验证行为（如步数、通勤方式）逐步接入第三方数据源。
-            </li>
-            <li data-i18n="what.backend.li3">
-              用统一的数据结构记录你的行动，未来支持导出给公司 / 项目方使用。
-            </li>
-          </ul>
+        </div>
+        <div class="lp-card gs-ui-card">
+          <div class="gs-ui-card-title">Your profile</div>
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_PROFILE_UI_IMAGE_URL) }}" alt="LeafPass profile UI" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </div>
@@ -211,70 +168,23 @@
         <h2 data-i18n="why.title">为什么先从「简单打卡」开始？</h2>
       </div>
 
-      <div class="lp-three-column">
-        <div class="lp-card">
-          <h3 data-i18n="why.card1.title">足够简单，才有可能坚持</h3>
-          <ul>
-            <li data-i18n="why.card1.li1">
-              只需要 Telegram，不用再装一个新 App。
-            </li>
-            <li data-i18n="why.card1.li2">
-              任务是“顺手就能做”的小事，而不是复杂的减碳计划。
-            </li>
-          </ul>
-        </div>
-        <div class="lp-card">
-          <h3 data-i18n="why.card2.title">
-            没有理财逻辑，更不会推你去买什么
-          </h3>
-          <ul>
-            <li data-i18n="why.card2.li1">
-              LeafPass 不是理财产品，也不卖碳资产。
-            </li>
-            <li data-i18n="why.card2.li2">
-              你的行动本身就有价值，不需要被强行换算成收益曲线。
-            </li>
-          </ul>
-        </div>
-        <div class="lp-card">
-          <h3 data-i18n="why.card3.title">数据是你的，可以带走</h3>
-          <ul>
-            <li data-i18n="why.card3.li1">
-              你的行动记录可以导出，不锁在我们的系统里。
-            </li>
-            <li data-i18n="why.card3.li2">
-              未来你可以选择把这些数据分享给公司、学校或项目方。
-            </li>
-          </ul>
+      <div class="gs-ui-grid gs-ui-grid-1">
+        <div class="lp-card gs-ui-card">
+          <div class="gs-ui-card-title">Why it sticks</div>
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_PROFILE_UI_IMAGE_URL) }}" alt="LeafPass badges UI" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
 
       <div class="lp-section-subblock" id="for-companies">
         <h3 data-i18n="forWhom.title">谁适合现在就开始用 LeafPass？</h3>
-        <div class="lp-two-column">
-          <div class="lp-card">
-            <h4 data-i18n="forWhom.individual.title">
-              个人用户（当前重点）
-            </h4>
-            <ul>
-              <li data-i18n="forWhom.individual.li1">
-                想更有意识地生活，却不想被“环保焦虑”绑架。
-              </li>
-              <li data-i18n="forWhom.individual.li2">
-                喜欢用数据看到自己的改变，但不想研究复杂的碳算法。
-              </li>
-            </ul>
-          </div>
-          <div class="lp-card">
-            <h4 data-i18n="forWhom.org.title">未来的 B 端 / 组织</h4>
-            <ul>
-              <li data-i18n="forWhom.org.li1">
-                企业 / ESG 团队：员工或用户已经在 Telegram 里，希望把绿色行动沉淀成匿名、可汇总的数据。
-              </li>
-              <li data-i18n="forWhom.org.li2">
-                制造业 / 实体项目：希望把个人行为与节能改造、回收计划等实际项目挂钩，用真实参与度补足传统 ESG 指标。
-              </li>
-            </ul>
+        <div class="gs-ui-grid gs-ui-grid-1">
+          <div class="lp-card gs-ui-card">
+            <div class="gs-ui-card-title">For individuals & teams</div>
+            <div class="gs-ui-card-img">
+              <img src="{{ img_src(GS_HOME_SECTION_IMAGE_URL) }}" alt="GreenSphere for whom" loading="lazy" decoding="async">
+            </div>
           </div>
         </div>
       </div>
@@ -288,55 +198,11 @@
         <h2 data-i18n="pioneer.title">
           LeafPass Pioneer：用 7 天体验一整套绿色行动旅程
         </h2>
-        <p class="lp-section-subtitle" data-i18n="pioneer.subtitle">
-          加入 7 天 Pioneer 挑战，你会在 Telegram 里体验到一整套「任务 → 打卡 → LeafPass 徽章 → 数据导出」的流程。
-        </p>
-
-        <h3 class="lp-pioneer-timeline-title" data-i18n="pioneer.timelineTitle">
-          7 天你会经历什么
-        </h3>
-        <ul class="lp-timeline">
-          <li>
-            <div class="lp-timeline-day" data-i18n="pioneer.d1.title">
-              第 1 天
-            </div>
-            <p data-i18n="pioneer.d1.text">
-              激活 LeafPass Bot，选定你关心的主题（出行 / 饮食 / 生活方式等）。
-            </p>
-          </li>
-          <li>
-            <div class="lp-timeline-day" data-i18n="pioneer.d2.title">
-              第 2–3 天
-            </div>
-            <p data-i18n="pioneer.d2.text">
-              每天完成 2–3 个小任务，第一次看到你的每日记录长什么样。
-            </p>
-          </li>
-          <li>
-            <div class="lp-timeline-day" data-i18n="pioneer.d3.title">
-              第 4–5 天
-            </div>
-            <p data-i18n="pioneer.d3.text">
-              解锁第一个 LeafPass 徽章，一眼看到你这一周的累计行动。
-            </p>
-          </li>
-          <li>
-            <div class="lp-timeline-day" data-i18n="pioneer.d4.title">
-              第 6 天
-            </div>
-            <p data-i18n="pioneer.d4.text">
-              尝试导出你的行动记录，看看它在简历 / 团队群里展示是什么效果。
-            </p>
-          </li>
-          <li>
-            <div class="lp-timeline-day" data-i18n="pioneer.d5.title">
-              第 7 天
-            </div>
-            <p data-i18n="pioneer.d5.text">
-              填写一个极短反馈，决定我们下一步优先做哪些功能。
-            </p>
-          </li>
-        </ul>
+        <div class="lp-card gs-ui-card gs-ui-card-compact">
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_PIONEER_UI_IMAGE_URL) }}" alt="Pioneer journey UI" loading="lazy" decoding="async">
+          </div>
+        </div>
       </div>
 
       <div class="lp-pioneer-right">
@@ -445,34 +311,13 @@
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="roadmap.title">下阶段产品规划</h2>
-        <p class="lp-section-subtitle" data-i18n="roadmap.subtitle">
-          我们把 GreenSphere 做成“可验证的绿色行动账本”：对个人友好，对企业可用。
-        </p>
+        <p class="lp-section-subtitle">用 UI 视图呈现 roadmap，减少大段文字。</p>
       </div>
-      <div class="lp-three-column">
-        <div class="lp-card">
-          <h3 data-i18n="roadmap.c1.title">个人侧</h3>
-          <ul>
-            <li data-i18n="roadmap.c1.li1">连续打卡与下一奖励进度（Streak & Next reward）</li>
-            <li data-i18n="roadmap.c1.li2">打卡记录导出（PDF/CSV）与可分享档案</li>
-            <li data-i18n="roadmap.c1.li3">更细的任务主题与反作弊验证</li>
-          </ul>
-        </div>
-        <div class="lp-card">
-          <h3 data-i18n="roadmap.c2.title">企业/工厂侧</h3>
-          <ul>
-            <li data-i18n="roadmap.c2.li1">企业碳账本：Scope 1/2/3 周期录入与对账</li>
-            <li data-i18n="roadmap.c2.li2">中和消费记录：offset 购买、供应商、凭证引用</li>
-            <li data-i18n="roadmap.c2.li3">可导出报表与审计留痕</li>
-          </ul>
-        </div>
-        <div class="lp-card">
-          <h3 data-i18n="roadmap.c3.title">生态合作</h3>
-          <ul>
-            <li data-i18n="roadmap.c3.li1">工厂/社区合作任务（Partner quests）</li>
-            <li data-i18n="roadmap.c3.li2">积分权益：合作商家券、徽章活动</li>
-            <li data-i18n="roadmap.c3.li3">更完善的运营后台与权限分级</li>
-          </ul>
+      <div class="gs-ui-grid gs-ui-grid-1">
+        <div class="lp-card gs-ui-card">
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_ROADMAP_UI_IMAGE_URL) }}" alt="Roadmap UI" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </div>

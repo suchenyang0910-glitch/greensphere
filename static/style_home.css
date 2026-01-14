@@ -9,7 +9,7 @@
   --gs-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   --gs-primary: #38f2c6;
   --gs-primary-2: #1fd19c;
-  --gs-container: 1120px;
+  --gs-container: 1240px;
   --gs-radius: 22px;
   --gs-radius-sm: 14px;
 }
@@ -174,7 +174,7 @@ h1, h2, h3, h4, p {
 }
 
 .lp-hero {
-  padding: 60px 0 24px;
+  padding: 48px 0 18px;
 }
 
 .gs-hero-shell {
@@ -193,8 +193,8 @@ h1, h2, h3, h4, p {
 
 .gs-hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 28px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
   padding: 34px 34px 30px;
 }
 
@@ -242,6 +242,45 @@ h1, h2, h3, h4, p {
   color: rgba(231, 245, 239, 0.80);
   font-size: 13px;
   line-height: 1.55;
+}
+
+.gs-ui-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.gs-ui-grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.gs-ui-grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gs-ui-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.gs-ui-card-compact {
+  margin-top: 14px;
+}
+
+.gs-ui-card-title {
+  padding: 12px 14px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(231, 245, 239, 0.90);
+}
+
+.gs-ui-card-img {
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  margin-top: 12px;
+}
+
+.gs-ui-card-img img {
+  width: 100%;
+  height: auto;
 }
 
 .gs-tasks-card {
@@ -327,7 +366,7 @@ h1, h2, h3, h4, p {
 }
 
 .lp-section {
-  padding: 72px 0;
+  padding: 56px 0;
 }
 
 .lp-section-alt {
@@ -536,6 +575,9 @@ h1, h2, h3, h4, p {
     grid-template-columns: 1fr;
   }
   .lp-two-column {
+    grid-template-columns: 1fr;
+  }
+  .gs-ui-grid-2 {
     grid-template-columns: 1fr;
   }
   .lp-pioneer-grid {

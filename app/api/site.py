@@ -27,6 +27,11 @@ templates.env.globals["GS_OFFICIAL_CHANNEL_URL"] = (os.getenv("GS_OFFICIAL_CHANN
 templates.env.globals["GS_COMMUNITY_GROUP_URL"] = (os.getenv("GS_COMMUNITY_GROUP_URL") or "https://t.me/GreenSphere_Community").strip()
 templates.env.globals["GS_HOME_HERO_IMAGE_URL"] = (os.getenv("GS_HOME_HERO_IMAGE_URL") or "https://picsum.photos/seed/greensphere-hero/1400/900.jpg").strip()
 templates.env.globals["GS_HOME_SECTION_IMAGE_URL"] = (os.getenv("GS_HOME_SECTION_IMAGE_URL") or "https://picsum.photos/seed/greensphere-section/1400/900.jpg").strip()
+templates.env.globals["GS_HOME_HERO_UI_IMAGE_URL"] = (os.getenv("GS_HOME_HERO_UI_IMAGE_URL") or "/static/ui/hero_ui.svg").strip()
+templates.env.globals["GS_HOME_STEPS_UI_IMAGE_URL"] = (os.getenv("GS_HOME_STEPS_UI_IMAGE_URL") or "/static/ui/steps_ui.svg").strip()
+templates.env.globals["GS_HOME_PROFILE_UI_IMAGE_URL"] = (os.getenv("GS_HOME_PROFILE_UI_IMAGE_URL") or "/static/ui/profile_ui.svg").strip()
+templates.env.globals["GS_HOME_PIONEER_UI_IMAGE_URL"] = (os.getenv("GS_HOME_PIONEER_UI_IMAGE_URL") or "/static/ui/pioneer_ui.svg").strip()
+templates.env.globals["GS_HOME_ROADMAP_UI_IMAGE_URL"] = (os.getenv("GS_HOME_ROADMAP_UI_IMAGE_URL") or "/static/ui/roadmap_ui.svg").strip()
 
 site_router = APIRouter()
 

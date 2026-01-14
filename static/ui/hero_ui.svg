@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2a21"/>
+      <stop offset="1" stop-color="#071a14"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="900" rx="44" fill="url(#bg)"/>
+  <circle cx="320" cy="210" r="260" fill="#38f2c6" opacity="0.10"/>
+  <circle cx="1140" cy="220" r="280" fill="#1fd19c" opacity="0.10"/>
+  <circle cx="820" cy="820" r="420" fill="#10b981" opacity="0.08"/>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="110" width="1160" height="680" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <rect x="170" y="170" width="520" height="54" rx="18" fill="rgba(255,255,255,0.08)"/>
+    <rect x="170" y="242" width="440" height="18" rx="9" fill="rgba(231,245,239,0.35)"/>
+    <rect x="170" y="272" width="400" height="18" rx="9" fill="rgba(231,245,239,0.28)"/>
+
+    <g>
+      <rect x="170" y="322" width="210" height="52" rx="26" fill="url(#accent)"/>
+      <rect x="392" y="322" width="160" height="52" rx="26" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.16)"/>
+      <text x="190" y="355" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" fill="#052018" font-weight="700">Start in Telegram</text>
+      <text x="420" y="355" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" fill="rgba(231,245,239,0.92)" font-weight="650">7‑day Pioneer</text>
+    </g>
+
+    <g>
+      <rect x="170" y="404" width="520" height="250" rx="18" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="194" y="440" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="rgba(231,245,239,0.86)" font-weight="700">Benefits</text>
+      <g fill="rgba(231,245,239,0.74)" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">
+        <text x="214" y="478">• Daily quests → measurable record</text>
+        <text x="214" y="510">• G‑Points & streaks → motivation</text>
+        <text x="214" y="542">• LeafPass badges → shareable profile</text>
+        <text x="214" y="574">• Export ready → future ESG needs</text>
+      </g>
+    </g>
+
+    <g>
+      <rect x="740" y="170" width="490" height="340" rx="18" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="770" y="200" width="430" height="240" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <rect x="770" y="460" width="260" height="14" rx="7" fill="rgba(231,245,239,0.30)"/>
+      <rect x="770" y="484" width="220" height="14" rx="7" fill="rgba(231,245,239,0.24)"/>
+      <circle cx="1200" cy="210" r="10" fill="#38f2c6" opacity="0.9"/>
+      <circle cx="1172" cy="210" r="10" fill="#1fd19c" opacity="0.85"/>
+      <circle cx="1144" cy="210" r="10" fill="#10b981" opacity="0.75"/>
+    </g>
+
+    <g>
+      <rect x="740" y="528" width="490" height="262" rx="18" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="764" y="564" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="rgba(231,245,239,0.86)" font-weight="700">Today</text>
+      <g>
+        <rect x="764" y="586" width="442" height="56" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="764" y="652" width="442" height="56" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="764" y="718" width="442" height="56" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="790" y="606" width="220" height="14" rx="7" fill="rgba(231,245,239,0.30)"/>
+        <rect x="790" y="672" width="260" height="14" rx="7" fill="rgba(231,245,239,0.30)"/>
+        <rect x="790" y="738" width="240" height="14" rx="7" fill="rgba(231,245,239,0.30)"/>
+        <rect x="790" y="626" width="90" height="12" rx="6" fill="#38f2c6" opacity="0.85"/>
+        <rect x="790" y="692" width="90" height="12" rx="6" fill="#38f2c6" opacity="0.85"/>
+        <rect x="790" y="758" width="90" height="12" rx="6" fill="#38f2c6" opacity="0.85"/>
+      </g>
+    </g>
+  </g>
+</svg>
