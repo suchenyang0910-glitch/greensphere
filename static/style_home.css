@@ -309,6 +309,26 @@ h1, h2, h3, h4, p {
   height: auto;
 }
 
+.gs-how-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.gs-how-shot {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.gs-how-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .gs-tasks-card {
   padding: 16px;
 }
@@ -599,6 +619,9 @@ h1, h2, h3, h4, p {
   }
   .gs-hero-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gs-how-gallery {
+    grid-template-columns: 1fr;
   }
   .lp-pioneer-grid {
     grid-template-columns: 1fr;

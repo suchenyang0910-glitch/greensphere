@@ -105,8 +105,9 @@
             </div>
 
             <div class="lp-card gs-ui-card">
+              <div class="gs-ui-card-title">近 7 天趋势</div>
               <div class="gs-ui-card-img">
-                <img src="{{ img_src(GS_HOME_HERO_UI_IMAGE_URL) }}" alt="LeafPass UI preview" loading="eager" decoding="async">
+                <img src="/api/co2/trend.svg" alt="CO2 trend" loading="eager" decoding="async">
               </div>
             </div>
           </div>
@@ -165,6 +166,17 @@
             <li data-i18n="what.step2.li1">点一点完成打卡，系统自动累计 Streak 与 G‑Points。</li>
             <li data-i18n="what.step3.li2">徽章与记录沉淀为 LeafPass，可随时导出与分享。</li>
           </ul>
+          <div class="gs-how-gallery">
+            <div class="gs-how-shot">
+              <img src="/static/ui/how_search.svg" alt="Search bot" loading="lazy" decoding="async">
+            </div>
+            <div class="gs-how-shot">
+              <img src="/static/ui/how_subscribe.svg" alt="Subscribe bot" loading="lazy" decoding="async">
+            </div>
+            <div class="gs-how-shot">
+              <img src="/static/ui/how_checkin.svg" alt="Check in" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
         <div class="lp-card gs-ui-card">
           <div class="gs-ui-card-title">Your profile</div>
@@ -370,7 +382,9 @@
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="roadmap.title">下阶段产品规划</h2>
-        <p class="lp-section-subtitle">左侧展示产品面板，右侧补充规划说明。</p>
+        <p class="lp-section-subtitle" data-i18n="roadmap.subtitle">
+          我们把 GreenSphere 做成“可验证的绿色行动账本”：对个人友好，对企业可用。
+        </p>
       </div>
       <div class="lp-two-column">
         <div class="lp-card gs-ui-card">

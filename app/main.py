@@ -11,6 +11,7 @@ from app.core.database import Base, engine
 from app.api.quests import router as quests_router
 from app.api.me import router as me_router
 from app.api.company_admin import router as company_admin_router
+from app.api.co2 import router as co2_router
 
 from app.auth.telegram_webapp import parse_telegram_user_from_init_data
 
@@ -21,6 +22,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
 from app.jobs.news_fetcher import start_news_fetcher
+from app.jobs.daily_reporter import start_daily_reporter
 
 
 
@@ -39,6 +41,7 @@ def create_app() -> FastAPI:
     app.include_router(company_admin_router)
     app.include_router(quests_router)
     app.include_router(me_router)
+    app.include_router(co2_router)
 
     # DB init
     @app.on_event("startup")
@@ -46,6 +49,7 @@ def create_app() -> FastAPI:
         Base.metadata.create_all(bind=engine)
         init_gs_db()
         start_news_fetcher()
+        start_daily_reporter()
 
     return app
 

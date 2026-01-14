@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="360" viewBox="0 0 560 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(0,0,0,0.22)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0.14)"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="360" rx="18" fill="url(#bg)" stroke="rgba(255,255,255,0.14)"/>
+  <text x="24" y="44" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.92)">① 搜索 Bot</text>
+  <rect x="22" y="72" width="516" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="52" cy="100" r="10" fill="rgba(231,245,239,0.70)"/>
+  <rect x="70" y="92" width="340" height="16" rx="8" fill="rgba(231,245,239,0.18)"/>
+  <text x="70" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12" font-weight="700" fill="rgba(231,245,239,0.88)">@GreenSphereCommunity_Bot</text>
+  <rect x="430" y="88" width="92" height="24" rx="12" fill="url(#accent)" opacity="0.95"/>
+  <text x="452" y="105" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="950" fill="#052018">Search</text>
+
+  <rect x="22" y="150" width="516" height="170" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+  <rect x="44" y="178" width="240" height="14" rx="7" fill="rgba(231,245,239,0.18)"/>
+  <rect x="44" y="206" width="320" height="12" rx="6" fill="rgba(231,245,239,0.14)"/>
+  <rect x="44" y="246" width="380" height="14" rx="7" fill="rgba(231,245,239,0.18)"/>
+  <rect x="44" y="274" width="260" height="12" rx="6" fill="rgba(231,245,239,0.14)"/>
+  <circle cx="502" cy="240" r="10" fill="#38f2c6" opacity="0.85"/>
+  <circle cx="502" cy="270" r="10" fill="#1fd19c" opacity="0.80"/>
+</svg>

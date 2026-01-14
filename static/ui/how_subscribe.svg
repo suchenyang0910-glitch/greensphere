@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="360" viewBox="0 0 560 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(0,0,0,0.22)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0.14)"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="360" rx="18" fill="url(#bg)" stroke="rgba(255,255,255,0.14)"/>
+  <text x="24" y="44" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.92)">② 订阅主题</text>
+
+  <rect x="22" y="72" width="516" height="248" rx="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+  <circle cx="68" cy="116" r="18" fill="url(#accent)"/>
+  <text x="98" y="114" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="rgba(231,245,239,0.92)">GreenSphere</text>
+  <text x="98" y="134" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650" fill="rgba(231,245,239,0.70)">@GreenSphereCommunity_Bot</text>
+
+  <rect x="376" y="102" width="140" height="32" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="402" y="124" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">Start</text>
+
+  <text x="52" y="178" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">选择你关心的主题</text>
+  <g>
+    <rect x="52" y="196" width="214" height="40" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="282" y="196" width="214" height="40" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="52" y="246" width="214" height="40" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="282" y="246" width="214" height="40" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="78" y="221" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">出行</text>
+    <text x="308" y="221" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">饮食</text>
+    <text x="78" y="271" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">生活方式</text>
+    <text x="308" y="271" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">节能</text>
+    <circle cx="238" cy="216" r="8" fill="#38f2c6" opacity="0.85"/>
+    <circle cx="468" cy="266" r="8" fill="#38f2c6" opacity="0.85"/>
+  </g>
+</svg>

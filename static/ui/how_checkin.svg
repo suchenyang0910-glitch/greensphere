@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="360" viewBox="0 0 560 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(0,0,0,0.22)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0.14)"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="360" rx="18" fill="url(#bg)" stroke="rgba(255,255,255,0.14)"/>
+  <text x="24" y="44" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.92)">③ 打卡完成</text>
+
+  <rect x="22" y="72" width="516" height="248" rx="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+  <text x="52" y="110" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">今日任务（3/3）</text>
+
+  <g>
+    <rect x="52" y="126" width="456" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="52" y="192" width="456" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="52" y="258" width="456" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="84" y="158" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">步行 5,000 步</text>
+    <text x="84" y="224" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">不用一次性塑料袋</text>
+    <text x="84" y="290" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">关灯节能 30 分钟</text>
+    <rect x="370" y="144" width="96" height="18" rx="9" fill="url(#accent)" opacity="0.95"/>
+    <rect x="370" y="210" width="96" height="18" rx="9" fill="url(#accent)" opacity="0.95"/>
+    <rect x="370" y="276" width="96" height="18" rx="9" fill="url(#accent)" opacity="0.95"/>
+    <text x="384" y="157" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="950" fill="#052018">完成 +10</text>
+    <text x="384" y="223" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="950" fill="#052018">完成 +10</text>
+    <text x="384" y="289" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="950" fill="#052018">完成 +10</text>
+    <circle cx="70" cy="154" r="10" fill="#38f2c6" opacity="0.9"/>
+    <circle cx="70" cy="220" r="10" fill="#38f2c6" opacity="0.9"/>
+    <circle cx="70" cy="286" r="10" fill="#38f2c6" opacity="0.9"/>
+  </g>
+</svg>
