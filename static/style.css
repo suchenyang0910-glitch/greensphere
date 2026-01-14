@@ -19,6 +19,28 @@ body {
     color: var(--gs-text);
 }
 
+.gs-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.gs-input {
+    width: 100%;
+    background: #f5f7f9;
+    border: 1px solid rgba(15, 35, 52, 0.12);
+    color: rgba(15, 35, 52, 0.92);
+    padding: 10px 12px;
+    border-radius: 12px;
+    outline: none;
+    font-size: 13px;
+}
+
+.gs-input::placeholder {
+    color: rgba(15, 35, 52, 0.42);
+}
+
 .app-shell {
     max-width: 480px;
     margin: 0 auto;
@@ -181,6 +203,226 @@ body {
 .toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(-4px);
+}
+
+.loading {
+    font-size: 13px;
+    color: var(--gs-muted);
+    padding: 8px 4px;
+}
+
+.error-box {
+    font-size: 13px;
+    color: #8b1d1d;
+    background: #ffe8e8;
+    border: 1px solid rgba(139, 29, 29, 0.18);
+    border-radius: 12px;
+    padding: 10px 10px;
+    line-height: 1.45;
+}
+
+.history-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.history-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(15, 35, 52, 0.10);
+    background: #f5f7f9;
+}
+
+.history-title {
+    font-size: 13px;
+    color: rgba(15, 35, 52, 0.92);
+    font-weight: 600;
+}
+
+.history-meta {
+    font-size: 12px;
+    color: var(--gs-muted);
+    white-space: nowrap;
+}
+
+.reward-row {
+    padding: 10px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(27, 191, 114, 0.22);
+    background: #e8fff4;
+    margin-bottom: 8px;
+}
+
+.reward-row:last-child {
+    margin-bottom: 0;
+}
+
+.reward-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(15, 35, 52, 0.92);
+}
+
+.reward-meta {
+    margin-top: 4px;
+    font-size: 12px;
+    color: rgba(15, 35, 52, 0.72);
+}
+
+.roadmap-list {
+    margin: 8px 0 0;
+    color: rgba(15, 35, 52, 0.82);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.mini-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 35, 52, 0.10);
+    background: #f5f7f9;
+    margin-bottom: 8px;
+}
+
+.mini-row:last-child {
+    margin-bottom: 0;
+}
+
+.mini-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(15, 35, 52, 0.92);
+}
+
+.mini-meta {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--gs-muted);
+}
+
+.gs-mini-btn {
+    border: 1px solid rgba(15, 35, 52, 0.16);
+    background: rgba(255, 255, 255, 0.9);
+    color: rgba(15, 35, 52, 0.86);
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.gs-mini-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.gs-mini-btn-primary {
+    border-color: rgba(27, 191, 114, 0.45);
+    background: #e8fff4;
+}
+
+.lb-title {
+    margin: 10px 0 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--gs-muted);
+}
+
+.lb-list {
+    margin: 0;
+    padding-left: 18px;
+    color: rgba(15, 35, 52, 0.88);
+    font-size: 13px;
+}
+
+.lb-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+}
+
+.lb-rank {
+    width: 42px;
+    color: var(--gs-muted);
+    font-weight: 700;
+}
+
+.lb-name {
+    flex: 1;
+    font-weight: 650;
+}
+
+.lb-score {
+    font-weight: 800;
+    color: var(--gs-green-dark);
+}
+
+.feed-item {
+    border-radius: 16px;
+    border: 1px solid rgba(15, 35, 52, 0.10);
+    background: #f5f7f9;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+}
+
+.feed-item:last-child {
+    margin-bottom: 0;
+}
+
+.feed-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.feed-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: rgba(15, 35, 52, 0.92);
+}
+
+.feed-time {
+    font-size: 12px;
+    color: var(--gs-muted);
+}
+
+.feed-msg {
+    margin-top: 6px;
+    font-size: 13px;
+    color: rgba(15, 35, 52, 0.86);
+    line-height: 1.45;
+}
+
+.feed-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.gs-input-mini {
+    min-width: 0;
+    width: 100%;
+    padding: 10px 10px;
+}
+
+.feed-commentbox {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .site-body {

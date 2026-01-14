@@ -49,18 +49,65 @@
             <div class="section-title" data-i18n="section.progress.title">My progress</div>
             <div class="section-desc" data-i18n="section.progress.desc">Your green journey in GreenSphere.</div>
             <div id="stats"></div>
+            <div class="gs-actions" style="margin-top:10px;">
+                <button id="shareBtn" class="gs-mini-btn gs-mini-btn-primary" data-i18n="btn.share">Share LeafPass</button>
+                <button id="exportBtn" class="gs-mini-btn" data-i18n="btn.export">Export CSV</button>
+            </div>
         </div>
 
         <div class="card">
             <div class="section-title" data-i18n="section.tasks.title">Today’s tasks</div>
             <div class="section-desc" data-i18n="section.tasks.desc">Tap what you’ve done. We’ll remember it with you.</div>
+            <input id="taskSearch" class="gs-input gs-input-mini" placeholder="Search..." style="margin: 8px 0 6px;">
             <div id="tasks"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.challenges.title">Challenges</div>
+            <div class="section-desc" data-i18n="section.challenges.desc">Join a themed challenge and climb the leaderboard.</div>
+            <div id="challenges"></div>
+            <div id="leaderboard"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.redeem.title">Redeem</div>
+            <div class="section-desc" data-i18n="section.redeem.desc">Use points to request rewards.</div>
+            <div id="rewards"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.feed.title">Feed</div>
+            <div class="section-desc" data-i18n="section.feed.desc">See what others are doing and cheer them on.</div>
+            <div id="feed"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.rewards.title">Next reward</div>
+            <div class="section-desc" data-i18n="section.rewards.desc">Keep going. You’re close to the next milestone.</div>
+            <div id="nextReward"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.history.title">Recent check-ins</div>
+            <div class="section-desc" data-i18n="section.history.desc">Your latest actions, saved as a record.</div>
+            <div id="history"></div>
         </div>
 
         <div class="card">
             <div class="section-title" data-i18n="section.badges.title">LeafPass badges</div>
             <div class="section-desc" data-i18n="section.badges.desc">Keep going and unlock your next badge.</div>
             <div id="badges"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title" data-i18n="section.roadmap.title">Roadmap</div>
+            <div class="section-desc" data-i18n="section.roadmap.desc">What we’re building next.</div>
+            <ul class="roadmap-list">
+                <li data-i18n="roadmap.item1">Streak & next-reward progress</li>
+                <li data-i18n="roadmap.item2">Action history export (个人/团队)</li>
+                <li data-i18n="roadmap.item3">Company carbon ledger: emissions & offsets</li>
+                <li data-i18n="roadmap.item4">Partner quests for factories & communities</li>
+            </ul>
         </div>
     </div>
 
@@ -79,17 +126,41 @@
             "section.progress.desc": "Your green journey in GreenSphere.",
             "section.tasks.title": "Today’s tasks",
             "section.tasks.desc": "Tap what you’ve done. We’ll remember it with you.",
+            "section.challenges.title": "Challenges",
+            "section.challenges.desc": "Join a themed challenge and climb the leaderboard.",
+            "section.redeem.title": "Redeem",
+            "section.redeem.desc": "Use points to request rewards.",
+            "section.feed.title": "Feed",
+            "section.feed.desc": "See what others are doing and cheer them on.",
+            "section.rewards.title": "Next reward",
+            "section.rewards.desc": "Keep going. You’re close to the next milestone.",
+            "section.history.title": "Recent check-ins",
+            "section.history.desc": "Your latest actions, saved as a record.",
             "section.badges.title": "LeafPass badges",
             "section.badges.desc": "Keep going and unlock your next badge.",
+            "section.roadmap.title": "Roadmap",
+            "section.roadmap.desc": "What we’re building next.",
+            "roadmap.item1": "Streak & next-reward progress",
+            "roadmap.item2": "Action history export (personal/teams)",
+            "roadmap.item3": "Company carbon ledger: emissions & offsets",
+            "roadmap.item4": "Partner quests for factories & communities",
             "user.current": "Current user: {name}",
             "user.local": "Current user: {name} (local debug mode)",
             "stats.today": "Today: {done} / {total} actions completed",
             "stats.total": "Total: {points} points | Streak: {streak} days",
             "stats.allDone": "🎉 You’ve completed all tasks today!",
             "badges.empty": "Complete tasks to unlock your LeafPass badges.",
+            "history.empty": "No check-ins yet. Start with one task today.",
+            "rewards.done": "You’ve unlocked all current rewards.",
+            "rewards.streak": "Streak {current} days · {left} days to go",
+            "rewards.points": "{current} points · {left} to go",
+            "rewards.actions": "{current} actions · {left} to go",
+            "rewards.generic": "{left} to go",
             "task.meta": "Earn +{points} points",
             "task.completed": "✅ Completed: {title}",
             "toast.completed": "Completed: {title}",
+            "btn.share": "Share LeafPass",
+            "btn.export": "Export CSV",
             "error.generic": "Something went wrong. Please try again."
         },
         zh: {
@@ -99,17 +170,41 @@
             "section.progress.desc": "这是你在 GreenSphere 里，已经走过的绿色足迹。",
             "section.tasks.title": "今天想完成哪些小行动？",
             "section.tasks.desc": "勾选你已经做过的事情，我们负责帮你「记住」这些好习惯。",
+            "section.challenges.title": "挑战",
+            "section.challenges.desc": "加入挑战，看看排行榜。",
+            "section.redeem.title": "兑换中心",
+            "section.redeem.desc": "用积分提交兑换申请（审核后发放）。",
+            "section.feed.title": "动态",
+            "section.feed.desc": "看看大家在做什么，也给他人点个赞。",
+            "section.rewards.title": "下一奖励",
+            "section.rewards.desc": "你离下一次里程碑很近。",
+            "section.history.title": "最近打卡记录",
+            "section.history.desc": "你最近完成的行动，会被记录下来。",
             "section.badges.title": "叶子徽章 · LeafPass",
             "section.badges.desc": "连续坚持几天，你的第一片小叶子就会被点亮。",
+            "section.roadmap.title": "下阶段规划",
+            "section.roadmap.desc": "接下来我们会优先做这些。",
+            "roadmap.item1": "连续打卡与下一奖励进度",
+            "roadmap.item2": "打卡记录导出（个人/团队）",
+            "roadmap.item3": "工厂/企业碳账本：排放与中和消费",
+            "roadmap.item4": "工厂/社区合作任务（Partner quests）",
             "user.current": "当前用户：{name}",
             "user.local": "当前用户：{name}（本地调试模式）",
             "stats.today": "今天你已经完成 {done} / {total} 个绿色小行动",
             "stats.total": "累计获得 {points} 分 ｜ 已连续参与 {streak} 天",
             "stats.allDone": "🎉 今天的绿色任务已全部完成！",
             "badges.empty": "坚持完成任务，你会逐步解锁属于你的 LeafPass 徽章。",
+            "history.empty": "还没有打卡记录，从今天先完成一个任务吧。",
+            "rewards.done": "你已解锁当前全部奖励。",
+            "rewards.streak": "已连续 {current} 天 · 再坚持 {left} 天",
+            "rewards.points": "已累计 {current} 分 · 再获得 {left} 分",
+            "rewards.actions": "已完成 {current} 次 · 再完成 {left} 次",
+            "rewards.generic": "还差 {left}",
             "task.meta": "完成可获得 +{points} 分",
             "task.completed": "✅ 已完成：{title}",
             "toast.completed": "已完成：{title}",
+            "btn.share": "分享 LeafPass",
+            "btn.export": "导出 CSV",
             "error.generic": "请求失败，请稍后重试。"
         },
         th: {
@@ -211,7 +306,47 @@
         t.classList.add('show');
         setTimeout(() => {
             t.classList.remove('show');
-        }, 1800);
+        }, 2200);
+    }
+
+    function escapeHtml(s) {
+        return String(s || '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#39;');
+    }
+
+    function setErrorState(message) {
+        const msg = message || tr('error.generic');
+        showToast(msg);
+        const statsDiv = document.getElementById('stats');
+        const tasksDiv = document.getElementById('tasks');
+        const badgesDiv = document.getElementById('badges');
+        if (statsDiv) statsDiv.innerHTML = `<div class="error-box">${escapeHtml(msg)}</div>`;
+        if (tasksDiv) tasksDiv.innerHTML = `<div class="error-box">${escapeHtml(msg)}</div>`;
+        if (badgesDiv) badgesDiv.innerHTML = `<div class="error-box">${escapeHtml(msg)}</div>`;
+        const hist = document.getElementById('history');
+        const next = document.getElementById('nextReward');
+        if (hist) hist.innerHTML = '';
+        if (next) next.innerHTML = '';
+    }
+
+    async function apiJson(url, opts) {
+        const r = await fetch(url, opts || {});
+        let data = null;
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (ct.includes('application/json')) {
+            try { data = await r.json(); } catch (e) {}
+        } else {
+            try { data = await r.text(); } catch (e) {}
+        }
+        if (!r.ok) {
+            const detail = (data && data.detail) ? data.detail : (typeof data === 'string' ? data : '');
+            throw new Error(`HTTP ${r.status}${detail ? (': ' + detail) : ''}`);
+        }
+        return data;
     }
 
     async function initUser() {
@@ -237,34 +372,69 @@
             document.getElementById('user').innerText = tr('user.local', {name: username});
         }
 
-        const res = await fetch('/api/init_user', {
+        const data = await apiJson('/api/init_user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-GS-Lang': LOCALE,
                 ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
             },
-            body: JSON.stringify({
-                telegram_id: telegramId,
-                username: username
-            })
+            body: JSON.stringify({ telegram_id: telegramId, username: username })
         });
-        const data = await res.json();
         USER_ID = data.user_id;
     }
 
-    async function loadData() {
-        if (!USER_ID) {
-            await initUser();
-        }
+    const QUEUE_KEY = 'greensphere_offline_queue_v1';
 
-        const res = await fetch('/api/tasks?user_id=' + USER_ID, {
+    function getQueue() {
+        try {
+            const raw = localStorage.getItem(QUEUE_KEY) || '[]';
+            const arr = JSON.parse(raw);
+            return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function setQueue(arr) {
+        try {
+            localStorage.setItem(QUEUE_KEY, JSON.stringify(arr || []));
+        } catch (e) {}
+    }
+
+    async function drainQueue() {
+        const q = getQueue();
+        if (!q.length) return;
+        const remaining = [];
+        for (const item of q) {
+            try {
+                await apiJson('/api/complete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-GS-Lang': LOCALE,
+                        ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                    },
+                    body: JSON.stringify({user_id: USER_ID, task_id: item.task_id})
+                });
+            } catch (e) {
+                remaining.push(item);
+            }
+        }
+        setQueue(remaining);
+    }
+
+    async function loadData() {
+        const tasksDiv = document.getElementById('tasks');
+        if (tasksDiv) tasksDiv.innerHTML = '<div class="loading">Loading…</div>';
+        if (!USER_ID) await initUser();
+
+        const data = await apiJson('/api/tasks?user_id=' + USER_ID, {
             headers: {
                 'X-GS-Lang': LOCALE,
                 ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
             }
         });
-        const data = await res.json();
         const stats = data.stats;
 
         const statsDiv = document.getElementById('stats');
@@ -288,9 +458,14 @@
             badgesDiv.innerHTML = `<div class="badges-list">${items}</div>`;
         }
 
-        const tasksDiv = document.getElementById('tasks');
+        const taskSearch = document.getElementById('taskSearch');
+        const keyword = (taskSearch && taskSearch.value ? taskSearch.value : '').trim().toLowerCase();
+        const taskList = (data.tasks || []).filter(t => {
+            if (!keyword) return true;
+            return String(t.title || '').toLowerCase().includes(keyword);
+        });
         tasksDiv.innerHTML = '';
-        data.tasks.forEach(t => {
+        taskList.forEach(t => {
             const btn = document.createElement('button');
             btn.classList.add('task-button');
             const titleSpan = document.createElement('span');
@@ -306,17 +481,30 @@
             } else {
                 titleSpan.innerText = t.title;
                 btn.onclick = async () => {
-                    await fetch('/api/complete', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-GS-Lang': LOCALE,
-                            ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
-                        },
-                        body: JSON.stringify({user_id: USER_ID, task_id: t.id})
-                    });
-                    showToast(tr('toast.completed', {title: t.title}));
-                    await loadData();
+                    try {
+                        await apiJson('/api/complete', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-GS-Lang': LOCALE,
+                                ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                            },
+                            body: JSON.stringify({user_id: USER_ID, task_id: t.id})
+                        });
+                        showToast(tr('toast.completed', {title: t.title}));
+                        await loadData();
+                    } catch (e) {
+                        const msg = e && e.message ? e.message : tr('error.generic');
+                        if (!String(msg).startsWith('HTTP ')) {
+                            const q = getQueue();
+                            q.push({task_id: t.id, ts: Date.now()});
+                            setQueue(q.slice(-50));
+                            showToast('Queued');
+                            await loadData();
+                            return;
+                        }
+                        setErrorState(msg);
+                    }
                 };
             }
 
@@ -324,12 +512,242 @@
             btn.appendChild(metaSpan);
             tasksDiv.appendChild(btn);
         });
+
+        const historyDiv = document.getElementById('history');
+        if (historyDiv) {
+            const logs = data.recent_logs || [];
+            if (!logs.length) {
+                historyDiv.innerHTML = `<div class="empty-muted">${escapeHtml(tr('history.empty'))}</div>`;
+            } else {
+                historyDiv.innerHTML = '<ul class="history-list">' + logs.map(x => (
+                    `<li><span class="history-title">${escapeHtml(x.title || '')}</span><span class="history-meta">${escapeHtml(x.date || '')}</span></li>`
+                )).join('') + '</ul>';
+            }
+        }
+
+        const nextDiv = document.getElementById('nextReward');
+        if (nextDiv) {
+            const next = data.next_rewards || [];
+            if (!next.length) {
+                nextDiv.innerHTML = `<div class="empty-muted">${escapeHtml(tr('rewards.done'))}</div>`;
+            } else {
+                nextDiv.innerHTML = next.map(r => {
+                    if (r.rule_type === 'streak') {
+                        return `<div class="reward-row"><div class="reward-title">${escapeHtml(r.title)}</div><div class="reward-meta">${escapeHtml(tr('rewards.streak', {current: r.current, left: r.remaining}))}</div></div>`;
+                    }
+                    if (r.rule_type === 'total_points') {
+                        return `<div class="reward-row"><div class="reward-title">${escapeHtml(r.title)}</div><div class="reward-meta">${escapeHtml(tr('rewards.points', {current: r.current, left: r.remaining}))}</div></div>`;
+                    }
+                    if (r.rule_type === 'total_completions') {
+                        return `<div class="reward-row"><div class="reward-title">${escapeHtml(r.title)}</div><div class="reward-meta">${escapeHtml(tr('rewards.actions', {current: r.current, left: r.remaining}))}</div></div>`;
+                    }
+                    return `<div class="reward-row"><div class="reward-title">${escapeHtml(r.title)}</div><div class="reward-meta">${escapeHtml(tr('rewards.generic', {left: r.remaining}))}</div></div>`;
+                }).join('');
+            }
+        }
+
+        const challengesDiv = document.getElementById('challenges');
+        const leaderboardDiv = document.getElementById('leaderboard');
+        if (challengesDiv) {
+            const list = data.challenges || [];
+            if (!list.length) {
+                challengesDiv.innerHTML = `<div class="empty-muted">No challenges.</div>`;
+            } else {
+                challengesDiv.innerHTML = list.map(ch => {
+                    const btn = ch.joined
+                        ? `<button class="gs-mini-btn" disabled>Joined</button>`
+                        : `<button class="gs-mini-btn gs-mini-btn-primary" data-join="${ch.id}">Join</button>`;
+                    return `<div class="mini-row"><div><div class="mini-title">${escapeHtml(ch.title)}</div><div class="mini-meta">${escapeHtml(ch.start_date)} → ${escapeHtml(ch.end_date)}</div></div>${btn}</div>`;
+                }).join('');
+                challengesDiv.querySelectorAll('[data-join]').forEach(el => {
+                    el.onclick = async () => {
+                        try {
+                            const id = parseInt(el.getAttribute('data-join') || '0', 10);
+                            await apiJson('/api/challenges/join', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-GS-Lang': LOCALE,
+                                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                                },
+                                body: JSON.stringify({user_id: USER_ID, challenge_id: id})
+                            });
+                            showToast('Joined');
+                            await loadData();
+                        } catch (e) {
+                            setErrorState(e && e.message ? e.message : tr('error.generic'));
+                        }
+                    };
+                });
+                const first = list[0];
+                if (leaderboardDiv && first) {
+                    const lb = await apiJson('/api/challenges/' + first.id + '/leaderboard?limit=20', {
+                        headers: {'X-GS-Lang': LOCALE, ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})}
+                    });
+                    const rows = (lb && lb.rows) || [];
+                    leaderboardDiv.innerHTML = rows.length
+                        ? '<div class="lb-title">Leaderboard</div><ol class="lb-list">' + rows.map((r, idx) => (
+                            `<li><span class="lb-rank">#${idx + 1}</span><span class="lb-name">${escapeHtml(r.name || ('User ' + r.user_id))}</span><span class="lb-score">${escapeHtml(String(r.points || 0))}</span></li>`
+                        )).join('') + '</ol>'
+                        : '<div class="empty-muted">No leaderboard yet.</div>';
+                }
+            }
+        }
+
+        const rewardsDiv = document.getElementById('rewards');
+        if (rewardsDiv) {
+            const items = data.rewards || [];
+            if (!items.length) {
+                rewardsDiv.innerHTML = `<div class="empty-muted">No rewards.</div>`;
+            } else {
+                rewardsDiv.innerHTML = items.map(r => {
+                    return `<div class="mini-row"><div><div class="mini-title">${escapeHtml(r.title)}</div><div class="mini-meta">${escapeHtml(String(r.cost_points))} pts · ${escapeHtml(r.description || '')}</div></div><button class="gs-mini-btn gs-mini-btn-primary" data-redeem="${r.id}">Redeem</button></div>`;
+                }).join('');
+                rewardsDiv.querySelectorAll('[data-redeem]').forEach(el => {
+                    el.onclick = async () => {
+                        try {
+                            const id = parseInt(el.getAttribute('data-redeem') || '0', 10);
+                            await apiJson('/api/rewards/redeem', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-GS-Lang': LOCALE,
+                                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                                },
+                                body: JSON.stringify({user_id: USER_ID, reward_id: id})
+                            });
+                            showToast('Submitted');
+                            await loadData();
+                        } catch (e) {
+                            setErrorState(e && e.message ? e.message : tr('error.generic'));
+                        }
+                    };
+                });
+            }
+        }
+
+        const feedDiv = document.getElementById('feed');
+        if (feedDiv) {
+            const rows = data.feed || [];
+            if (!rows.length) {
+                feedDiv.innerHTML = `<div class="empty-muted">No activity yet.</div>`;
+            } else {
+                feedDiv.innerHTML = rows.map(x => {
+                    return `<div class="feed-item"><div class="feed-top"><div class="feed-name">${escapeHtml(x.name || ('User ' + x.user_id))}</div><div class="feed-time">${escapeHtml((x.created_at || '').slice(0, 19))}</div></div><div class="feed-msg">${escapeHtml(x.message)}</div><div class="feed-actions"><button class="gs-mini-btn" data-like="${x.id}">👍 ${escapeHtml(String(x.like_count || 0))}</button><button class="gs-mini-btn" data-comment="${x.id}">💬 ${escapeHtml(String(x.comment_count || 0))}</button></div><div class="feed-commentbox" id="c${x.id}" style="display:none;"><input class="gs-input gs-input-mini" placeholder="Comment..." /><button class="gs-mini-btn gs-mini-btn-primary" data-send="${x.id}">Send</button></div></div>`;
+                }).join('');
+                feedDiv.querySelectorAll('[data-like]').forEach(el => {
+                    el.onclick = async () => {
+                        try {
+                            const id = parseInt(el.getAttribute('data-like') || '0', 10);
+                            await apiJson('/api/feed/like', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-GS-Lang': LOCALE,
+                                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                                },
+                                body: JSON.stringify({user_id: USER_ID, feed_id: id})
+                            });
+                            await loadData();
+                        } catch (e) {
+                            setErrorState(e && e.message ? e.message : tr('error.generic'));
+                        }
+                    };
+                });
+                feedDiv.querySelectorAll('[data-comment]').forEach(el => {
+                    el.onclick = () => {
+                        const id = el.getAttribute('data-comment');
+                        const box = document.getElementById('c' + id);
+                        if (box) box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+                    };
+                });
+                feedDiv.querySelectorAll('[data-send]').forEach(el => {
+                    el.onclick = async () => {
+                        try {
+                            const id = parseInt(el.getAttribute('data-send') || '0', 10);
+                            const box = document.getElementById('c' + id);
+                            const input = box ? box.querySelector('input') : null;
+                            const text = input ? (input.value || '').trim() : '';
+                            if (!text) return;
+                            await apiJson('/api/feed/comment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-GS-Lang': LOCALE,
+                                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                                },
+                                body: JSON.stringify({user_id: USER_ID, feed_id: id, text})
+                            });
+                            await loadData();
+                        } catch (e) {
+                            setErrorState(e && e.message ? e.message : tr('error.generic'));
+                        }
+                    };
+                });
+            }
+        }
     }
 
     (async () => {
-        await initUser();
-        await loadData();
+        try {
+            await initUser();
+            await drainQueue();
+            await loadData();
+        } catch (e) {
+            setErrorState(e && e.message ? e.message : tr('error.generic'));
+        }
     })();
+
+    document.getElementById('taskSearch').addEventListener('input', () => {
+        loadData().catch(() => {});
+    });
+
+    document.getElementById('shareBtn').onclick = async () => {
+        try {
+            const r = await apiJson('/api/profile/share', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-GS-Lang': LOCALE,
+                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                },
+                body: JSON.stringify({user_id: USER_ID, is_public: true})
+            });
+            const url = r && r.url ? r.url : '';
+            if (url) {
+                try { await navigator.clipboard.writeText(url); } catch (e) {}
+                showToast('Copied');
+            } else {
+                showToast('OK');
+            }
+        } catch (e) {
+            setErrorState(e && e.message ? e.message : tr('error.generic'));
+        }
+    };
+
+    document.getElementById('exportBtn').onclick = async () => {
+        try {
+            const r = await fetch('/api/export/logs.csv?user_id=' + USER_ID, {
+                headers: {
+                    'X-GS-Lang': LOCALE,
+                    ...(TG_INIT_DATA ? {'X-Telegram-Init-Data': TG_INIT_DATA} : {})
+                }
+            });
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            const blob = await r.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'greensphere_logs.csv';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            showToast('Downloaded');
+        } catch (e) {
+            setErrorState(e && e.message ? e.message : tr('error.generic'));
+        }
+    };
     </script>
 </body>
 </html>

@@ -29,6 +29,12 @@
       <button class="gs-tab" data-tab="users">Users</button>
       <button class="gs-tab" data-tab="tasks">Tasks</button>
       <button class="gs-tab" data-tab="badges">Badges</button>
+      <button class="gs-tab" data-tab="challenges">Challenges</button>
+      <button class="gs-tab" data-tab="rewards">Rewards</button>
+      <button class="gs-tab" data-tab="redemptions">Redemptions</button>
+      <button class="gs-tab" data-tab="companies">Companies</button>
+      <button class="gs-tab" data-tab="emissions">Emissions</button>
+      <button class="gs-tab" data-tab="offsets">Offsets</button>
       <button class="gs-tab" data-tab="logs">Logs</button>
     </nav>
 
@@ -118,10 +124,25 @@
       return await r.json();
     }
 
+    async function apiDelete(url) {
+      const r = await fetch(url, {method: 'DELETE', headers: headers()});
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    }
+
+    function escapeHtml(v) {
+      return String(v ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
     function renderTable(cols, rows) {
       const thead = '<thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead>';
       const tbody = '<tbody>' + rows.map(row => {
-        return '<tr>' + cols.map(c => `<td>${row[c] ?? ''}</td>`).join('') + '</tr>';
+        return '<tr>' + cols.map(c => `<td>${escapeHtml(row[c])}</td>`).join('') + '</tr>';
       }).join('') + '</tbody>';
       return `<table class="gs-table">${thead}${tbody}</table>`;
     }
@@ -171,8 +192,39 @@
           <input id="newTaskPoints" class="gs-input" placeholder="积分" style="max-width:120px;">
           <button id="addTaskBtn" class="gs-btn gs-btn-primary">新增</button>
         </div>
-        ${renderTable(['id','title','points'], rows)}
-        <div class="gs-muted">编辑/删除：点击行后在浏览器控制台执行（下一版可做成可视化编辑）。</div>
+        <table class="gs-table gs-table-tasks">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>title</th>
+              <th>points</th>
+              <th style="width: 220px;">actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(rows).map(r => `
+              <tr data-task-id="${escapeHtml(r.id)}">
+                <td>${escapeHtml(r.id)}</td>
+                <td>
+                  <span class="gs-cell" data-field="title">${escapeHtml(r.title)}</span>
+                  <input class="gs-input gs-input-xs is-hidden" data-edit-field="title" value="${escapeHtml(r.title)}">
+                </td>
+                <td>
+                  <span class="gs-cell" data-field="points">${escapeHtml(r.points)}</span>
+                  <input class="gs-input gs-input-xs is-hidden" data-edit-field="points" value="${escapeHtml(r.points)}" style="max-width:110px;">
+                </td>
+                <td>
+                  <div class="gs-actions gs-actions-tight">
+                    <button class="gs-btn gs-btn-xs" data-action="edit">编辑</button>
+                    <button class="gs-btn gs-btn-xs is-hidden" data-action="save">保存</button>
+                    <button class="gs-btn gs-btn-xs is-hidden" data-action="cancel">取消</button>
+                    <button class="gs-btn gs-btn-xs gs-btn-danger" data-action="delete">删除</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
       `;
       document.getElementById('tableWrap').innerHTML = html;
 
@@ -184,6 +236,65 @@
         toast('已新增任务');
         await loadTasks();
       };
+
+      document.querySelector('.gs-table-tasks').addEventListener('click', async (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const tr = btn.closest('tr[data-task-id]');
+        if (!tr) return;
+        const action = btn.dataset.action;
+        const id = parseInt(tr.dataset.taskId || '0', 10);
+        if (!id) return;
+
+        const spans = Array.from(tr.querySelectorAll('[data-field]'));
+        const inputs = Array.from(tr.querySelectorAll('[data-edit-field]'));
+        const editBtn = tr.querySelector('button[data-action="edit"]');
+        const saveBtn = tr.querySelector('button[data-action="save"]');
+        const cancelBtn = tr.querySelector('button[data-action="cancel"]');
+        const delBtn = tr.querySelector('button[data-action="delete"]');
+
+        function setEditing(on) {
+          spans.forEach(el => el.classList.toggle('is-hidden', on));
+          inputs.forEach(el => el.classList.toggle('is-hidden', !on));
+          editBtn.classList.toggle('is-hidden', on);
+          saveBtn.classList.toggle('is-hidden', !on);
+          cancelBtn.classList.toggle('is-hidden', !on);
+          delBtn.classList.toggle('is-hidden', on);
+          tr.classList.toggle('is-editing', on);
+        }
+
+        if (action === 'edit') {
+          inputs.forEach(input => {
+            const field = input.dataset.editField;
+            const span = tr.querySelector(`[data-field="${field}"]`);
+            input.value = span ? span.textContent : input.value;
+          });
+          setEditing(true);
+          return;
+        }
+
+        if (action === 'cancel') {
+          setEditing(false);
+          return;
+        }
+
+        if (action === 'save') {
+          const title = (tr.querySelector('input[data-edit-field="title"]').value || '').trim();
+          const points = parseInt(tr.querySelector('input[data-edit-field="points"]').value || '0', 10);
+          if (!title) return toast('title 不能为空');
+          await apiSend(`/api/admin/tasks/${id}`, 'PUT', {title, points});
+          toast('已保存');
+          await loadTasks();
+          return;
+        }
+
+        if (action === 'delete') {
+          if (!confirm(`确定删除任务 #${id} 吗？`)) return;
+          await apiDelete(`/api/admin/tasks/${id}`);
+          toast('已删除');
+          await loadTasks();
+        }
+      });
     }
 
     async function loadBadges() {
@@ -193,6 +304,267 @@
         ['code','title','description','rule_type','threshold','unlocked_count'],
         data.badges || []
       );
+    }
+
+    async function loadChallenges() {
+      const data = await apiGet('/api/admin/challenges');
+      document.getElementById('tableTitle').textContent = 'Challenges';
+      const rows = (data.challenges || []).map(x => ({
+        id: x.id,
+        code: x.code,
+        title: x.title,
+        start_date: x.start_date,
+        end_date: x.end_date,
+        status: x.status,
+        participants: x.participants || 0
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="chCode" class="gs-input" placeholder="code" style="max-width:160px;">
+          <input id="chTitle" class="gs-input" placeholder="title" style="max-width:260px;">
+          <input id="chStart" class="gs-input" type="date" style="max-width:170px;">
+          <input id="chEnd" class="gs-input" type="date" style="max-width:170px;">
+          <input id="chStatus" class="gs-input" placeholder="status(draft/active)" style="max-width:170px;">
+          <button id="addChallengeBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="chBindId" class="gs-input" placeholder="challenge_id" style="max-width:160px;">
+          <input id="chTaskIds" class="gs-input" placeholder="task_ids (e.g. 1,2,3)" style="max-width:320px;">
+          <button id="bindTasksBtn" class="gs-btn">绑定任务</button>
+        </div>
+        ${renderTable(['id','code','title','start_date','end_date','status','participants'], rows)}
+        <div class="gs-muted">绑定任务：输入 challenge_id 与 task_ids（逗号分隔）。</div>
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addChallengeBtn').onclick = async () => {
+        const code = (document.getElementById('chCode').value || '').trim();
+        const title = (document.getElementById('chTitle').value || '').trim();
+        const start_date = (document.getElementById('chStart').value || '').trim();
+        const end_date = (document.getElementById('chEnd').value || '').trim();
+        const status = (document.getElementById('chStatus').value || 'draft').trim();
+        if (!code || !title || !start_date || !end_date) return toast('请输入 code/title/日期');
+        await apiSend('/api/admin/challenges', 'POST', {code, title, start_date, end_date, status});
+        toast('已新增挑战');
+        await loadChallenges();
+      };
+
+      document.getElementById('bindTasksBtn').onclick = async () => {
+        const id = parseInt(document.getElementById('chBindId').value || '0', 10);
+        const raw = (document.getElementById('chTaskIds').value || '').trim();
+        if (!id) return toast('请输入 challenge_id');
+        const task_ids = raw ? raw.split(',').map(s => parseInt(s.trim(), 10)).filter(n => n > 0) : [];
+        await apiSend(`/api/admin/challenges/${id}/tasks`, 'POST', {task_ids});
+        toast('已绑定');
+        await loadChallenges();
+      };
+    }
+
+    async function loadRewardsAdmin() {
+      const data = await apiGet('/api/admin/rewards');
+      document.getElementById('tableTitle').textContent = 'Rewards';
+      const rows = (data.rewards || []).map(x => ({
+        id: x.id,
+        code: x.code,
+        title: x.title,
+        cost_points: x.cost_points,
+        status: x.status,
+        created_at: x.created_at
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="rwCode" class="gs-input" placeholder="code" style="max-width:180px;">
+          <input id="rwTitle" class="gs-input" placeholder="title" style="max-width:260px;">
+          <input id="rwPoints" class="gs-input" placeholder="cost_points" style="max-width:140px;">
+          <input id="rwStatus" class="gs-input" placeholder="status(active/inactive)" style="max-width:190px;">
+          <button id="addRewardBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        ${renderTable(['id','code','title','cost_points','status','created_at'], rows)}
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addRewardBtn').onclick = async () => {
+        const code = (document.getElementById('rwCode').value || '').trim();
+        const title = (document.getElementById('rwTitle').value || '').trim();
+        const cost_points = parseInt(document.getElementById('rwPoints').value || '0', 10);
+        const status = (document.getElementById('rwStatus').value || 'active').trim();
+        if (!code || !title || !(cost_points > 0)) return toast('请输入 code/title/积分');
+        await apiSend('/api/admin/rewards', 'POST', {code, title, cost_points, status});
+        toast('已新增奖励');
+        await loadRewardsAdmin();
+      };
+    }
+
+    async function loadRedemptions() {
+      const data = await apiGet('/api/admin/redemptions?limit=200');
+      document.getElementById('tableTitle').textContent = 'Redemptions';
+      const rows = (data.redemptions || []).map(x => ({
+        id: x.id,
+        status: x.status,
+        user_id: x.user_id,
+        user_name: x.user_name || '',
+        reward_id: x.reward_id,
+        reward_title: x.reward_title || '',
+        cost_points: x.cost_points || '',
+        created_at: x.created_at || '',
+        note: x.note || ''
+      }));
+      const html = `
+        <div class="gs-muted">审核：在下方输入 redemption_id 与状态，点更新。</div>
+        <div class="gs-actions" style="margin: 8px 0 10px;">
+          <input id="rdId" class="gs-input" placeholder="redemption_id" style="max-width:170px;">
+          <input id="rdStatus" class="gs-input" placeholder="status(pending/approved/rejected)" style="max-width:240px;">
+          <input id="rdNote" class="gs-input" placeholder="note" style="max-width:320px;">
+          <button id="updateRdBtn" class="gs-btn gs-btn-primary">更新</button>
+        </div>
+        ${renderTable(['id','status','user_id','user_name','reward_id','reward_title','cost_points','created_at','note'], rows)}
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('updateRdBtn').onclick = async () => {
+        const id = parseInt(document.getElementById('rdId').value || '0', 10);
+        const status = (document.getElementById('rdStatus').value || '').trim();
+        const note = (document.getElementById('rdNote').value || '').trim();
+        if (!id) return toast('请输入 redemption_id');
+        if (!status) return toast('请输入 status');
+        await apiSend(`/api/admin/redemptions/${id}`, 'POST', {status, note});
+        toast('已更新');
+        await loadRedemptions();
+      };
+    }
+
+    async function loadCompanies() {
+      const data = await apiGet('/api/admin/companies?limit=200');
+      document.getElementById('tableTitle').textContent = 'Companies';
+      const rows = (data.companies || []).map(x => ({
+        id: x.id,
+        name: x.name,
+        country: x.country || '',
+        industry: x.industry || '',
+        created_at: x.created_at || ''
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="newCompanyName" class="gs-input" placeholder="公司名">
+          <input id="newCompanyCountry" class="gs-input" placeholder="国家/地区" style="max-width:160px;">
+          <input id="newCompanyIndustry" class="gs-input" placeholder="行业" style="max-width:220px;">
+          <button id="addCompanyBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        ${renderTable(['id','name','country','industry','created_at'], rows)}
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addCompanyBtn').onclick = async () => {
+        const name = (document.getElementById('newCompanyName').value || '').trim();
+        const country = (document.getElementById('newCompanyCountry').value || '').trim();
+        const industry = (document.getElementById('newCompanyIndustry').value || '').trim();
+        if (!name) return toast('请输入公司名');
+        await apiSend('/api/admin/companies', 'POST', {name, country, industry});
+        toast('已新增');
+        await loadCompanies();
+      };
+    }
+
+    async function loadEmissions() {
+      const data = await apiGet('/api/admin/emissions?limit=200');
+      document.getElementById('tableTitle').textContent = 'Emissions (tCO2e)';
+      const rows = (data.emissions || []).map(x => ({
+        id: x.id,
+        company_id: x.company_id,
+        period_start: x.period_start,
+        period_end: x.period_end,
+        scope1_tco2e: x.scope1_tco2e ?? '',
+        scope2_tco2e: x.scope2_tco2e ?? '',
+        scope3_tco2e: x.scope3_tco2e ?? '',
+        note: x.note ?? ''
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="emCompanyId" class="gs-input" placeholder="company_id" style="max-width:130px;">
+          <input id="emStart" class="gs-input" type="date" style="max-width:170px;">
+          <input id="emEnd" class="gs-input" type="date" style="max-width:170px;">
+          <input id="emS1" class="gs-input" placeholder="Scope1" style="max-width:120px;">
+          <input id="emS2" class="gs-input" placeholder="Scope2" style="max-width:120px;">
+          <input id="emS3" class="gs-input" placeholder="Scope3" style="max-width:120px;">
+          <input id="emNote" class="gs-input" placeholder="备注" style="max-width:260px;">
+          <button id="addEmissionBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        ${renderTable(['id','company_id','period_start','period_end','scope1_tco2e','scope2_tco2e','scope3_tco2e','note'], rows)}
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addEmissionBtn').onclick = async () => {
+        const company_id = parseInt(document.getElementById('emCompanyId').value || '0', 10);
+        const period_start = (document.getElementById('emStart').value || '').trim();
+        const period_end = (document.getElementById('emEnd').value || '').trim();
+        const scope1_tco2e = (document.getElementById('emS1').value || '').trim();
+        const scope2_tco2e = (document.getElementById('emS2').value || '').trim();
+        const scope3_tco2e = (document.getElementById('emS3').value || '').trim();
+        const note = (document.getElementById('emNote').value || '').trim();
+        if (!company_id) return toast('请输入 company_id');
+        if (!period_start || !period_end) return toast('请选择周期日期');
+        await apiSend('/api/admin/emissions', 'POST', {
+          company_id,
+          period_start,
+          period_end,
+          scope1_tco2e: scope1_tco2e ? parseFloat(scope1_tco2e) : null,
+          scope2_tco2e: scope2_tco2e ? parseFloat(scope2_tco2e) : null,
+          scope3_tco2e: scope3_tco2e ? parseFloat(scope3_tco2e) : null,
+          note
+        });
+        toast('已新增');
+        await loadEmissions();
+      };
+    }
+
+    async function loadOffsets() {
+      const data = await apiGet('/api/admin/offsets?limit=200');
+      document.getElementById('tableTitle').textContent = 'Offsets (tCO2e)';
+      const rows = (data.offsets || []).map(x => ({
+        id: x.id,
+        company_id: x.company_id,
+        purchased_at: x.purchased_at,
+        amount_tco2e: x.amount_tco2e,
+        cost_usd: x.cost_usd ?? '',
+        provider: x.provider ?? '',
+        reference: x.reference ?? '',
+        note: x.note ?? ''
+      }));
+      const html = `
+        <div class="gs-actions" style="margin: 0 0 10px;">
+          <input id="offCompanyId" class="gs-input" placeholder="company_id" style="max-width:130px;">
+          <input id="offDate" class="gs-input" type="date" style="max-width:170px;">
+          <input id="offAmount" class="gs-input" placeholder="amount_tco2e" style="max-width:150px;">
+          <input id="offCost" class="gs-input" placeholder="cost_usd" style="max-width:130px;">
+          <input id="offProvider" class="gs-input" placeholder="provider" style="max-width:180px;">
+          <input id="offRef" class="gs-input" placeholder="reference" style="max-width:260px;">
+          <button id="addOffsetBtn" class="gs-btn gs-btn-primary">新增</button>
+        </div>
+        ${renderTable(['id','company_id','purchased_at','amount_tco2e','cost_usd','provider','reference','note'], rows)}
+      `;
+      document.getElementById('tableWrap').innerHTML = html;
+
+      document.getElementById('addOffsetBtn').onclick = async () => {
+        const company_id = parseInt(document.getElementById('offCompanyId').value || '0', 10);
+        const purchased_at = (document.getElementById('offDate').value || '').trim();
+        const amount_tco2e = parseFloat((document.getElementById('offAmount').value || '0').trim());
+        const cost_usd_raw = (document.getElementById('offCost').value || '').trim();
+        const provider = (document.getElementById('offProvider').value || '').trim();
+        const reference = (document.getElementById('offRef').value || '').trim();
+        if (!company_id) return toast('请输入 company_id');
+        if (!purchased_at) return toast('请选择日期');
+        if (!(amount_tco2e > 0)) return toast('请输入 amount_tco2e');
+        await apiSend('/api/admin/offsets', 'POST', {
+          company_id,
+          purchased_at,
+          amount_tco2e,
+          cost_usd: cost_usd_raw ? parseFloat(cost_usd_raw) : null,
+          provider,
+          reference
+        });
+        toast('已新增');
+        await loadOffsets();
+      };
     }
 
     async function loadLogs() {
@@ -218,9 +590,20 @@
         if (tab === 'users') await loadUsers();
         if (tab === 'tasks') await loadTasks();
         if (tab === 'badges') await loadBadges();
+        if (tab === 'challenges') await loadChallenges();
+        if (tab === 'rewards') await loadRewardsAdmin();
+        if (tab === 'redemptions') await loadRedemptions();
+        if (tab === 'companies') await loadCompanies();
+        if (tab === 'emissions') await loadEmissions();
+        if (tab === 'offsets') await loadOffsets();
         if (tab === 'logs') await loadLogs();
       } catch (e) {
-        toast('请求失败：' + e.message);
+        const msg = String(e && e.message ? e.message : e);
+        if (msg.includes('HTTP 401')) {
+          toast('未授权(401)：请在顶部输入 X-Admin-Key 并点「保存」');
+        } else {
+          toast('请求失败：' + msg);
+        }
       }
     }
 

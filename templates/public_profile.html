@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GreenSphere · LeafPass</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/static/style.css?v={{ asset_version }}">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="topbar">
+      <div class="logo-circle"></div>
+      <div>
+        <div class="app-title">GreenSphere</div>
+        <div class="app-subtitle">LeafPass</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Profile</div>
+      <div id="user">用户：{{ name }}</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Progress</div>
+      <div class="progress-kpi">累计 {{ stats.total_points }} 分 ｜ 连续 {{ stats.streak }} 天</div>
+      <div class="progress-sub">参与天数 {{ stats.participation_days }} ｜ 完成次数 {{ stats.total_completions }}</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Badges</div>
+      {% if badges and badges|length > 0 %}
+      <div class="badges-list">
+        {% for b in badges %}
+          <span title="{{ (b.description or '')|e }}">{{ b.title }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-muted">暂无徽章</div>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <div class="section-title">Recent</div>
+      {% if logs and logs|length > 0 %}
+      <ul class="history-list">
+        {% for x in logs %}
+          <li>
+            <span class="history-title">{{ x.title }}</span>
+            <span class="history-meta">{{ x.date }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="empty-muted">暂无记录</div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
+

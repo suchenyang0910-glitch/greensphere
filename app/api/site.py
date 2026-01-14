@@ -132,7 +132,7 @@ async def home(request: Request, lang: str | None = Query(default=None)):
                     "@id": f"{base_url}/#organization",
                     "name": "GreenSphere",
                     "url": f"{base_url}/",
-                    "email": "hello@greensphere.earth",
+                    "email": "hello@greensphere.world",
                 },
                 {
                     "@type": "WebSite",
@@ -147,7 +147,6 @@ async def home(request: Request, lang: str | None = Query(default=None)):
         ensure_ascii=False,
     )
 
-    gen = get_db()
     behavior_gen = get_behavior_db()
     behavior_db = next(behavior_gen)
     news_items = list_latest_news(behavior_db, limit=10)

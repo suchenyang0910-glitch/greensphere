@@ -10,11 +10,13 @@ from app.api import health, waitlist
 from app.core.database import Base, engine
 from app.api.quests import router as quests_router
 from app.api.me import router as me_router
+from app.api.company_admin import router as company_admin_router
 
 from app.auth.telegram_webapp import parse_telegram_user_from_init_data
 
 from app.models import waitlist as _waitlist_model  # noqa: F401
 from app.models import rate_limit as _rate_limit_model  # noqa: F401
+from app.models import company_carbon as _company_carbon_model  # noqa: F401
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
@@ -34,6 +36,7 @@ def create_app() -> FastAPI:
     app.include_router(waitlist.router, prefix="/api")
     app.include_router(site_router)
     app.include_router(greensphere_router)
+    app.include_router(company_admin_router)
     app.include_router(quests_router)
     app.include_router(me_router)
 
