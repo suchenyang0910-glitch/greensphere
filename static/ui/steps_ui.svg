@@ -8,39 +8,79 @@
       <stop offset="0" stop-color="#38f2c6"/>
       <stop offset="1" stop-color="#1fd19c"/>
     </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
   </defs>
+
   <rect width="1400" height="900" rx="44" fill="url(#bg)"/>
-  <rect x="110" y="140" width="1180" height="620" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+  <circle cx="300" cy="200" r="260" fill="#38f2c6" opacity="0.10"/>
+  <circle cx="1120" cy="240" r="320" fill="#1fd19c" opacity="0.10"/>
 
-  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
-    <text x="160" y="210" font-size="20" fill="rgba(231,245,239,0.92)" font-weight="750">3‑Step Flow</text>
-    <text x="160" y="244" font-size="14" fill="rgba(231,245,239,0.70)">Tap → check in → earn points → build your LeafPass.</text>
-  </g>
+  <g filter="url(#shadow)">
+    <rect x="120" y="140" width="1160" height="620" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="170" y="214" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="850" fill="rgba(231,245,239,0.92)">三步完成：任务 → 打卡 → 徽章</text>
+    <text x="170" y="244" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="650" fill="rgba(231,245,239,0.70)">更像真实产品页面的流程示意（含 Telegram 交互与档案视图）。</text>
 
-  <g>
-    <rect x="160" y="300" width="1080" height="140" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
-    <circle cx="220" cy="370" r="34" fill="url(#accent)"/>
-    <text x="210" y="378" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="#052018" font-weight="800">1</text>
-    <rect x="280" y="330" width="360" height="18" rx="9" fill="rgba(231,245,239,0.34)"/>
-    <rect x="280" y="362" width="520" height="14" rx="7" fill="rgba(231,245,239,0.24)"/>
-    <rect x="280" y="388" width="420" height="14" rx="7" fill="rgba(231,245,239,0.20)"/>
-  </g>
+    <g>
+      <rect x="170" y="290" width="760" height="470" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
 
-  <g>
-    <rect x="160" y="468" width="1080" height="140" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
-    <circle cx="220" cy="538" r="34" fill="url(#accent)"/>
-    <text x="210" y="546" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="#052018" font-weight="800">2</text>
-    <rect x="280" y="498" width="420" height="18" rx="9" fill="rgba(231,245,239,0.34)"/>
-    <rect x="280" y="530" width="520" height="14" rx="7" fill="rgba(231,245,239,0.24)"/>
-    <rect x="280" y="556" width="480" height="14" rx="7" fill="rgba(231,245,239,0.20)"/>
-  </g>
+      <g>
+        <rect x="204" y="330" width="692" height="116" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <circle cx="254" cy="388" r="22" fill="url(#accent)"/>
+        <text x="247" y="394" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">1</text>
+        <text x="292" y="372" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.90)">在 Telegram 进入 LeafPass</text>
+        <text x="292" y="398" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650" fill="rgba(231,245,239,0.72)">订阅主题，收到 2–3 个生活化的小任务。</text>
+        <rect x="292" y="414" width="310" height="10" rx="5" fill="rgba(231,245,239,0.18)"/>
+        <rect x="740" y="364" width="130" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.14)"/>
+        <text x="752" y="378" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.84)">Choose topics</text>
+      </g>
 
-  <g>
-    <rect x="160" y="636" width="1080" height="140" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
-    <circle cx="220" cy="706" r="34" fill="url(#accent)"/>
-    <text x="210" y="714" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="#052018" font-weight="800">3</text>
-    <rect x="280" y="666" width="520" height="18" rx="9" fill="rgba(231,245,239,0.34)"/>
-    <rect x="280" y="698" width="560" height="14" rx="7" fill="rgba(231,245,239,0.24)"/>
-    <rect x="280" y="724" width="430" height="14" rx="7" fill="rgba(231,245,239,0.20)"/>
+      <g>
+        <rect x="204" y="464" width="692" height="116" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <circle cx="254" cy="522" r="22" fill="url(#accent)"/>
+        <text x="247" y="528" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">2</text>
+        <text x="292" y="506" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.90)">点一点完成打卡</text>
+        <text x="292" y="532" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650" fill="rgba(231,245,239,0.72)">每个任务都有积分与说明，可选上传照片。</text>
+        <rect x="292" y="548" width="360" height="10" rx="5" fill="rgba(231,245,239,0.18)"/>
+        <rect x="740" y="498" width="130" height="20" rx="10" fill="url(#accent)"/>
+        <text x="770" y="512" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="900" fill="#052018">Done +10</text>
+      </g>
+
+      <g>
+        <rect x="204" y="598" width="692" height="116" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <circle cx="254" cy="656" r="22" fill="url(#accent)"/>
+        <text x="247" y="662" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">3</text>
+        <text x="292" y="640" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="850" fill="rgba(231,245,239,0.90)">生成档案与徽章</text>
+        <text x="292" y="666" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650" fill="rgba(231,245,239,0.72)">自动累计 Streak / G‑Points，支持导出记录。</text>
+        <rect x="292" y="682" width="330" height="10" rx="5" fill="rgba(231,245,239,0.18)"/>
+        <rect x="740" y="632" width="130" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.14)"/>
+        <text x="764" y="646" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.84)">Export</text>
+      </g>
+    </g>
+
+    <g>
+      <rect x="960" y="290" width="292" height="470" rx="36" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="990" y="330" width="232" height="52" rx="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+      <circle cx="1016" cy="356" r="10" fill="#38f2c6" opacity="0.95"/>
+      <text x="1036" y="361" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.90)">LeafPass Bot</text>
+      <rect x="990" y="398" width="232" height="84" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <text x="1012" y="428" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">今日任务</text>
+      <rect x="1012" y="440" width="166" height="10" rx="5" fill="rgba(231,245,239,0.18)"/>
+      <rect x="1012" y="462" width="96" height="16" rx="8" fill="url(#accent)"/>
+      <text x="1022" y="474" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="900" fill="#052018">完成 +10</text>
+
+      <rect x="990" y="502" width="232" height="122" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <text x="1012" y="534" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="rgba(231,245,239,0.86)">LeafPass 档案</text>
+      <rect x="1012" y="548" width="190" height="10" rx="5" fill="rgba(231,245,239,0.18)"/>
+      <rect x="1012" y="572" width="80" height="80" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <circle cx="1052" cy="612" r="18" fill="#38f2c6" opacity="0.85"/>
+      <rect x="1102" y="586" width="100" height="12" rx="6" fill="rgba(231,245,239,0.20)"/>
+      <rect x="1102" y="606" width="86" height="12" rx="6" fill="rgba(231,245,239,0.16)"/>
+      <rect x="1102" y="626" width="70" height="12" rx="6" fill="rgba(231,245,239,0.14)"/>
+
+      <rect x="990" y="644" width="232" height="56" rx="28" fill="url(#accent)"/>
+      <text x="1058" y="678" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">开始打卡</text>
+    </g>
   </g>
 </svg>

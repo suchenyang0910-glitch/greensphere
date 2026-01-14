@@ -8,62 +8,92 @@
       <stop offset="0" stop-color="#38f2c6"/>
       <stop offset="1" stop-color="#1fd19c"/>
     </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
   </defs>
+
   <rect width="1400" height="900" rx="44" fill="url(#bg)"/>
-  <rect x="120" y="130" width="1160" height="640" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+  <circle cx="360" cy="240" r="300" fill="#38f2c6" opacity="0.10"/>
+  <circle cx="1120" cy="240" r="320" fill="#1fd19c" opacity="0.10"/>
 
-  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
-    <text x="170" y="210" font-size="20" fill="rgba(231,245,239,0.92)" font-weight="750">Pioneer 7‑Day Journey</text>
-    <text x="170" y="244" font-size="14" fill="rgba(231,245,239,0.70)">A guided onboarding into quests → badges → export.</text>
-  </g>
+  <g filter="url(#shadow)">
+    <rect x="120" y="130" width="1160" height="640" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
 
-  <g>
-    <rect x="170" y="290" width="720" height="430" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="210" y="334" width="640" height="60" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="210" y="410" width="640" height="60" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="210" y="486" width="640" height="60" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="210" y="562" width="640" height="60" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="210" y="638" width="640" height="60" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="170" y="212" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="900" fill="rgba(231,245,239,0.92)">Pioneer 7 天：从 0 到一张可展示的 LeafPass</text>
+    <text x="170" y="244" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="650" fill="rgba(231,245,239,0.70)">更像真实产品截图的“任务旅程面板 + 入门步骤”。</text>
 
-    <g fill="url(#accent)">
-      <circle cx="250" cy="364" r="18"/>
-      <circle cx="250" cy="440" r="18"/>
-      <circle cx="250" cy="516" r="18"/>
-      <circle cx="250" cy="592" r="18"/>
-      <circle cx="250" cy="668" r="18"/>
+    <g>
+      <rect x="170" y="280" width="740" height="480" rx="26" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="170" y="280" width="740" height="56" rx="26" fill="rgba(0,0,0,0.24)" stroke="rgba(255,255,255,0.10)"/>
+      <circle cx="206" cy="308" r="10" fill="#38f2c6" opacity="0.95"/>
+      <text x="226" y="313" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="850" fill="rgba(231,245,239,0.90)">7 天旅程</text>
+      <rect x="800" y="298" width="86" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="820" y="312" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.82)">Day 3</text>
+
+      <g>
+        <rect x="206" y="360" width="668" height="64" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="434" width="668" height="64" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="508" width="668" height="64" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="582" width="668" height="64" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="656" width="668" height="64" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      </g>
+
+      <g font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">
+        <text x="242" y="398">Day 1 · 选主题 + 激活 Bot</text>
+        <text x="242" y="472">Day 2 · 完成 2 个任务</text>
+        <text x="242" y="546">Day 3 · 上传一次照片验证</text>
+        <text x="242" y="620">Day 4–5 · 解锁第一枚徽章</text>
+        <text x="242" y="694">Day 7 · 导出记录 & 分享</text>
+      </g>
+
+      <g fill="url(#accent)" opacity="0.95">
+        <circle cx="832" cy="392" r="10"/>
+        <circle cx="832" cy="466" r="10"/>
+        <circle cx="832" cy="540" r="10"/>
+        <circle cx="832" cy="614" r="10"/>
+        <circle cx="832" cy="688" r="10"/>
+      </g>
+      <g fill="rgba(231,245,239,0.16)">
+        <rect x="412" y="404" width="300" height="10" rx="5"/>
+        <rect x="412" y="478" width="260" height="10" rx="5"/>
+        <rect x="412" y="552" width="320" height="10" rx="5"/>
+        <rect x="412" y="626" width="240" height="10" rx="5"/>
+        <rect x="412" y="700" width="280" height="10" rx="5"/>
+      </g>
     </g>
-    <g font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#052018" font-weight="800">
-      <text x="244" y="370">1</text>
-      <text x="244" y="446">2</text>
-      <text x="244" y="522">3</text>
-      <text x="244" y="598">4</text>
-      <text x="244" y="674">7</text>
-    </g>
 
-    <g fill="rgba(231,245,239,0.28)">
-      <rect x="286" y="352" width="240" height="14" rx="7"/>
-      <rect x="286" y="428" width="300" height="14" rx="7"/>
-      <rect x="286" y="504" width="260" height="14" rx="7"/>
-      <rect x="286" y="580" width="320" height="14" rx="7"/>
-      <rect x="286" y="656" width="220" height="14" rx="7"/>
-    </g>
-    <g fill="rgba(231,245,239,0.18)">
-      <rect x="286" y="374" width="420" height="12" rx="6"/>
-      <rect x="286" y="450" width="460" height="12" rx="6"/>
-      <rect x="286" y="526" width="440" height="12" rx="6"/>
-      <rect x="286" y="602" width="480" height="12" rx="6"/>
-      <rect x="286" y="678" width="400" height="12" rx="6"/>
-    </g>
-  </g>
+    <g>
+      <rect x="940" y="280" width="320" height="480" rx="26" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="940" y="280" width="320" height="56" rx="26" fill="rgba(0,0,0,0.24)" stroke="rgba(255,255,255,0.10)"/>
+      <circle cx="974" cy="308" r="10" fill="#38f2c6" opacity="0.95"/>
+      <text x="994" y="313" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="850" fill="rgba(231,245,239,0.90)">入门清单</text>
 
-  <g>
-    <rect x="920" y="290" width="310" height="430" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="950" y="330" width="250" height="16" rx="8" fill="rgba(231,245,239,0.30)"/>
-    <rect x="950" y="362" width="200" height="12" rx="6" fill="rgba(231,245,239,0.20)"/>
-    <rect x="950" y="408" width="250" height="44" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="950" y="464" width="250" height="44" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="950" y="520" width="250" height="44" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
-    <rect x="950" y="590" width="250" height="52" rx="26" fill="url(#accent)"/>
-    <text x="1020" y="624" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" fill="#052018" font-weight="800">Join</text>
+      <g>
+        <rect x="970" y="356" width="260" height="62" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="970" y="430" width="260" height="62" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="970" y="504" width="260" height="62" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      </g>
+      <g fill="rgba(231,245,239,0.82)" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="800">
+        <text x="1002" y="390">选择主题</text>
+        <text x="1002" y="464">完成第一个任务</text>
+        <text x="1002" y="538">领取徽章</text>
+      </g>
+      <g fill="url(#accent)" opacity="0.95">
+        <rect x="1160" y="380" width="54" height="18" rx="9"/>
+        <rect x="1160" y="454" width="54" height="18" rx="9"/>
+        <rect x="1160" y="528" width="54" height="18" rx="9"/>
+      </g>
+
+      <rect x="970" y="594" width="260" height="56" rx="28" fill="url(#accent)"/>
+      <text x="1056" y="628" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">立即加入</text>
+
+      <rect x="970" y="666" width="260" height="74" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <text x="994" y="694" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">你将获得</text>
+      <g fill="rgba(231,245,239,0.70)" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650">
+        <text x="994" y="718">• 7 天引导任务</text>
+        <text x="1136" y="718">• 导出记录</text>
+      </g>
+    </g>
   </g>
 </svg>

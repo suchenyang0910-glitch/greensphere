@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061a14"/>
+      <stop offset="1" stop-color="#06251c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="900" rx="44" fill="url(#bg)"/>
+  <circle cx="340" cy="220" r="280" fill="#38f2c6" opacity="0.10"/>
+  <circle cx="1120" cy="260" r="340" fill="#1fd19c" opacity="0.10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="140" width="1160" height="620" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="170" y="214" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="900" fill="rgba(231,245,239,0.92)">碳排放资讯 · Feed</text>
+    <text x="170" y="244" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="650" fill="rgba(231,245,239,0.70)">真实产品感的列表：筛选、来源、时间、打开链接。</text>
+
+    <g>
+      <rect x="170" y="290" width="780" height="470" rx="26" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="170" y="290" width="780" height="56" rx="26" fill="rgba(0,0,0,0.24)" stroke="rgba(255,255,255,0.10)"/>
+      <circle cx="206" cy="318" r="10" fill="#38f2c6" opacity="0.95"/>
+      <text x="226" y="323" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="850" fill="rgba(231,245,239,0.90)">Top 10</text>
+      <rect x="660" y="306" width="96" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="676" y="323" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.82)">Today</text>
+      <rect x="770" y="306" width="150" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="786" y="323" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.82)">Energy / Policy</text>
+
+      <g>
+        <rect x="206" y="368" width="708" height="72" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="450" width="708" height="72" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="532" width="708" height="72" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="614" width="708" height="72" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="206" y="696" width="708" height="52" rx="18" fill="rgba(0,0,0,0.16)" stroke="rgba(255,255,255,0.10)"/>
+      </g>
+
+      <g fill="rgba(231,245,239,0.18)">
+        <rect x="240" y="392" width="520" height="12" rx="6"/>
+        <rect x="240" y="414" width="200" height="10" rx="5"/>
+        <rect x="240" y="474" width="560" height="12" rx="6"/>
+        <rect x="240" y="496" width="220" height="10" rx="5"/>
+        <rect x="240" y="556" width="540" height="12" rx="6"/>
+        <rect x="240" y="578" width="190" height="10" rx="5"/>
+        <rect x="240" y="638" width="500" height="12" rx="6"/>
+        <rect x="240" y="660" width="240" height="10" rx="5"/>
+        <rect x="240" y="718" width="320" height="10" rx="5"/>
+      </g>
+
+      <g fill="url(#accent)" opacity="0.9">
+        <rect x="820" y="390" width="74" height="14" rx="7"/>
+        <rect x="820" y="472" width="74" height="14" rx="7"/>
+        <rect x="820" y="554" width="74" height="14" rx="7"/>
+        <rect x="820" y="636" width="74" height="14" rx="7"/>
+        <circle cx="886" cy="722" r="10"/>
+      </g>
+    </g>
+
+    <g>
+      <rect x="970" y="290" width="260" height="470" rx="26" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.12)"/>
+      <rect x="970" y="290" width="260" height="56" rx="26" fill="rgba(0,0,0,0.24)" stroke="rgba(255,255,255,0.10)"/>
+      <circle cx="1004" cy="318" r="10" fill="#38f2c6" opacity="0.95"/>
+      <text x="1024" y="323" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="850" fill="rgba(231,245,239,0.90)">Sources</text>
+
+      <g>
+        <rect x="996" y="368" width="208" height="58" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="996" y="434" width="208" height="58" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="996" y="500" width="208" height="58" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+        <rect x="996" y="566" width="208" height="58" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      </g>
+      <g fill="rgba(231,245,239,0.18)">
+        <rect x="1020" y="392" width="140" height="10" rx="5"/>
+        <rect x="1020" y="458" width="120" height="10" rx="5"/>
+        <rect x="1020" y="524" width="150" height="10" rx="5"/>
+        <rect x="1020" y="590" width="110" height="10" rx="5"/>
+      </g>
+      <g fill="url(#accent)" opacity="0.9">
+        <rect x="1148" y="388" width="44" height="14" rx="7"/>
+        <rect x="1148" y="454" width="44" height="14" rx="7"/>
+        <rect x="1148" y="520" width="44" height="14" rx="7"/>
+        <rect x="1148" y="586" width="44" height="14" rx="7"/>
+      </g>
+
+      <rect x="996" y="652" width="208" height="56" rx="28" fill="url(#accent)"/>
+      <text x="1060" y="686" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="900" fill="#052018">打开</text>
+    </g>
+  </g>
+</svg>

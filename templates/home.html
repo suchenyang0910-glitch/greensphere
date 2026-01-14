@@ -41,14 +41,7 @@
     <link rel="stylesheet" href="/static/style_home.css?v={{ asset_version }}">
 </head>
 <body>
-  {% macro img_src(u) -%}
-    {%- set v = (u or '') -%}
-    {%- if v.startswith('http://') or v.startswith('https://') -%}
-      /img?u={{ v | urlencode }}
-    {%- else -%}
-      {{ v }}
-    {%- endif -%}
-  {%- endmacro %}
+  {% macro img_src(u) -%}{%- set v = (u or '')|trim -%}{%- if v.startswith('http://') or v.startswith('https://') -%}/img?u={{ v | urlencode }}{%- else -%}{{ v }}{%- endif -%}{%- endmacro %}
   <header class="lp-header">
     <div class="lp-container lp-header-inner">
       <a href="#hero" class="lp-logo">
@@ -68,7 +61,7 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="lp-hero gs-screen">
+  <section id="hero" class="lp-hero">
     <div class="lp-container gs-hero-shell">
       <div class="gs-hero-surface">
         <div class="gs-hero-grid">
@@ -92,6 +85,25 @@
               </a>
             </div>
 
+            <div class="gs-hero-metrics">
+              <div class="gs-metric">
+                <div class="gs-metric-k">2–3</div>
+                <div class="gs-metric-v">Daily Quests</div>
+              </div>
+              <div class="gs-metric">
+                <div class="gs-metric-k">+10</div>
+                <div class="gs-metric-v">G‑Points / Quest</div>
+              </div>
+              <div class="gs-metric">
+                <div class="gs-metric-k">7d</div>
+                <div class="gs-metric-v">Pioneer Journey</div>
+              </div>
+              <div class="gs-metric">
+                <div class="gs-metric-k">1‑click</div>
+                <div class="gs-metric-v">Export Record</div>
+              </div>
+            </div>
+
             <div class="lp-card gs-ui-card">
               <div class="gs-ui-card-img">
                 <img src="{{ img_src(GS_HOME_HERO_UI_IMAGE_URL) }}" alt="LeafPass UI preview" loading="eager" decoding="async">
@@ -102,7 +114,7 @@
           <div class="gs-hero-right">
             <div class="lp-card gs-hero-media">
               <div class="gs-hero-media-img">
-                <img src="{{ img_src(GS_HOME_HERO_IMAGE_URL) }}" alt="GreenSphere preview" loading="eager" decoding="async">
+                <img src="{{ img_src(GS_HOME_HERO_PRODUCT_IMAGE_URL) }}" alt="GreenSphere preview" loading="eager" decoding="async">
               </div>
               <div class="gs-hero-media-meta">
                 <div class="gs-hero-media-title">LeafPass Preview</div>
@@ -133,7 +145,7 @@
 
 
   <!-- What & How -->
-  <section id="what-how" class="lp-section lp-section-alt gs-screen">
+  <section id="what-how" class="lp-section lp-section-alt">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="what.title">
@@ -162,7 +174,7 @@
   </section>
 
   <!-- Why / For whom -->
-  <section id="why-for-whom" class="lp-section gs-screen">
+  <section id="why-for-whom" class="lp-section">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="why.title">为什么先从「简单打卡」开始？</h2>
@@ -183,7 +195,7 @@
           <div class="lp-card gs-ui-card">
             <div class="gs-ui-card-title">For individuals & teams</div>
             <div class="gs-ui-card-img">
-              <img src="{{ img_src(GS_HOME_SECTION_IMAGE_URL) }}" alt="GreenSphere for whom" loading="lazy" decoding="async">
+              <img src="{{ img_src(GS_HOME_TEAMS_PRODUCT_IMAGE_URL) }}" alt="GreenSphere for whom" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
@@ -192,7 +204,7 @@
   </section>
 
   <!-- Pioneer / Waitlist -->
-  <section id="pioneer" class="lp-section lp-section-alt gs-screen">
+  <section id="pioneer" class="lp-section lp-section-alt">
     <div class="lp-container lp-pioneer-grid">
       <div class="lp-pioneer-left">
         <h2 data-i18n="pioneer.title">
@@ -278,36 +290,46 @@
     </div>
   </section>
 
-  <section id="news" class="lp-section gs-screen">
+  <section id="news" class="lp-section">
     <div class="lp-container">
-      <h2 data-i18n="news.title">碳排放资讯 · 今日 TOP 10</h2>
-      <p class="lp-section-subtitle" data-i18n="news.subtitle">
-        每天自动抓取与碳排放相关的最新资讯，帮助你快速了解行业动态。
-      </p>
-      <div class="lp-card">
-        {% if news_items and news_items|length > 0 %}
-        <ol class="lp-list">
-          {% for item in news_items %}
-          <li>
-            <a href="{{ item.url }}" target="_blank" rel="noopener">
-              {{ item.title }}
-            </a>
-            <div style="font-size:12px;color:#6b7280;margin-top:6px;">
-              {{ item.published_at or item.fetched_at }}
-            </div>
-          </li>
-          {% endfor %}
-        </ol>
-        {% else %}
-        <div style="font-size:14px;color:#6b7280;" data-i18n="news.empty">
-          暂无资讯，请稍后刷新。
+      <div class="lp-section-header">
+        <h2 data-i18n="news.title">碳排放资讯 · 今日 TOP 10</h2>
+        <p class="lp-section-subtitle" data-i18n="news.subtitle">
+          每天自动抓取与碳排放相关的最新资讯，帮助你快速了解行业动态。
+        </p>
+      </div>
+      <div class="gs-news-grid">
+        <div class="lp-card">
+          {% if news_items and news_items|length > 0 %}
+          <ol class="lp-list">
+            {% for item in news_items %}
+            <li>
+              <a href="{{ item.url }}" target="_blank" rel="noopener">
+                {{ item.title }}
+              </a>
+              <div style="font-size:12px;color:#6b7280;margin-top:6px;">
+                {{ item.published_at or item.fetched_at }}
+              </div>
+            </li>
+            {% endfor %}
+          </ol>
+          {% else %}
+          <div style="font-size:14px;color:#6b7280;" data-i18n="news.empty">
+            暂无资讯，请稍后刷新。
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
+        <div class="lp-card gs-ui-card">
+          <div class="gs-ui-card-title">Feed Preview</div>
+          <div class="gs-ui-card-img">
+            <img src="{{ img_src(GS_HOME_NEWS_UI_IMAGE_URL) }}" alt="News UI" loading="lazy" decoding="async">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="roadmap" class="lp-section lp-section-alt gs-screen">
+  <section id="roadmap" class="lp-section lp-section-alt">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="roadmap.title">下阶段产品规划</h2>
@@ -323,7 +345,7 @@
     </div>
   </section>
 
-  <footer class="site-footer gs-screen gs-screen-footer">
+  <footer class="site-footer">
     <div class="lp-container site-footer-inner">
       <div data-i18n="footer.slogan">
         在 Telegram 里记录你的绿色行动，收集 LeafPass 徽章。

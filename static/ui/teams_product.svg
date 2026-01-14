@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061a14"/>
+      <stop offset="1" stop-color="#06251c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38f2c6"/>
+      <stop offset="1" stop-color="#1fd19c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="900" rx="44" fill="url(#bg)"/>
+  <circle cx="340" cy="240" r="300" fill="#38f2c6" opacity="0.10"/>
+  <circle cx="1120" cy="240" r="320" fill="#1fd19c" opacity="0.10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="140" y="150" width="1120" height="600" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <rect x="140" y="150" width="1120" height="56" rx="28" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.10)"/>
+    <circle cx="176" cy="178" r="10" fill="#38f2c6" opacity="0.95"/>
+    <text x="198" y="183" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="850" fill="rgba(231,245,239,0.90)">Teams Dashboard</text>
+    <rect x="1034" y="166" width="200" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <text x="1052" y="183" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="800" fill="rgba(231,245,239,0.82)">Export Report</text>
+
+    <g>
+      <rect x="180" y="230" width="340" height="180" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="206" y="266" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">参与度</text>
+      <text x="206" y="306" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="950" fill="rgba(231,245,239,0.94)">68%</text>
+      <rect x="206" y="324" width="280" height="10" rx="5" fill="rgba(231,245,239,0.14)"/>
+      <rect x="206" y="324" width="190" height="10" rx="5" fill="url(#accent)" opacity="0.9"/>
+      <rect x="206" y="350" width="220" height="12" rx="6" fill="rgba(231,245,239,0.18)"/>
+      <rect x="206" y="372" width="180" height="12" rx="6" fill="rgba(231,245,239,0.16)"/>
+    </g>
+
+    <g>
+      <rect x="540" y="230" width="340" height="180" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="566" y="266" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">累计减排（估算）</text>
+      <text x="566" y="306" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="950" fill="rgba(231,245,239,0.94)">1.2t</text>
+      <g fill="rgba(231,245,239,0.16)">
+        <rect x="566" y="330" width="280" height="10" rx="5"/>
+        <rect x="566" y="350" width="240" height="10" rx="5"/>
+        <rect x="566" y="370" width="200" height="10" rx="5"/>
+      </g>
+      <g fill="url(#accent)" opacity="0.85">
+        <rect x="566" y="330" width="180" height="10" rx="5"/>
+        <rect x="566" y="350" width="150" height="10" rx="5"/>
+        <rect x="566" y="370" width="120" height="10" rx="5"/>
+      </g>
+    </g>
+
+    <g>
+      <rect x="900" y="230" width="320" height="180" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="926" y="266" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">活跃主题</text>
+      <g fill="rgba(231,245,239,0.18)">
+        <rect x="926" y="296" width="210" height="12" rx="6"/>
+        <rect x="926" y="322" width="240" height="12" rx="6"/>
+        <rect x="926" y="348" width="180" height="12" rx="6"/>
+      </g>
+      <g fill="url(#accent)" opacity="0.9">
+        <rect x="1140" y="294" width="60" height="14" rx="7"/>
+        <rect x="1140" y="320" width="60" height="14" rx="7"/>
+        <rect x="1140" y="346" width="60" height="14" rx="7"/>
+      </g>
+    </g>
+
+    <g>
+      <rect x="180" y="430" width="1040" height="290" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="206" y="466" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="850" fill="rgba(231,245,239,0.88)">成员排行（匿名汇总）</text>
+      <g fill="rgba(231,245,239,0.18)">
+        <rect x="206" y="496" width="900" height="14" rx="7"/>
+        <rect x="206" y="528" width="860" height="14" rx="7"/>
+        <rect x="206" y="560" width="820" height="14" rx="7"/>
+        <rect x="206" y="592" width="780" height="14" rx="7"/>
+        <rect x="206" y="624" width="740" height="14" rx="7"/>
+      </g>
+      <g fill="url(#accent)" opacity="0.85">
+        <rect x="1120" y="496" width="84" height="14" rx="7"/>
+        <rect x="1120" y="528" width="84" height="14" rx="7"/>
+        <rect x="1120" y="560" width="84" height="14" rx="7"/>
+        <rect x="1120" y="592" width="84" height="14" rx="7"/>
+        <rect x="1120" y="624" width="84" height="14" rx="7"/>
+      </g>
+    </g>
+  </g>
+</svg>

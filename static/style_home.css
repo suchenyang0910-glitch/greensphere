@@ -25,7 +25,6 @@ html, body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
-  scroll-snap-type: y proximity;
 }
 
 body {
@@ -217,6 +216,32 @@ h1, h2, h3, h4, p {
   flex-wrap: wrap;
 }
 
+.gs-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 6px;
+}
+
+.gs-metric {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.12);
+  padding: 10px 12px 9px;
+}
+
+.gs-metric-k {
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(231, 245, 239, 0.95);
+}
+
+.gs-metric-v {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(231, 245, 239, 0.78);
+}
+
 .lp-card {
   border-radius: var(--gs-radius-sm);
   border: 1px solid var(--gs-border);
@@ -255,6 +280,13 @@ h1, h2, h3, h4, p {
 
 .gs-ui-grid-2 {
   grid-template-columns: 1fr 1fr;
+}
+
+.gs-news-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 14px;
+  align-items: start;
 }
 
 .gs-ui-card {
@@ -553,15 +585,6 @@ h1, h2, h3, h4, p {
   color: rgba(231, 245, 239, 0.96);
 }
 
-.gs-screen {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  min-height: 100vh;
-}
-
-.gs-screen-footer {
-  scroll-snap-align: end;
-}
 
 @media (max-width: 980px) {
   .gs-hero-grid {
@@ -578,6 +601,12 @@ h1, h2, h3, h4, p {
     grid-template-columns: 1fr;
   }
   .gs-ui-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .gs-hero-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gs-news-grid {
     grid-template-columns: 1fr;
   }
   .lp-pioneer-grid {
