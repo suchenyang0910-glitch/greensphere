@@ -38,7 +38,6 @@
 
     <script type="application/ld+json">{{ seo.structured_data | safe }}</script>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="/static/style_home.css?v={{ asset_version }}">
 </head>
 <body>
@@ -61,7 +60,7 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="lp-hero">
+  <section id="hero" class="lp-hero gs-screen">
     <div class="lp-container gs-hero-shell">
       <div class="gs-hero-surface">
         <div class="gs-hero-grid">
@@ -97,6 +96,16 @@
           </div>
 
           <div class="gs-hero-right">
+            <div class="lp-card gs-hero-media">
+              <div class="gs-hero-media-img">
+                <img src="/img?u={{ GS_HOME_HERO_IMAGE_URL | urlencode }}" alt="GreenSphere preview" loading="eager" decoding="async">
+              </div>
+              <div class="gs-hero-media-meta">
+                <div class="gs-hero-media-title">LeafPass Preview</div>
+                <div class="gs-hero-media-subtitle">Small actions, real impact.</div>
+              </div>
+            </div>
+
             <div class="lp-card gs-tasks-card">
               <div class="gs-tasks-header" data-i18n="tasks.today.title">今日任务</div>
               <div class="gs-task">
@@ -120,7 +129,7 @@
 
 
   <!-- What & How -->
-  <section id="what-how" class="lp-section lp-section-alt">
+  <section id="what-how" class="lp-section lp-section-alt gs-screen">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="what.title">
@@ -175,6 +184,9 @@
         </div>
 
         <div class="lp-card lp-card-backend">
+          <div class="gs-section-media">
+            <img src="/img?u={{ GS_HOME_SECTION_IMAGE_URL | urlencode }}" alt="Green lifestyle" loading="lazy" decoding="async">
+          </div>
           <h3 data-i18n="what.backend.title">我们在后台做的事情</h3>
           <ul>
             <li data-i18n="what.backend.li1">
@@ -193,7 +205,7 @@
   </section>
 
   <!-- Why / For whom -->
-  <section id="why-for-whom" class="lp-section">
+  <section id="why-for-whom" class="lp-section gs-screen">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="why.title">为什么先从「简单打卡」开始？</h2>
@@ -270,7 +282,7 @@
   </section>
 
   <!-- Pioneer / Waitlist -->
-  <section id="pioneer" class="lp-section lp-section-alt">
+  <section id="pioneer" class="lp-section lp-section-alt gs-screen">
     <div class="lp-container lp-pioneer-grid">
       <div class="lp-pioneer-left">
         <h2 data-i18n="pioneer.title">
@@ -400,7 +412,7 @@
     </div>
   </section>
 
-  <section id="news" class="lp-section">
+  <section id="news" class="lp-section gs-screen">
     <div class="lp-container">
       <h2 data-i18n="news.title">碳排放资讯 · 今日 TOP 10</h2>
       <p class="lp-section-subtitle" data-i18n="news.subtitle">
@@ -429,7 +441,7 @@
     </div>
   </section>
 
-  <section id="roadmap" class="lp-section lp-section-alt">
+  <section id="roadmap" class="lp-section lp-section-alt gs-screen">
     <div class="lp-container">
       <div class="lp-section-header">
         <h2 data-i18n="roadmap.title">下阶段产品规划</h2>
@@ -466,7 +478,7 @@
     </div>
   </section>
 
-  <footer class="site-footer">
+  <footer class="site-footer gs-screen gs-screen-footer">
     <div class="lp-container site-footer-inner">
       <div data-i18n="footer.slogan">
         在 Telegram 里记录你的绿色行动，收集 LeafPass 徽章。
@@ -486,7 +498,7 @@
   </footer>
 
 
-    <script>
+    <script type="application/json">
     (function () {
       var forced = null;
       try {
@@ -904,3 +916,5 @@
 
     })();
   </script>
+</body>
+</html>

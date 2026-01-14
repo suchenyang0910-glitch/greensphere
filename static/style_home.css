@@ -22,6 +22,12 @@ html, body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  scroll-snap-type: y proximity;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -272,6 +278,54 @@ h1, h2, h3, h4, p {
   color: rgba(56, 242, 198, 0.90);
 }
 
+.gs-hero-media {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.gs-hero-media-img {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.gs-hero-media-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gs-hero-media-meta {
+  padding: 12px 14px 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.gs-hero-media-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(231, 245, 239, 0.92);
+}
+
+.gs-hero-media-subtitle {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(231, 245, 239, 0.74);
+}
+
+.gs-section-media {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  margin-bottom: 12px;
+}
+
+.gs-section-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
 .lp-section {
   padding: 72px 0;
 }
@@ -460,6 +514,16 @@ h1, h2, h3, h4, p {
   color: rgba(231, 245, 239, 0.96);
 }
 
+.gs-screen {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+}
+
+.gs-screen-footer {
+  scroll-snap-align: end;
+}
+
 @media (max-width: 980px) {
   .gs-hero-grid {
     grid-template-columns: 1fr;
@@ -482,5 +546,11 @@ h1, h2, h3, h4, p {
   }
   .lp-nav a {
     padding: 7px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
