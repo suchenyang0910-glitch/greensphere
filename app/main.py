@@ -22,6 +22,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import router as greensphere_router
 from gs_db import init_gs_db
 from app.jobs.news_fetcher import start_news_fetcher
+from app.jobs.co2_fetcher import start_co2_fetcher
 from app.jobs.daily_reporter import start_daily_reporter
 
 
@@ -50,6 +51,7 @@ def create_app() -> FastAPI:
         init_gs_db()
         start_news_fetcher()
         start_daily_reporter()
+        start_co2_fetcher()
 
     return app
 

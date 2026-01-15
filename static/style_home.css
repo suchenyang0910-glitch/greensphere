@@ -367,6 +367,8 @@ h1, h2, h3, h4, p {
   padding: 0;
   overflow: hidden;
   margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
 .gs-hero-media-img {
@@ -383,7 +385,7 @@ h1, h2, h3, h4, p {
 
 .gs-hero-media-meta {
   padding: 12px 14px 13px;
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .gs-hero-media-title {

@@ -138,6 +138,17 @@ def init_gs_db() -> None:
 
     c.execute(
         """
+        CREATE TABLE IF NOT EXISTS co2_daily (
+            date TEXT PRIMARY KEY,
+            value REAL NOT NULL,
+            source TEXT,
+            fetched_at_utc TEXT NOT NULL
+        );
+        """
+    )
+
+    c.execute(
+        """
         CREATE TABLE IF NOT EXISTS challenges (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             code TEXT NOT NULL UNIQUE,

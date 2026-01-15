@@ -5,7 +5,6 @@ from datetime import datetime, timedelta, timezone
 
 from gs_db import get_db
 from models import log_system_event
-from app.services.co2_service import update_co2_cache
 from app.services.monitor_service import notify_monitor
 
 
@@ -79,10 +78,6 @@ def _worker() -> None:
 
     if run_on_start:
         try:
-            try:
-                update_co2_cache()
-            except Exception:
-                pass
             date_str = _report_date_str(offset)
             stats = _compute_daily_stats(date_str, offset)
             msg = _build_daily_message(date_str, stats["new_users"], stats["active_users"], stats["completed"], stats["total_users"])
@@ -101,11 +96,6 @@ def _worker() -> None:
             target = _next_run_local_midnight_utc(offset)
             sleep_s = max(1, int((target - datetime.now(timezone.utc)).total_seconds()))
             time.sleep(sleep_s)
-
-            try:
-                update_co2_cache()
-            except Exception:
-                pass
 
             date_str = _report_date_str(offset)
             stats = _compute_daily_stats(date_str, offset)
