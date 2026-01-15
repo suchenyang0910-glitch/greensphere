@@ -158,13 +158,41 @@ def render_trend_svg(points: list[Co2Point]) -> str:
     def y(v: float) -> float:
         return pad_t + (plot_h * (vmax - v)) / (vmax - vmin)
 
-    pts = " ".join([f"{x(i):.2f},{y(p.value):.2f}" for i, p in enumerate(points)])
+    pts_xy = [(x(i), y(p.value)) for i, p in enumerate(points)]
+    pts = " ".join([f"{px:.2f},{py:.2f}" for px, py in pts_xy])
     last = points[-1]
     last_x = x(len(points) - 1)
     last_y = y(last.value)
     vmin_label = f"{vmin:.2f} ppm"
     vmax_label = f"{vmax:.2f} ppm"
     last_label = f"{last.date} · {last.value:.2f} ppm"
+
+    ticks = 4
+    y_lines = []
+    y_labels = []
+    for i in range(ticks + 1):
+        t = i / ticks
+        yy = pad_t + plot_h * t
+        vv = vmax - (vmax - vmin) * t
+        y_lines.append(f'<line x1="{pad_l}" y1="{yy:.2f}" x2="{w - pad_r}" y2="{yy:.2f}" stroke="rgba(255,255,255,0.06)"/>')
+        y_labels.append(
+            f'<text x="{pad_l - 10}" y="{yy + 4:.2f}" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="rgba(231,245,239,0.70)">{vv:.2f}</text>'
+        )
+
+    x_labels = []
+    for i, p in enumerate(points):
+        if i in (0, len(points) - 1) or len(points) <= 5 or i % 2 == 0:
+            label = p.date[5:]
+            x_labels.append(
+                f'<text x="{x(i):.2f}" y="{pad_t + plot_h + 28:.2f}" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="rgba(231,245,239,0.70)">{label}</text>'
+            )
+
+    dots = []
+    for i, p in enumerate(points):
+        px, py = pts_xy[i]
+        dots.append(
+            f'<circle cx="{px:.2f}" cy="{py:.2f}" r="4.2" fill="rgba(56,242,198,0.92)"><title>{p.date} · {p.value:.2f} ppm</title></circle>'
+        )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
   <defs>
@@ -181,14 +209,22 @@ def render_trend_svg(points: list[Co2Point]) -> str:
   <text x="{pad_l}" y="34" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="800" fill="rgba(231,245,239,0.92)">{title}</text>
   <text x="{pad_l}" y="52" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="650" fill="rgba(231,245,239,0.70)">{last_label}</text>
 
-  <line x1="{pad_l}" y1="{pad_t}" x2="{w - pad_r}" y2="{pad_t}" stroke="rgba(255,255,255,0.08)"/>
-  <line x1="{pad_l}" y1="{pad_t + plot_h}" x2="{w - pad_r}" y2="{pad_t + plot_h}" stroke="rgba(255,255,255,0.08)"/>
-  <line x1="{pad_l}" y1="{pad_t}" x2="{pad_l}" y2="{pad_t + plot_h}" stroke="rgba(255,255,255,0.08)"/>
+  <g>
+    {''.join(y_lines)}
+    <line x1="{pad_l}" y1="{pad_t}" x2="{w - pad_r}" y2="{pad_t}" stroke="rgba(255,255,255,0.10)"/>
+    <line x1="{pad_l}" y1="{pad_t + plot_h}" x2="{w - pad_r}" y2="{pad_t + plot_h}" stroke="rgba(255,255,255,0.10)"/>
+    <line x1="{pad_l}" y1="{pad_t}" x2="{pad_l}" y2="{pad_t + plot_h}" stroke="rgba(255,255,255,0.10)"/>
+  </g>
 
-  <text x="{pad_l - 10}" y="{pad_t + 4}" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="rgba(231,245,239,0.70)">{vmax_label}</text>
-  <text x="{pad_l - 10}" y="{pad_t + plot_h}" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="rgba(231,245,239,0.70)">{vmin_label}</text>
+  <g>
+    {''.join(y_labels)}
+    {''.join(x_labels)}
+  </g>
 
   <polyline fill="none" stroke="rgba(56,242,198,0.18)" stroke-width="8" points="{pts}" stroke-linecap="round" stroke-linejoin="round"/>
   <polyline fill="none" stroke="url(#accent)" stroke-width="3.5" points="{pts}" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="{last_x:.2f}" cy="{last_y:.2f}" r="6" fill="#38f2c6" opacity="0.95"/>
+  <g>
+    {''.join(dots)}
+    <circle cx="{last_x:.2f}" cy="{last_y:.2f}" r="6" fill="#38f2c6" opacity="0.95"/>
+  </g>
 </svg>"""
